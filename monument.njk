@@ -196,7 +196,7 @@ permalink: "monuments/{{ item.name | slugify }}/index.html"
     <div class="content-section">
         <!-- 6. Photography -->
         {% if item.image1 or item.image2 %}
-        <h2>Photography  (test)</h2>
+        // <h2>Photography  (test)</h2>
         <div class="gallery-grid">
             {% if item.image1 %}<img src="{{ item.image1 }}" alt="{{ item.name }} interior">{% endif %}
             {% if item.image2 %}<img src="{{ item.image2 }}" alt="{{ item.name }} detail">{% endif %}
