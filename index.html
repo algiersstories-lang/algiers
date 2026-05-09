@@ -3,100 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <title>Algiers Stories</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        :root {
+            --med-blue: #4CB6C9;
+            --hist-teal: #006064;
+            --terracotta: #A0522D;
+            --parchment: #F5F5DC;
+        }
+        body {
+            background-color: var(--parchment);
+            color: var(--hist-teal);
+            font-family: 'Georgia', serif; /* Classic feel */
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--hist-teal);
+            border-bottom: 3px solid var(--med-blue);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        ul { list-style: none; padding: 0; }
+        li {
+            background: #fff; /* White cards */
+            margin-bottom: 15px;
+            padding: 15px;
+            border-left: 5px solid var(--terracotta);
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        a {
+            color: var(--med-blue);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        a:hover { color: var(--terracotta); }
+        .category {
+            font-size: 0.8rem;
+            color: var(--terracotta);
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
     <h1>Historical Monuments of Algiers</h1>
     <ul>
     
       <li>
-        <a href="/algiers/monuments/djamaa-el-djedid/"><strong>Djamaa El Djedid</strong></a> 
-        - Mosque
+        <span class="category">Mosque</span><br>
+        <a href="/algiers/monuments/djamaa-el-djedid/">Djamaa El Djedid</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/djamaa-ketchawa/"><strong>Djamaa Ketchawa</strong></a> 
-        - Mosque
+        <span class="category">Mosque</span><br>
+        <a href="/algiers/monuments/djamaa-ketchawa/">Djamaa Ketchawa</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/djamaa-el-kebir/"><strong>Djamaa El Kebir</strong></a> 
-        - Mosque
+        <span class="category">Mosque</span><br>
+        <a href="/algiers/monuments/djamaa-el-kebir/">Djamaa El Kebir</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/djamaa-ali-betchine/"><strong>Djamaa Ali Betchine</strong></a> 
-        - Mosque
+        <span class="category">Mosque</span><br>
+        <a href="/algiers/monuments/djamaa-ali-betchine/">Djamaa Ali Betchine</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/djamaa-sidi-ramdane/"><strong>Djamaa Sidi Ramdane</strong></a> 
-        - Mosque
+        <span class="category">Mosque</span><br>
+        <a href="/algiers/monuments/djamaa-sidi-ramdane/">Djamaa Sidi Ramdane</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/djamaa-safir/"><strong>Djamaa Safir</strong></a> 
-        - Mosque
+        <span class="category">Mosque</span><br>
+        <a href="/algiers/monuments/djamaa-safir/">Djamaa Safir</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/djamaa-sidi-el-barani/"><strong>Djamaa Sidi El Barani</strong></a> 
-        - Mosque
+        <span class="category">Mosque</span><br>
+        <a href="/algiers/monuments/djamaa-sidi-el-barani/">Djamaa Sidi El Barani</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/djamaa-sidi-mohamed-cherif/"><strong>Djamaa Sidi Mohamed Cherif</strong></a> 
-        - Mosque
+        <span class="category">Mosque</span><br>
+        <a href="/algiers/monuments/djamaa-sidi-mohamed-cherif/">Djamaa Sidi Mohamed Cherif</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/djamaa-sidi-abderrahmane/"><strong>Djamaa Sidi Abderrahmane</strong></a> 
-        - Mosque
+        <span class="category">Mosque</span><br>
+        <a href="/algiers/monuments/djamaa-sidi-abderrahmane/">Djamaa Sidi Abderrahmane</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/bab-azoun/"><strong>Bab Azoun</strong></a> 
-        - gate
+        <span class="category">gate</span><br>
+        <a href="/algiers/monuments/bab-azoun/">Bab Azoun</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/bab-el-oued/"><strong>Bab El Oued</strong></a> 
-        - gate
+        <span class="category">gate</span><br>
+        <a href="/algiers/monuments/bab-el-oued/">Bab El Oued</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/bab-el-jedid/"><strong>Bab EL Jedid</strong></a> 
-        - gate
+        <span class="category">gate</span><br>
+        <a href="/algiers/monuments/bab-el-jedid/">Bab EL Jedid</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/bab-dzira/"><strong>Bab Dzira</strong></a> 
-        - gate
+        <span class="category">gate</span><br>
+        <a href="/algiers/monuments/bab-dzira/">Bab Dzira</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/bab-el-bahr/"><strong>Bab El Bahr</strong></a> 
-        - gate
+        <span class="category">gate</span><br>
+        <a href="/algiers/monuments/bab-el-bahr/">Bab El Bahr</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/palais-des-reis/"><strong>Palais des Reis</strong></a> 
-        - Palais
+        <span class="category">Palais</span><br>
+        <a href="/algiers/monuments/palais-des-reis/">Palais des Reis</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/dar-mustapha-pacha/"><strong>Dar Mustapha Pacha</strong></a> 
-        - Palais
+        <span class="category">Palais</span><br>
+        <a href="/algiers/monuments/dar-mustapha-pacha/">Dar Mustapha Pacha</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/dar-khedaoudj-el-amia/"><strong>Dar Khedaoudj El Amia</strong></a> 
-        - Palais
+        <span class="category">Palais</span><br>
+        <a href="/algiers/monuments/dar-khedaoudj-el-amia/">Dar Khedaoudj El Amia</a>
       </li>
     
       <li>
-        <a href="/algiers/monuments/dar-aziza/"><strong>Dar Aziza</strong></a> 
-        - Palais
+        <span class="category">Palais</span><br>
+        <a href="/algiers/monuments/dar-aziza/">Dar Aziza</a>
       </li>
     
     </ul>
