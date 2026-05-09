@@ -10,7 +10,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - run: npm install @11ty/eleventy@latest
+      
+      - run: npm install @11ty/eleventy@latest csvtojson
       - name: Fetch CSV
         run: |
           mkdir -p _data
