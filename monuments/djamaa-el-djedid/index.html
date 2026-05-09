@@ -3,28 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <title>Djamaa El Djedid | Algiers Stories</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        :root {
+            --med-blue: #4CB6C9;
+            --hist-teal: #006064;
+            --terracotta: #A0522D;
+            --parchment: #F5F5DC;
+        }
+        body {
+            background-color: var(--parchment);
+            color: #333;
+            font-family: 'Georgia', serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .back-link { color: var(--med-blue); text-decoration: none; font-weight: bold; }
+        h1 { color: var(--hist-teal); font-size: 2.5rem; margin-top: 10px; }
+        
+        h2 { 
+            color: var(--terracotta); 
+            border-bottom: 1px solid var(--terracotta);
+            padding-bottom: 5px;
+        }
+
+        .main-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 2px;
+        }
+
+        .info-box {
+            background: var(--hist-teal);
+            color: white;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            border: 4px solid white;
+            margin-bottom: 10px;
+        }
+
+        .history-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 4px solid var(--terracotta);
+        }
+    </style>
 </head>
 <body>
-    <a href="/algiers/">← Back to Home</a>
+    <a href="/algiers/" class="back-link">← Return to Casbah Map</a>
+    
     <h1>Djamaa El Djedid</h1>
     
     
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Alger-Place-des-Martyrs-Casbah_cropped.jpg/1280px-Alger-Place-des-Martyrs-Casbah_cropped.jpg" alt="Djamaa El Djedid" style="width:100%; border-radius:8px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Alger-Place-des-Martyrs-Casbah_cropped.jpg/1280px-Alger-Place-des-Martyrs-Casbah_cropped.jpg" alt="Djamaa El Djedid" class="main-img">
     
 
-    <p>Djamaâ el Djedid, également connue sous le nom de Mosquée de la Pêcherie</p>
+    <div class="info-box">
+        <strong>Dynasty:</strong> Othomane | <strong>Period:</strong> 1070 de l&#39;Hégire (1660 J.-C.)
+    </div>
 
-    <h2>History</h2>
-    <p>L&#39;édifice a été érigé en 1070 de l&#39;Hégire (1660 J.-C.) sur l&#39;emplacement de l&#39;ancienne madrasa Bou Anan
+    <div class="history-section">
+        <h2>History</h2>
+        <p>L&#39;édifice a été érigé en 1070 de l&#39;Hégire (1660 J.-C.) sur l&#39;emplacement de l&#39;ancienne madrasa Bou Anan
 . Sa construction a été commanditée par le Dey Mustapha Pacha
 . Une inscription gravée près du mihrab authentifie la genèse de l&#39;œuvre et cite al-Hâjj Habîb comme maître d&#39;œuvre ou assistant ayant dirigé les travaux
 . Une légende célèbre raconte qu&#39;un esclave chrétien aurait conçu le plan en forme de croix latine pour marquer le bâtiment du symbole de sa foi, mais les historiens réfutent cette thèse en soulignant que le style est inspiré des modèles ottomans d&#39;Istanbul, tels que la basilique Sainte-Sophie
 . En 1852, sous la période coloniale, une horloge provenant du Palais de la Jénina a été intégrée à son minaret par l&#39;architecte Bournichon
 .</p>
-
-    <h2>Architecture</h2>
-    <p>L&#39;architecture de la mosquée est une synthèse unique d&#39;influences ottomanes, maghrébines et européennes
+        
+        <h2>Architecture</h2>
+        <p>L&#39;architecture de la mosquée est une synthèse unique d&#39;influences ottomanes, maghrébines et européennes
 .
 Structure et Coupoles : Le plan basilical présente une nef centrale et un transept surélevés formant une croix latine
 . La coupole centrale ovoïde s&#39;élève à 24 mètres de hauteur et repose sur quatre piliers massifs via un tambour et des pendentifs
@@ -37,12 +94,9 @@ Décoration intérieure : Le mihrab possède une niche octogonale ornée de carr
 . Le magnifique minbar en marbre blanc, fabriqué en Italie, provient de la mosquée Es-Sayida qui fut démolie en 1832
 . L&#39;extérieur du bâtiment est entièrement blanchi à la chaux, lui conférant une silhouette blanche immaculée
 .</p>
+    </div>
 
     
 
-    <div style="background:#f0f0f0; padding:20px; margin-top:20px; border-radius:8px; color:#333;">
-        <p><strong>Dynasty:</strong> Othomane | <strong>Period:</strong> 1070 de l&#39;Hégire (1660 J.-C.)</p>
-        <p><strong>Location:</strong> 36.78478, 3.06313</p>
-    </div>
 </body>
 </html>

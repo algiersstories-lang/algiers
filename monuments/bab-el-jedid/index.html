@@ -3,29 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>Bab EL Jedid | Algiers Stories</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        :root {
+            --med-blue: #4CB6C9;
+            --hist-teal: #006064;
+            --terracotta: #A0522D;
+            --parchment: #F5F5DC;
+        }
+        body {
+            background-color: var(--parchment);
+            color: #333;
+            font-family: 'Georgia', serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .back-link { color: var(--med-blue); text-decoration: none; font-weight: bold; }
+        h1 { color: var(--hist-teal); font-size: 2.5rem; margin-top: 10px; }
+        
+        h2 { 
+            color: var(--terracotta); 
+            border-bottom: 1px solid var(--terracotta);
+            padding-bottom: 5px;
+        }
+
+        .main-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 2px;
+        }
+
+        .info-box {
+            background: var(--hist-teal);
+            color: white;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            border: 4px solid white;
+            margin-bottom: 10px;
+        }
+
+        .history-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 4px solid var(--terracotta);
+        }
+    </style>
 </head>
 <body>
-    <a href="/algiers/">← Back to Home</a>
+    <a href="/algiers/" class="back-link">← Return to Casbah Map</a>
+    
     <h1>Bab EL Jedid</h1>
     
     
-    <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Bab EL Jedid" style="width:100%; border-radius:8px;">
+    <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Bab EL Jedid" class="main-img">
     
 
-    <p>Major spiritual site near the sea, associated with a revered saint.</p>
-
-    <h2>History</h2>
-    <p></p>
-
-    <h2>Architecture</h2>
-    <p></p>
-
-    
-
-    <div style="background:#f0f0f0; padding:20px; margin-top:20px; border-radius:8px; color:#333;">
-        <p><strong>Dynasty:</strong>  | <strong>Period:</strong> </p>
-        <p><strong>Location:</strong> 36.78570477, 3.056080589</p>
+    <div class="info-box">
+        <strong>Dynasty:</strong>  | <strong>Period:</strong> 
     </div>
+
+    <div class="history-section">
+        <h2>History</h2>
+        <p></p>
+        
+        <h2>Architecture</h2>
+        <p></p>
+    </div>
+
+    
+
 </body>
 </html>

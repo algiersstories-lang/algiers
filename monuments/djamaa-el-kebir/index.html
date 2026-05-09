@@ -3,27 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <title>Djamaa El Kebir | Algiers Stories</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        :root {
+            --med-blue: #4CB6C9;
+            --hist-teal: #006064;
+            --terracotta: #A0522D;
+            --parchment: #F5F5DC;
+        }
+        body {
+            background-color: var(--parchment);
+            color: #333;
+            font-family: 'Georgia', serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .back-link { color: var(--med-blue); text-decoration: none; font-weight: bold; }
+        h1 { color: var(--hist-teal); font-size: 2.5rem; margin-top: 10px; }
+        
+        h2 { 
+            color: var(--terracotta); 
+            border-bottom: 1px solid var(--terracotta);
+            padding-bottom: 5px;
+        }
+
+        .main-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 2px;
+        }
+
+        .info-box {
+            background: var(--hist-teal);
+            color: white;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            border: 4px solid white;
+            margin-bottom: 10px;
+        }
+
+        .history-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 4px solid var(--terracotta);
+        }
+    </style>
 </head>
 <body>
-    <a href="/algiers/">← Back to Home</a>
+    <a href="/algiers/" class="back-link">← Return to Casbah Map</a>
+    
     <h1>Djamaa El Kebir</h1>
     
     
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Minaret_de_la_Grande_Mosqu%C3%A9e_d%27Alger_%28Djam%C3%A2a_El_Kebir%29.jpg/250px-Minaret_de_la_Grande_Mosqu%C3%A9e_d%27Alger_%28Djam%C3%A2a_El_Kebir%29.jpg" alt="Djamaa El Kebir" style="width:100%; border-radius:8px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Minaret_de_la_Grande_Mosqu%C3%A9e_d%27Alger_%28Djam%C3%A2a_El_Kebir%29.jpg/250px-Minaret_de_la_Grande_Mosqu%C3%A9e_d%27Alger_%28Djam%C3%A2a_El_Kebir%29.jpg" alt="Djamaa El Kebir" class="main-img">
     
 
-    <p>Djamaâ El Kebir, ou la Grande Mosquée d&#39;Alger</p>
+    <div class="info-box">
+        <strong>Dynasty:</strong> Almoravide | <strong>Period:</strong> 490 de l&#39;Hégire (1097 J.-C.)
+    </div>
 
-    <h2>History</h2>
-    <p>L&#39;édifice a été fondé en 490 de l&#39;Hégire (1097 J.-C.) par le souverain almoravide Yûsuf ibn Tâshufîn
+    <div class="history-section">
+        <h2>History</h2>
+        <p>L&#39;édifice a été fondé en 490 de l&#39;Hégire (1097 J.-C.) par le souverain almoravide Yûsuf ibn Tâshufîn
 . Bien que la structure principale date du XIe siècle, le minaret actuel a été ajouté plus tard, en 1324, par le sultan zianide de Tlemcen, Abû Tashufîn
 . Au fil des siècles, la mosquée a subi diverses restaurations, notamment au niveau de son mihrâb qui fut reconstruit
 . Une galerie extérieure à colonnes de marbre a également été ajoutée lors de travaux de réaménagement urbain à l&#39;époque coloniale (1837) pour border la rue de la Marine
 .</p>
-
-    <h2>Architecture</h2>
-    <p>L&#39;architecture de la Grande Mosquée suit le modèle hypostyle traditionnel, dit de type arabe
+        
+        <h2>Architecture</h2>
+        <p>L&#39;architecture de la Grande Mosquée suit le modèle hypostyle traditionnel, dit de type arabe
 .
 Plan et Salle de prière : Le bâtiment est de forme rectangulaire, plus large que profond
 . La salle de prière est divisée en onze nefs perpendiculaires au mur de la qibla et cinq travées
@@ -38,12 +95,9 @@ Le Minaret : De forme quadrangulaire (base carrée), il est typique du style mag
 . Un détail technique ingénieux consiste en un système de rails au sol de chaque côté du mihrâb, permettant de déplacer le minbar (chaire) sur roues depuis sa réserve jusqu&#39;à la salle de prière
 . La toiture est composée de doubles versants couverts de tuiles creuses
 .</p>
+    </div>
 
     
 
-    <div style="background:#f0f0f0; padding:20px; margin-top:20px; border-radius:8px; color:#333;">
-        <p><strong>Dynasty:</strong> Almoravide | <strong>Period:</strong> 490 de l&#39;Hégire (1097 J.-C.)</p>
-        <p><strong>Location:</strong> 36.78524, 3.06437</p>
-    </div>
 </body>
 </html>

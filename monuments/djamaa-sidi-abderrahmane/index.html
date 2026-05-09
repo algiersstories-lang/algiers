@@ -3,35 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Djamaa Sidi Abderrahmane | Algiers Stories</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        :root {
+            --med-blue: #4CB6C9;
+            --hist-teal: #006064;
+            --terracotta: #A0522D;
+            --parchment: #F5F5DC;
+        }
+        body {
+            background-color: var(--parchment);
+            color: #333;
+            font-family: 'Georgia', serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .back-link { color: var(--med-blue); text-decoration: none; font-weight: bold; }
+        h1 { color: var(--hist-teal); font-size: 2.5rem; margin-top: 10px; }
+        
+        h2 { 
+            color: var(--terracotta); 
+            border-bottom: 1px solid var(--terracotta);
+            padding-bottom: 5px;
+        }
+
+        .main-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 2px;
+        }
+
+        .info-box {
+            background: var(--hist-teal);
+            color: white;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            border: 4px solid white;
+            margin-bottom: 10px;
+        }
+
+        .history-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 4px solid var(--terracotta);
+        }
+    </style>
 </head>
 <body>
-    <a href="/algiers/">← Back to Home</a>
+    <a href="/algiers/" class="back-link">← Return to Casbah Map</a>
+    
     <h1>Djamaa Sidi Abderrahmane</h1>
     
     
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg/960px-Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg" alt="Djamaa Sidi Abderrahmane" style="width:100%; border-radius:8px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg/960px-Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg" alt="Djamaa Sidi Abderrahmane" class="main-img">
     
 
-    <p>Major spiritual site near the sea, associated with a revered saint.</p>
+    <div class="info-box">
+        <strong>Dynasty:</strong>  | <strong>Period:</strong> 1621
+    </div>
 
-    <h2>History</h2>
-    <p></p>
-
-    <h2>Architecture</h2>
-    <p></p>
+    <div class="history-section">
+        <h2>History</h2>
+        <p></p>
+        
+        <h2>Architecture</h2>
+        <p></p>
+    </div>
 
     
-    <h3>Gallery</h3>
-    <div style="display: flex; gap: 10px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg/960px-Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg" style="width:48%;">
-        <img src="https://media.nouvelobs.com/referentiel/1200x800/16275690.jpg" style="width:48%;">
+    <h2>Gallery</h2>
+    <div class="gallery" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg/960px-Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg">
+        <img src="https://media.nouvelobs.com/referentiel/1200x800/16275690.jpg">
     </div>
     
 
-    <div style="background:#f0f0f0; padding:20px; margin-top:20px; border-radius:8px; color:#333;">
-        <p><strong>Dynasty:</strong>  | <strong>Period:</strong> 1621</p>
-        <p><strong>Location:</strong> 36.7883, 3.05942</p>
-    </div>
 </body>
 </html>
