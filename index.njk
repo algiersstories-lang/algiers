@@ -1,65 +1,36 @@
 ---
-permalink: /index.html
+layout: base.njk
+title: "Heritage List"
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Algiers Stories</title>
-    <style>
-        :root {
-            --med-blue: #4CB6C9;
-            --hist-teal: #006064;
-            --terracotta: #A0522D;
-            --parchment: #F5F5DC;
-        }
-        body {
-            background-color: var(--parchment);
-            color: var(--hist-teal);
-            font-family: 'Georgia', serif; /* Classic feel */
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            color: var(--hist-teal);
-            border-bottom: 3px solid var(--med-blue);
-            padding-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        ul { list-style: none; padding: 0; }
-        li {
-            background: #fff; /* White cards */
-            margin-bottom: 15px;
-            padding: 15px;
-            border-left: 5px solid var(--terracotta);
-            border-radius: 4px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-        }
-        a {
-            color: var(--med-blue);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        a:hover { color: var(--terracotta); }
-        .category {
-            font-size: 0.8rem;
-            color: var(--terracotta);
-            text-transform: uppercase;
-        }
-    </style>
-</head>
-<body>
-    <h1>Historical Monuments of Algiers</h1>
-    <ul>
-    {% for item in monuments %}
-      <li>
-        <span class="category">{{ item.category }}</span><br>
-        <a href="/algiers/monuments/{{ item.name | slugify }}/">{{ item.name }}</a>
-      </li>
-    {% endfor %}
-    </ul>
-</body>
-</html>
+<h1>Historical Monuments of Algiers</h1>
+<p>Explore the architectural gems of the Casbah and beyond.</p>
+
+<style>
+    .monument-list { list-style: none; padding: 0; }
+    .monument-card {
+        background: white;
+        margin-bottom: 20px;
+        padding: 20px;
+        border-left: 6px solid var(--terracotta);
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .monument-card a {
+        color: var(--hist-teal);
+        text-decoration: none;
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+    .monument-card a:hover { color: var(--med-blue); }
+    .card-meta { color: var(--terracotta); font-size: 0.8rem; text-transform: uppercase; display: block; }
+</style>
+
+<ul class="monument-list">
+{% for item in monuments %}
+  <li class="monument-card">
+    <span class="card-meta">{{ item.dynasty }} — {{ item.period }}</span>
+    <a href="/algiers/monuments/{{ item.name | slugify }}/">{{ item.name }}</a>
+    <p style="margin: 5px 0 0 0; color: #666;">{{ item.description }}</p>
+  </li>
+{% endfor %}
+</ul>
