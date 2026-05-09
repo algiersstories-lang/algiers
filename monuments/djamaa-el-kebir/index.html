@@ -3,222 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Djamaa El Kebir | Algiers Stories</title>
+    <title> | Algiers Stories</title>
     <style>
         :root {
-            --med-blue: #4CB6C9;      /* Mediterranean Blue */
-            --hist-teal: #006064;      /* Historic Teal */
-            --terracotta: #A0522D;     /* Terracotta */
-            --parchment: #F5F5DC;      /* Background Parchment */
+            --med-blue: #4CB6C9;
+            --hist-teal: #006064;
+            --terracotta: #A0522D;
+            --parchment: #F5F5DC;
         }
 
         body {
             background-color: var(--parchment);
             color: #333;
             font-family: 'Georgia', serif;
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            margin: 0;
+            padding: 0;
             line-height: 1.8;
         }
 
-        /* Navigation */
-        .back-link { 
-            color: var(--med-blue); 
-            text-decoration: none; 
-            font-weight: bold; 
-            display: inline-block;
-            margin-bottom: 30px;
-            transition: color 0.3s;
+        /* Menu System */
+        .main-nav {
+            background-color: var(--hist-teal);
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .back-link:hover { color: var(--terracotta); }
-
-        /* 1. Name */
-        h1 { 
-            color: var(--hist-teal); 
-            font-size: 3rem; 
-            margin: 0 0 10px 0; 
-            line-height: 1.2;
-        }
-
-        /* 2. Description */
-        .short-description { 
-            font-style: italic; 
-            font-size: 1.25rem; 
-            color: #444; 
-            margin-bottom: 30px;
-            border-left: 3px solid var(--med-blue);
-            padding-left: 15px;
-        }
-
-        /* 3. History Box (Metadata) */
-        .history-box {
-            background: var(--hist-teal);
-            color: white;
-            padding: 20px;
-            border-radius: 4px;
-            margin: 20px 0 40px 0;
+        .nav-container {
+            max-width: 850px;
+            margin: 0 auto;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 15px;
-        }
-        .history-box strong { color: var(--med-blue); }
-
-        /* 4. Main Photo */
-        .main-photo {
-            width: 100%;
-            height: auto;
-            max-height: 500px;
-            object-fit: cover;
-            border: 10px solid white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            border-radius: 2px;
-            margin-bottom: 40px;
-        }
-
-        /* 5. Long Description */
-        .long-description {
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-        }
-
-        /* Wrapper for Sectioned Content */
-        .content-section {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 8px;
-            border-top: 5px solid var(--terracotta);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        h2 { 
-            color: var(--terracotta); 
-            font-variant: small-caps;
-            border-bottom: 2px solid var(--parchment);
-            padding-bottom: 8px;
-            margin-top: 40px;
-        }
-        h2:first-of-type { margin-top: 0; }
-
-        /* 6. Photography (Gallery) */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        .gallery-grid img { 
-            width: 100%; 
-            height: 250px;
-            object-fit: cover;
-            border: 5px solid white; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-        }
-
-        /* Map Link Styling */
-        .map-location-card {
-            margin: 30px 0;
-            padding: 20px;
-            background: #f9f9f9;
-            border: 2px dashed var(--med-blue);
-            border-radius: 6px;
-            text-align: center;
-        }
-        .map-btn {
-            color: var(--hist-teal);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            display: inline-flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            padding: 0 20px;
         }
-        .map-btn:hover { color: var(--terracotta); }
-
-        /* 9. External Link */
-        .external-source {
-            display: block;
-            text-align: center;
-            margin-top: 50px;
-            padding: 15px;
-            background: var(--med-blue);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
+        .nav-logo { 
+            color: var(--med-blue); 
+            font-weight: bold; 
+            text-decoration: none; 
+            font-variant: small-caps; 
+            font-size: 1.4rem;
+        }
+        .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            margin-left: 20px; 
             font-weight: bold;
-            transition: background 0.3s;
         }
-        .external-source:hover { background: var(--hist-teal); }
+        .nav-links a:hover { color: var(--med-blue); }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            .history-box { flex-direction: column; }
+        /* Content Wrapper */
+        .page-content {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Global Typography */
+        h1 { color: var(--hist-teal); font-size: 2.8rem; margin-bottom: 20px; }
+        h2 { color: var(--terracotta); border-bottom: 2px solid #ddd; padding-bottom: 5px; margin-top: 40px; }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--terracotta);
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
-    <a href="/algiers/" class="back-link">← Back to Heritage List</a>
-    
-    <!-- 1. Name -->
-    <h1>Djamaa El Kebir</h1>
-    
-    <!-- 2. Description -->
-    <div class="short-description">
-        Djamaâ El Kebir, ou la Grande Mosquée d&#39;Alger
-    </div>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="/algiers/" class="nav-logo">Algiers Stories</a>
+            <div class="nav-links">
+                <a href="/algiers/">Home</a>
+            </div>
+        </div>
+    </nav>
 
-    <!-- 3. History Box -->
-    <div class="history-box">
-        <div><strong>Dynasty:</strong> Almoravide</div>
-        <div><strong>Period:</strong> 490 de l&#39;Hégire (1097 J.-C.)</div>
-        <div><strong>Status:</strong> </div>
-    </div>
-
-    <!-- 4. Photo -->
+    <div class="page-content">
+        
+<style>
+    .short-desc { font-style: italic; font-size: 1.3rem; color: #555; margin-bottom: 30px; }
     
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Minaret_de_la_Grande_Mosqu%C3%A9e_d%27Alger_%28Djam%C3%A2a_El_Kebir%29.jpg/250px-Minaret_de_la_Grande_Mosqu%C3%A9e_d%27Alger_%28Djam%C3%A2a_El_Kebir%29.jpg" alt="Front view of Djamaa El Kebir" class="main-photo">
-    
+    .history-box {
+        background: var(--hist-teal);
+        color: white;
+        padding: 20px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 40px;
+    }
 
-    <!-- 5. Long Description -->
-    <div class="long-description">
-        Djamaâ El Kebir, ou la Grande Mosquée d&#39;Alger, est le plus ancien monument religieux de la capitale algérienne
+    .main-img {
+        width: 100%;
+        border: 10px solid white;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        margin-bottom: 40px;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    .gallery-grid img { width: 100%; border: 5px solid white; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+
+    .map-btn-container {
+        text-align: center;
+        background: white;
+        padding: 20px;
+        border: 2px dashed var(--med-blue);
+        margin: 30px 0;
+    }
+    .map-btn { color: var(--hist-teal); text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+    .external-btn {
+        display: block;
+        text-align: center;
+        background: var(--med-blue);
+        color: white;
+        padding: 15px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        margin-top: 50px;
+    }
+</style>
+
+<!-- 1. Name -->
+<h1>Djamaa El Kebir</h1>
+
+<!-- 2. Description -->
+<div class="short-desc">Djamaâ El Kebir, ou la Grande Mosquée d&#39;Alger</div>
+
+<!-- 3. History Box -->
+<div class="history-box">
+    <span><strong>Dynasty:</strong> Almoravide</span>
+    <span><strong>Period:</strong> 490 de l&#39;Hégire (1097 J.-C.)</span>
+</div>
+
+<!-- 4. Photo -->
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Minaret_de_la_Grande_Mosqu%C3%A9e_d%27Alger_%28Djam%C3%A2a_El_Kebir%29.jpg/250px-Minaret_de_la_Grande_Mosqu%C3%A9e_d%27Alger_%28Djam%C3%A2a_El_Kebir%29.jpg" class="main-img" alt="Djamaa El Kebir">
+
+
+<!-- 5. Long Description -->
+<div class="long-description">
+    <p>Djamaâ El Kebir, ou la Grande Mosquée d&#39;Alger, est le plus ancien monument religieux de la capitale algérienne
 . Contrairement à sa voisine hanéfite Djamaâ El Djedid, elle appartient au rite malékite
 . Cet édifice majestueux représente l&#39;un des rares exemples subsistants de l&#39;architecture de la dynastie des Almoravides à Alger
 . Elle est classée au patrimoine national depuis 1887 et fait partie intégrante du secteur sauvegardé de la Casbah
-.
-    </div>
+.</p>
+</div>
 
-    <div class="content-section">
-        <!-- 6. Photography -->
-        
+<!-- 6. Photography -->
 
-        <!-- Map Link (End of Geography/Visual Section) -->
-      <div class="map-location-card">
-            <a href="https://www.google.com/maps/search/?api=1&query=36.78524,3.06437" 
-               target="_blank" class="map-btn">
-                Find direction to Djamaa El Kebir on Google Map
-                <img src="https://png.pngtree.com/png-vector/20220410/ourmid/pngtree-pin-location-icon-with-folded-map-png-image_4537898.png" 
-                     alt="Map Icon" 
-                     style="width: 62px; height: auto; vertical-align: middle; margin-left: 8px;">
-            </a>
-        </div>
 
-        <!-- 7. History -->
-        
-        <h2>History</h2>
-        <div>L&#39;édifice a été fondé en 490 de l&#39;Hégire (1097 J.-C.) par le souverain almoravide Yûsuf ibn Tâshufîn
+<!-- Map Link with Icon -->
+<div class="map-btn-container">
+    <a href="https://www.google.com/maps/search/?api=1&query=36.78524,3.06437" target="_blank" class="map-btn">
+        Find direction to Djamaa El Kebir on Google Map
+        <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Map Icon" style="width: 30px;">
+    </a>
+</div>
+
+<!-- 7. History -->
+<h2>History</h2>
+<p>L&#39;édifice a été fondé en 490 de l&#39;Hégire (1097 J.-C.) par le souverain almoravide Yûsuf ibn Tâshufîn
 . Bien que la structure principale date du XIe siècle, le minaret actuel a été ajouté plus tard, en 1324, par le sultan zianide de Tlemcen, Abû Tashufîn
 . Au fil des siècles, la mosquée a subi diverses restaurations, notamment au niveau de son mihrâb qui fut reconstruit
 . Une galerie extérieure à colonnes de marbre a également été ajoutée lors de travaux de réaménagement urbain à l&#39;époque coloniale (1837) pour border la rue de la Marine
-.</div>
-        
-        
-        <!-- 8. Architecture -->
-        
-        <h2>Architecture</h2>
-        <div>L&#39;architecture de la Grande Mosquée suit le modèle hypostyle traditionnel, dit de type arabe
+.</p>
+
+<!-- 8. Architecture -->
+<h2>Architecture</h2>
+<p>L&#39;architecture de la Grande Mosquée suit le modèle hypostyle traditionnel, dit de type arabe
 .
 Plan et Salle de prière : Le bâtiment est de forme rectangulaire, plus large que profond
 . La salle de prière est divisée en onze nefs perpendiculaires au mur de la qibla et cinq travées
@@ -232,16 +198,18 @@ Le Minaret : De forme quadrangulaire (base carrée), il est typique du style mag
 Éléments remarquables : Le mihrâb est flanqué de colonnettes spiralées et décoré de stucs en relief
 . Un détail technique ingénieux consiste en un système de rails au sol de chaque côté du mihrâb, permettant de déplacer le minbar (chaire) sur roues depuis sa réserve jusqu&#39;à la salle de prière
 . La toiture est composée de doubles versants couverts de tuiles creuses
-.</div>
-        
+.</p>
+
+<!-- 9. External Link -->
+
+<a href="https://fr.wikipedia.org/wiki/Djama%C3%A2_El_Kebir" target="_blank" class="external-btn">Official Reference Source</a>
+
+
     </div>
 
-    <!-- 9. External Link -->
-    
-    <a href="https://fr.wikipedia.org/wiki/Djama%C3%A2_El_Kebir" target="_blank" class="external-source">
-        View Official Archive / Reference
-    </a>
-    
+    <footer>
+        &copy; 2026 Algiers Stories - Heritage Documentation Project
+    </footer>
 
 </body>
 </html>
