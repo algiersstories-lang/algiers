@@ -1,0 +1,23 @@
+name: Build and Deploy
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm install @11ty/eleventy@latest
+      - name: Fetch CSV
+        run: |
+          mkdir -p _data
+          curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vS9U7GJ0u8tizrQmvQdJfgMmvWWr2mD3CRf3iB_DTRuqEk3NTMyuW18U623fSGHEhoId-R4WpqsaPMg/pub?output=csv" -o _data/monuments.csv
+      - run: npx @11ty/eleventy --pathprefix=/algiers/
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
