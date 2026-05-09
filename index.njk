@@ -1,0 +1,22 @@
+---
+permalink: /index.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Algiers Stories</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+<body>
+    <h1>Historical Monuments of Algiers</h1>
+    <ul>
+    {% for item in monuments %}
+      <li>
+        <a href="/algiers/monuments/{{ item.name | slugify }}/"><strong>{{ item.name }}</strong></a> 
+        - {{ item.category }}
+      </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
