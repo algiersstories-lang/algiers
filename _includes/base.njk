@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Algiers Stories</title>
+    <style>
+        :root {
+            --med-blue: #4CB6C9;
+            --hist-teal: #006064;
+            --terracotta: #A0522D;
+            --parchment: #F5F5DC;
+        }
+
+        body {
+            background-color: var(--parchment);
+            color: #333;
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+
+        /* Menu System */
+        .main-nav {
+            background-color: var(--hist-teal);
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-logo { 
+            color: var(--med-blue); 
+            font-weight: bold; 
+            text-decoration: none; 
+            font-variant: small-caps; 
+            font-size: 1.4rem;
+        }
+        .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            margin-left: 20px; 
+            font-weight: bold;
+        }
+        .nav-links a:hover { color: var(--med-blue); }
+
+        /* Content Wrapper */
+        .page-content {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Global Typography */
+        h1 { color: var(--hist-teal); font-size: 2.8rem; margin-bottom: 20px; }
+        h2 { color: var(--terracotta); border-bottom: 2px solid #ddd; padding-bottom: 5px; margin-top: 40px; }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--terracotta);
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="/algiers/" class="nav-logo">Algiers Stories</a>
+            <div class="nav-links">
+                <a href="/algiers/">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-content">
+        {{ content | safe }}
+    </div>
+
+    <footer>
+        &copy; 2026 Algiers Stories - Heritage Documentation Project
+    </footer>
+
+</body>
+</html>
