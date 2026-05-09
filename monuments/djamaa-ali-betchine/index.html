@@ -2,136 +2,227 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Djamaa Ali Betchine | Algiers Stories</title>
     <style>
         :root {
-            --med-blue: #4CB6C9;
-            --hist-teal: #006064;
-            --terracotta: #A0522D;
-            --parchment: #F5F5DC;
+            --med-blue: #4CB6C9;      /* Mediterranean Blue */
+            --hist-teal: #006064;      /* Historic Teal */
+            --terracotta: #A0522D;     /* Terracotta */
+            --parchment: #F5F5DC;      /* Background Parchment */
         }
+
         body {
             background-color: var(--parchment);
             color: #333;
             font-family: 'Georgia', serif;
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             padding: 40px 20px;
-            line-height: 1.7;
+            line-height: 1.8;
         }
-        .back-link { color: var(--med-blue); text-decoration: none; font-weight: bold; display: block; margin-bottom: 20px; }
-        
-        h1 { color: var(--hist-teal); font-size: 2.8rem; margin: 10px 0; }
-        
-        .description { font-style: italic; font-size: 1.2rem; color: #555; margin-bottom: 25px; }
 
+        /* Navigation */
+        .back-link { 
+            color: var(--med-blue); 
+            text-decoration: none; 
+            font-weight: bold; 
+            display: inline-block;
+            margin-bottom: 30px;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: var(--terracotta); }
+
+        /* 1. Name */
+        h1 { 
+            color: var(--hist-teal); 
+            font-size: 3rem; 
+            margin: 0 0 10px 0; 
+            line-height: 1.2;
+        }
+
+        /* 2. Description */
+        .short-description { 
+            font-style: italic; 
+            font-size: 1.25rem; 
+            color: #444; 
+            margin-bottom: 30px;
+            border-left: 3px solid var(--med-blue);
+            padding-left: 15px;
+        }
+
+        /* 3. History Box (Metadata) */
         .history-box {
             background: var(--hist-teal);
             color: white;
             padding: 20px;
             border-radius: 4px;
-            margin: 20px 0;
+            margin: 20px 0 40px 0;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-around;
+            gap: 15px;
         }
+        .history-box strong { color: var(--med-blue); }
 
+        /* 4. Main Photo */
         .main-photo {
             width: 100%;
             height: auto;
-            border: 8px solid white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin: 30px 0;
+            max-height: 500px;
+            object-fit: cover;
+            border: 10px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: 2px;
+            margin-bottom: 40px;
         }
 
+        /* 5. Long Description */
+        .long-description {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* Wrapper for Sectioned Content */
         .content-section {
-            background: #fff;
-            padding: 30px;
+            background: #ffffff;
+            padding: 40px;
             border-radius: 8px;
-            border-top: 4px solid var(--terracotta);
-            margin-top: 20px;
+            border-top: 5px solid var(--terracotta);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         h2 { 
             color: var(--terracotta); 
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 30px;
+            font-variant: small-caps;
+            border-bottom: 2px solid var(--parchment);
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+        h2:first-of-type { margin-top: 0; }
+
+        /* 6. Photography (Gallery) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .gallery-grid img { 
+            width: 100%; 
+            height: 250px;
+            object-fit: cover;
+            border: 5px solid white; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
         }
 
-        .external-link {
-            display: inline-block;
-            margin-top: 40px;
-            padding: 10px 20px;
-            background-color: var(--med-blue);
+        /* Map Link Styling */
+        .map-location-card {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border: 2px dashed var(--med-blue);
+            border-radius: 6px;
+            text-align: center;
+        }
+        .map-btn {
+            color: var(--hist-teal);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .map-btn:hover { color: var(--terracotta); }
+
+        /* 9. External Link */
+        .external-source {
+            display: block;
+            text-align: center;
+            margin-top: 50px;
+            padding: 15px;
+            background: var(--med-blue);
             color: white;
             text-decoration: none;
             border-radius: 4px;
             font-weight: bold;
+            transition: background 0.3s;
         }
-        .external-link:hover { background-color: var(--hist-teal); }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 20px 0;
+        .external-source:hover { background: var(--hist-teal); }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .history-box { flex-direction: column; }
         }
-        .gallery-grid img { width: 100%; border: 4px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
-    <a href="/algiers/" class="back-link">← Back to List</a>
+    <a href="/algiers/" class="back-link">← Back to Heritage List</a>
     
     <!-- 1. Name -->
     <h1>Djamaa Ali Betchine</h1>
     
     <!-- 2. Description -->
-    <div class="description">Ottoman-era mosque built in the 17th century by a converted corsair.</div>
+    <div class="short-description">
+        Ottoman-era mosque built in the 17th century by a converted corsair.
+    </div>
 
-    <!-- 3. History Box (Metadata) -->
+    <!-- 3. History Box -->
     <div class="history-box">
-        <span><strong>Dynasty:</strong> Othomane</span>
-        <span><strong>Period:</strong> 1032 de l&#39;Hégire (1622)</span>
-        <span><strong>Status:</strong> </span>
+        <div><strong>Dynasty:</strong> Othomane</div>
+        <div><strong>Period:</strong> 1032 de l&#39;Hégire (1622)</div>
+        <div><strong>Status:</strong> </div>
     </div>
 
     <!-- 4. Photo -->
     
-    <img src="Casbah Stories - Djamaa El Djedid" alt="Djamaa Ali Betchine" class="main-photo">
+    <img src="Casbah Stories - Djamaa El Djedid" alt="Front view of Djamaa Ali Betchine" class="main-photo">
     
 
     <!-- 5. Long Description -->
     <div class="long-description">
-        <p>La mosquée Ali Bitchin, également connue sous le nom de Djamaâ Zouj Euyoun (la mosquée aux deux fontaines), est un monument historique majeur de la période ottomane
+        La mosquée Ali Bitchin, également connue sous le nom de Djamaâ Zouj Euyoun (la mosquée aux deux fontaines), est un monument historique majeur de la période ottomane
 . Érigée en 1622, elle est classée au patrimoine national depuis 1947 et fait partie intégrante de la Casbah d’Alger, inscrite au patrimoine mondial de l&#39;UNESCO
-. Elle illustre une métamorphose historique frappante, ayant servi de lieu de culte musulman, puis de pharmacie militaire et d’église chrétienne, avant de redevenir une mosquée à l&#39;indépendance de l&#39;Algérie</p>
+. Elle illustre une métamorphose historique frappante, ayant servi de lieu de culte musulman, puis de pharmacie militaire et d’église chrétienne, avant de redevenir une mosquée à l&#39;indépendance de l&#39;Algérie
     </div>
 
     <div class="content-section">
-        <!-- 6. Photography (Gallery) -->
+        <!-- 6. Photography -->
         
-        <h2>Photography</h2>
+        <h2>Photography  (test)</h2>
         <div class="gallery-grid">
-            <img src="https://www.mosaicnorthafrica.com/wp-content/uploads/2019/03/djamaa-el-djedid.jpg" alt="Gallery 1">
-            <img src="https://images.museumwnf.org/zoom/monuments/isl/dz/1/12/1.jpg" alt="Gallery 2">
+            <img src="https://www.mosaicnorthafrica.com/wp-content/uploads/2019/03/djamaa-el-djedid.jpg" alt="Djamaa Ali Betchine interior">
+            <img src="https://images.museumwnf.org/zoom/monuments/isl/dz/1/12/1.jpg" alt="Djamaa Ali Betchine detail">
         </div>
         
 
+        <!-- Map Link (End of Geography/Visual Section) -->
+        <div class="map-location-card">
+            <a href="https://www.google.com/maps/search/?api=1&query=36.78707,3.06193" 
+               target="_blank" class="map-btn">
+                📍 Open Djamaa Ali Betchine in Google Maps
+            </a>
+        </div>
+
         <!-- 7. History -->
+        
         <h2>History</h2>
-        <p>La mosquée fut fondée en 1032 de l&#39;Hégire (1622) par Ali Bitchin, de son vrai nom Aldo Piccinin, un Italien originaire de Toscane capturé par les corsaires et converti à l&#39;Islam
+        <div>La mosquée fut fondée en 1032 de l&#39;Hégire (1622) par Ali Bitchin, de son vrai nom Aldo Piccinin, un Italien originaire de Toscane capturé par les corsaires et converti à l&#39;Islam
 . Devenu Grand Amiral de la flotte d&#39;Alger, il aurait fait construire cet édifice par amour pour la princesse kabyle Lallahoum, en utilisant du marbre importé de son village natal, Massa
 .
 Période coloniale : En 1843, les autorités françaises transforment l&#39;édifice en pharmacie militaire, puis en église sous le nom de Notre-Dame-des-Victoires
 .
 Restitution : Rendue au culte musulman en 1962, elle a subi d&#39;importantes dégradations dues aux changements d&#39;usage
 . Elle a bénéficié d&#39;une restauration profonde menée par l&#39;agence turque TIKA, s&#39;achevant en 2010, pour lui redonner son aspect originel
-.</p>
+.</div>
+        
         
         <!-- 8. Architecture -->
+        
         <h2>Architecture</h2>
-        <p>L&#39;architecture de la mosquée est un mélange raffiné de styles ottoman et maghrébin
+        <div>L&#39;architecture de la mosquée est un mélange raffiné de styles ottoman et maghrébin
 .
 Structure et Coupoles : La salle de prière carrée de 500 m² repose sur des magasins voûtés en rez-de-chaussée
 . Elle est surmontée d&#39;une vaste coupole centrale octogonale reposant sur quatre piliers cruciformes
@@ -143,12 +234,15 @@ Le Minaret : Situé à l&#39;angle nord-est, il est de type maghrébin tradition
 Décoration et détails : L&#39;intérieur était initialement très sobre, simplement blanchi à la chaux
 . La porte d&#39;entrée actuelle, finement sculptée, provient de la mosquée Ketchaoua et y fut placée en 1843
 . Une particularité rare à Alger réside dans la présence de locaux commerciaux en soubassement, dont les revenus servaient autrefois à l&#39;entretien de la mosquée
-.</p>
+.</div>
+        
     </div>
 
     <!-- 9. External Link -->
     
-    <a href="https://fr.wikipedia.org/wiki/Ali_Bitchin" target="_blank" class="external-link">Explore Further (External Source)</a>
+    <a href="https://fr.wikipedia.org/wiki/Ali_Bitchin" target="_blank" class="external-source">
+        View Official Archive / Reference
+    </a>
     
 
 </body>
