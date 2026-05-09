@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Algiers Stories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage List | Algiers Stories</title>
     <style>
         :root {
             --med-blue: #4CB6C9;
@@ -10,138 +11,221 @@
             --terracotta: #A0522D;
             --parchment: #F5F5DC;
         }
+
         body {
             background-color: var(--parchment);
-            color: var(--hist-teal);
-            font-family: 'Georgia', serif; /* Classic feel */
-            line-height: 1.6;
+            color: #333;
+            font-family: 'Georgia', serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            line-height: 1.8;
         }
-        h1 {
-            color: var(--hist-teal);
-            border-bottom: 3px solid var(--med-blue);
-            padding-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+
+        /* Menu System */
+        .main-nav {
+            background-color: var(--hist-teal);
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        ul { list-style: none; padding: 0; }
-        li {
-            background: #fff; /* White cards */
-            margin-bottom: 15px;
-            padding: 15px;
-            border-left: 5px solid var(--terracotta);
-            border-radius: 4px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        .nav-container {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
         }
-        a {
-            color: var(--med-blue);
-            text-decoration: none;
+        .nav-logo { 
+            color: var(--med-blue); 
+            font-weight: bold; 
+            text-decoration: none; 
+            font-variant: small-caps; 
+            font-size: 1.4rem;
+        }
+        .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            margin-left: 20px; 
             font-weight: bold;
-            font-size: 1.2rem;
         }
-        a:hover { color: var(--terracotta); }
-        .category {
-            font-size: 0.8rem;
+        .nav-links a:hover { color: var(--med-blue); }
+
+        /* Content Wrapper */
+        .page-content {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Global Typography */
+        h1 { color: var(--hist-teal); font-size: 2.8rem; margin-bottom: 20px; }
+        h2 { color: var(--terracotta); border-bottom: 2px solid #ddd; padding-bottom: 5px; margin-top: 40px; }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
             color: var(--terracotta);
-            text-transform: uppercase;
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
-    <h1>Historical Monuments of Algiers</h1>
-    <ul>
-    
-      <li>
-        <span class="category">Mosque</span><br>
-        <a href="/algiers/monuments/djamaa-el-djedid/">Djamaa El Djedid</a>
-      </li>
-    
-      <li>
-        <span class="category">Mosque</span><br>
-        <a href="/algiers/monuments/djamaa-ketchawa/">Djamaa Ketchawa</a>
-      </li>
-    
-      <li>
-        <span class="category">Mosque</span><br>
-        <a href="/algiers/monuments/djamaa-el-kebir/">Djamaa El Kebir</a>
-      </li>
-    
-      <li>
-        <span class="category">Mosque</span><br>
-        <a href="/algiers/monuments/djamaa-ali-betchine/">Djamaa Ali Betchine</a>
-      </li>
-    
-      <li>
-        <span class="category">Mosque</span><br>
-        <a href="/algiers/monuments/djamaa-sidi-ramdane/">Djamaa Sidi Ramdane</a>
-      </li>
-    
-      <li>
-        <span class="category">Mosque</span><br>
-        <a href="/algiers/monuments/djamaa-safir/">Djamaa Safir</a>
-      </li>
-    
-      <li>
-        <span class="category">Mosque</span><br>
-        <a href="/algiers/monuments/djamaa-sidi-el-barani/">Djamaa Sidi El Barani</a>
-      </li>
-    
-      <li>
-        <span class="category">Mosque</span><br>
-        <a href="/algiers/monuments/djamaa-sidi-mohamed-cherif/">Djamaa Sidi Mohamed Cherif</a>
-      </li>
-    
-      <li>
-        <span class="category">Mosque</span><br>
-        <a href="/algiers/monuments/djamaa-sidi-abderrahmane/">Djamaa Sidi Abderrahmane</a>
-      </li>
-    
-      <li>
-        <span class="category">gate</span><br>
-        <a href="/algiers/monuments/bab-azoun/">Bab Azoun</a>
-      </li>
-    
-      <li>
-        <span class="category">gate</span><br>
-        <a href="/algiers/monuments/bab-el-oued/">Bab El Oued</a>
-      </li>
-    
-      <li>
-        <span class="category">gate</span><br>
-        <a href="/algiers/monuments/bab-el-jedid/">Bab EL Jedid</a>
-      </li>
-    
-      <li>
-        <span class="category">gate</span><br>
-        <a href="/algiers/monuments/bab-dzira/">Bab Dzira</a>
-      </li>
-    
-      <li>
-        <span class="category">gate</span><br>
-        <a href="/algiers/monuments/bab-el-bahr/">Bab El Bahr</a>
-      </li>
-    
-      <li>
-        <span class="category">Palais</span><br>
-        <a href="/algiers/monuments/palais-des-reis/">Palais des Reis</a>
-      </li>
-    
-      <li>
-        <span class="category">Palais</span><br>
-        <a href="/algiers/monuments/dar-mustapha-pacha/">Dar Mustapha Pacha</a>
-      </li>
-    
-      <li>
-        <span class="category">Palais</span><br>
-        <a href="/algiers/monuments/dar-khedaoudj-el-amia/">Dar Khedaoudj El Amia</a>
-      </li>
-    
-      <li>
-        <span class="category">Palais</span><br>
-        <a href="/algiers/monuments/dar-aziza/">Dar Aziza</a>
-      </li>
-    
-    </ul>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="/algiers/" class="nav-logo">Algiers Stories</a>
+            <div class="nav-links">
+                <a href="/algiers/">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-content">
+        <h1>Historical Monuments of Algiers</h1>
+<p>Explore the architectural gems of the Casbah and beyond.</p>
+
+<style>
+    .monument-list { list-style: none; padding: 0; }
+    .monument-card {
+        background: white;
+        margin-bottom: 20px;
+        padding: 20px;
+        border-left: 6px solid var(--terracotta);
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .monument-card a {
+        color: var(--hist-teal);
+        text-decoration: none;
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+    .monument-card a:hover { color: var(--med-blue); }
+    .card-meta { color: var(--terracotta); font-size: 0.8rem; text-transform: uppercase; display: block; }
+</style>
+
+<ul class="monument-list">
+
+  <li class="monument-card">
+    <span class="card-meta">Othomane — 1070 de l&#39;Hégire (1660 J.-C.)</span>
+    <a href="/algiers/monuments/djamaa-el-djedid/">Djamaa El Djedid</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Djamaâ el Djedid, également connue sous le nom de Mosquée de la Pêcherie</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta">Othomane — 1642</span>
+    <a href="/algiers/monuments/djamaa-ketchawa/">Djamaa Ketchawa</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Dating back to 1612, this grand, prominent mosque once served as a Catholic cathedral.</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta">Almoravide — 490 de l&#39;Hégire (1097 J.-C.)</span>
+    <a href="/algiers/monuments/djamaa-el-kebir/">Djamaa El Kebir</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Djamaâ El Kebir, ou la Grande Mosquée d&#39;Alger</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta">Othomane — 1032 de l&#39;Hégire (1622)</span>
+    <a href="/algiers/monuments/djamaa-ali-betchine/">Djamaa Ali Betchine</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Ottoman-era mosque built in the 17th century by a converted corsair.</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta">pre-othamane — 11 ieme siècle</span>
+    <a href="/algiers/monuments/djamaa-sidi-ramdane/">Djamaa Sidi Ramdane</a>
+    <p style="margin: 5px 0 0 0; color: #666;">One of the oldest mosques in Algiers, dating back to the 11th century.</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta">pre-othamane — 941 AH</span>
+    <a href="/algiers/monuments/djamaa-safir/">Djamaa Safir</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Ottoman mosque serving the lower Casbah community.</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta"> — </span>
+    <a href="/algiers/monuments/djamaa-sidi-el-barani/">Djamaa Sidi El Barani</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Small historic mosque located near the outer parts of the Casbah.</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta"> — </span>
+    <a href="/algiers/monuments/djamaa-sidi-mohamed-cherif/">Djamaa Sidi Mohamed Cherif</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Djamâa Sidi Ramadane (en arabe : جامع سيدي رمضان) ou Djamâa Kasba El Kedima (Mosquée de la vieille citadelle) est une mosquée de la Casbah d&#39;Alger datant de l&#39;époque médiévale, fondée par les zirides entre le Xe siècle et le XIe siècle, ce qui fait d&#39;elle potentiellement la plus vieille mosquée d&#39;Alger. Elle fut édifiée à proximité de l&#39;ancienne casbah (citadelle) d&#39;Alger[1].</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta"> — 1621</span>
+    <a href="/algiers/monuments/djamaa-sidi-abderrahmane/">Djamaa Sidi Abderrahmane</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Major spiritual site near the sea, associated with a revered saint.</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta"> — </span>
+    <a href="/algiers/monuments/bab-azoun/">Bab Azoun</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Major spiritual site near the sea, associated with a revered saint.</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta"> — </span>
+    <a href="/algiers/monuments/bab-el-oued/">Bab El Oued</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Major spiritual site near the sea, associated with a revered saint.</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta"> — </span>
+    <a href="/algiers/monuments/bab-el-jedid/">Bab EL Jedid</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Major spiritual site near the sea, associated with a revered saint.</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta"> — </span>
+    <a href="/algiers/monuments/bab-dzira/">Bab Dzira</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Major spiritual site near the sea, associated with a revered saint.</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta"> — </span>
+    <a href="/algiers/monuments/bab-el-bahr/">Bab El Bahr</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Major spiritual site near the sea, associated with a revered saint.</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta"> — </span>
+    <a href="/algiers/monuments/palais-des-reis/">Palais des Reis</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Le Palais des Raïs (en arabe : قصر الرياس ; en tamazight : ⴰⴽⵙⵓⵔ ⵏ ⵍⵉⵢⴰⵙ), également connu sous le nom de Bastion 23, est un ensemble de trois palais (numérotés 17, 18 et 23), ainsi que de six maisons des pêcheurs (numérotées 5, 7, 9, 11, 13 et 15), datant tous de l&#39;époque ottomane (construits entre le XVIe et le XVIIIe siècle).</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta"> — </span>
+    <a href="/algiers/monuments/dar-mustapha-pacha/">Dar Mustapha Pacha</a>
+    <p style="margin: 5px 0 0 0; color: #666;">musée national de l&#39;enluminure, la miniature et la calligraphie</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta"> — </span>
+    <a href="/algiers/monuments/dar-khedaoudj-el-amia/">Dar Khedaoudj El Amia</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Le Museo Nacional de Artes y Tradiciones Populares, دار خداوج, est un musée discret mais riche, installé dans une superbe demeure ottomane. Il offre un aperçu intéressant de l’artisanat algérien, des costumes traditionnels et des objets du … Plus</p>
+  </li>
+
+  <li class="monument-card">
+    <span class="card-meta"> — </span>
+    <a href="/algiers/monuments/dar-aziza/">Dar Aziza</a>
+    <p style="margin: 5px 0 0 0; color: #666;">Le Museo Nacional de Artes y Tradiciones Populares, دار خداوج, est un musée discret mais riche, installé dans une superbe demeure ottomane. Il offre un aperçu intéressant de l’artisanat algérien, des costumes traditionnels et des objets du … Plus</p>
+  </li>
+
+</ul>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Algiers Stories - Heritage Documentation Project
+    </footer>
+
 </body>
 </html>
