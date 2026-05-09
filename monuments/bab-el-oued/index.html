@@ -17,68 +17,109 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
+            line-height: 1.7;
         }
-        .back-link { color: var(--med-blue); text-decoration: none; font-weight: bold; }
-        h1 { color: var(--hist-teal); font-size: 2.5rem; margin-top: 10px; }
+        .back-link { color: var(--med-blue); text-decoration: none; font-weight: bold; display: block; margin-bottom: 20px; }
         
-        h2 { 
-            color: var(--terracotta); 
-            border-bottom: 1px solid var(--terracotta);
-            padding-bottom: 5px;
-        }
+        h1 { color: var(--hist-teal); font-size: 2.8rem; margin: 10px 0; }
+        
+        .description { font-style: italic; font-size: 1.2rem; color: #555; margin-bottom: 25px; }
 
-        .main-img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border: 8px solid white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-radius: 2px;
-        }
-
-        .info-box {
+        .history-box {
             background: var(--hist-teal);
             color: white;
             padding: 20px;
             border-radius: 4px;
             margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
         }
 
-        .gallery img {
+        .main-photo {
             width: 100%;
-            border: 4px solid white;
-            margin-bottom: 10px;
+            height: auto;
+            border: 8px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 30px 0;
         }
 
-        .history-section {
+        .content-section {
             background: #fff;
-            padding: 25px;
+            padding: 30px;
             border-radius: 8px;
             border-top: 4px solid var(--terracotta);
+            margin-top: 20px;
         }
+
+        h2 { 
+            color: var(--terracotta); 
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        .external-link {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: var(--med-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .external-link:hover { background-color: var(--hist-teal); }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .gallery-grid img { width: 100%; border: 4px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
-    <a href="/algiers/" class="back-link">← Return to Casbah Map</a>
+
+    <a href="/algiers/" class="back-link">← Back to List</a>
     
+    <!-- 1. Name -->
     <h1>Bab El Oued</h1>
     
-    
-    <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Bab El Oued" class="main-img">
-    
+    <!-- 2. Description -->
+    <div class="description">Major spiritual site near the sea, associated with a revered saint.</div>
 
-    <div class="info-box">
-        <strong>Dynasty:</strong>  | <strong>Period:</strong> 
+    <!-- 3. History Box (Metadata) -->
+    <div class="history-box">
+        <span><strong>Dynasty:</strong> </span>
+        <span><strong>Period:</strong> </span>
+        <span><strong>Status:</strong> </span>
     </div>
 
-    <div class="history-section">
+    <!-- 4. Photo -->
+    
+    <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Bab El Oued" class="main-photo">
+    
+
+    <!-- 5. Long Description -->
+    <div class="long-description">
+        <p></p>
+    </div>
+
+    <div class="content-section">
+        <!-- 6. Photography (Gallery) -->
+        
+
+        <!-- 7. History -->
         <h2>History</h2>
         <p></p>
         
+        <!-- 8. Architecture -->
         <h2>Architecture</h2>
         <p></p>
     </div>
 
+    <!-- 9. External Link -->
     
 
 </body>

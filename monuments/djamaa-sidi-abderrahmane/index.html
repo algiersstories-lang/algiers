@@ -17,74 +17,174 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
+            line-height: 1.7;
         }
-        .back-link { color: var(--med-blue); text-decoration: none; font-weight: bold; }
-        h1 { color: var(--hist-teal); font-size: 2.5rem; margin-top: 10px; }
+        .back-link { color: var(--med-blue); text-decoration: none; font-weight: bold; display: block; margin-bottom: 20px; }
         
-        h2 { 
-            color: var(--terracotta); 
-            border-bottom: 1px solid var(--terracotta);
-            padding-bottom: 5px;
-        }
+        h1 { color: var(--hist-teal); font-size: 2.8rem; margin: 10px 0; }
+        
+        .description { font-style: italic; font-size: 1.2rem; color: #555; margin-bottom: 25px; }
 
-        .main-img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border: 8px solid white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-radius: 2px;
-        }
-
-        .info-box {
+        .history-box {
             background: var(--hist-teal);
             color: white;
             padding: 20px;
             border-radius: 4px;
             margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
         }
 
-        .gallery img {
+        .main-photo {
             width: 100%;
-            border: 4px solid white;
-            margin-bottom: 10px;
+            height: auto;
+            border: 8px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 30px 0;
         }
 
-        .history-section {
+        .content-section {
             background: #fff;
-            padding: 25px;
+            padding: 30px;
             border-radius: 8px;
             border-top: 4px solid var(--terracotta);
+            margin-top: 20px;
         }
+
+        h2 { 
+            color: var(--terracotta); 
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        .external-link {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: var(--med-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .external-link:hover { background-color: var(--hist-teal); }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .gallery-grid img { width: 100%; border: 4px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
-    <a href="/algiers/" class="back-link">← Return to Casbah Map</a>
+
+    <a href="/algiers/" class="back-link">← Back to List</a>
     
+    <!-- 1. Name -->
     <h1>Djamaa Sidi Abderrahmane</h1>
     
-    
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg/960px-Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg" alt="Djamaa Sidi Abderrahmane" class="main-img">
-    
+    <!-- 2. Description -->
+    <div class="description">Major spiritual site near the sea, associated with a revered saint.</div>
 
-    <div class="info-box">
-        <strong>Dynasty:</strong>  | <strong>Period:</strong> 1621
+    <!-- 3. History Box (Metadata) -->
+    <div class="history-box">
+        <span><strong>Dynasty:</strong> </span>
+        <span><strong>Period:</strong> 1621</span>
+        <span><strong>Status:</strong> </span>
     </div>
 
-    <div class="history-section">
+    <!-- 4. Photo -->
+    
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg/960px-Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg" alt="Djamaa Sidi Abderrahmane" class="main-photo">
+    
+
+    <!-- 5. Long Description -->
+    <div class="long-description">
+        <p>
+Voir aussi
+
+Articles connexes
+Mosquée Sidi Ramdane
+
+Article
+Discussion
+Lire
+Modifier
+Modifier le code
+Voir l’historique
+
+Outils
+Apparence masquer
+Taille du texte
+
+Petite
+
+Standard
+
+Grande
+Largeur
+
+Standard
+
+Large
+Couleur (bêta)
+
+Automatique
+
+Clair
+
+Sombre
+36° 47′ 07″ nord, 3° 03′ 51″ est
+Djamâa Sidi Ramdane
+Image illustrative de l’article Mosquée Sidi Ramdane
+Minaret de la mosquée Sidi Ramdane
+Présentation
+Nom local        الجامع سيدي رمضان
+Culte        Musulman
+Type        Mosquée
+Fin des travaux        Xe siècle/XIe siècle
+Style dominant        Art ziride et hammadide
+Géographie
+Pays        Drapeau de l&#39;Algérie Algérie
+wilaya        Alger
+Daïra        Bab El Oued
+Commune        Casbah
+Coordonnées        36° 47′ 07″ nord, 3° 03′ 51″ est
+Carte
+Wikimedia | © OpenStreetMap
+
+modifier 
+Djamâa Sidi Ramadane (en arabe : جامع سيدي رمضان) ou Djamâa Kasba El Kedima (Mosquée de la vieille citadelle) est une mosquée de la Casbah d&#39;Alger datant de l&#39;époque médiévale, fondée par les zirides entre le Xe siècle et le XIe siècle, ce qui fait d&#39;elle potentiellement la plus vieille mosquée d&#39;Alger. Elle fut édifiée à proximité de l&#39;ancienne casbah (citadelle) d&#39;Alger[1].
+
+Elle change probablement de nom au XVIe siècle, où le nom de « mosquée de la Kasba » tombe en désuétude pour être remplacée par le nom de Sidi Ramdan, un marabout réputé[2]de la ville.
+
+Architecture
+Albert Delvoux décrit son architecture comme typiquement berbère, avec un lourd minaret carré, des toits en double pente et recouverts de tuiles. Mais selon lui elle ne présente pas de qualité ornementale particulière et semble d&#39;une architecture assez grossière dans l&#39;ensemble[2]. Cette mosquée correspond au cadre pauvre et austère dans lesquelles priaient les premières population de la ville d&#39;Alger[1].</p>
+    </div>
+
+    <div class="content-section">
+        <!-- 6. Photography (Gallery) -->
+        
+        <h2>Photography</h2>
+        <div class="gallery-grid">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg/960px-Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg" alt="Gallery 1">
+            <img src="https://media.nouvelobs.com/referentiel/1200x800/16275690.jpg" alt="Gallery 2">
+        </div>
+        
+
+        <!-- 7. History -->
         <h2>History</h2>
         <p></p>
         
+        <!-- 8. Architecture -->
         <h2>Architecture</h2>
         <p></p>
     </div>
 
-    
-    <h2>Gallery</h2>
-    <div class="gallery" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg/960px-Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg">
-        <img src="https://media.nouvelobs.com/referentiel/1200x800/16275690.jpg">
-    </div>
+    <!-- 9. External Link -->
     
 
 </body>
