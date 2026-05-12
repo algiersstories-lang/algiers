@@ -91,15 +91,35 @@
 <p>Explore the architectural gems of the Casbah and beyond.</p>
 
 <style>
-    .monument-list { list-style: none; padding: 0; }
+    .monument-list { 
+        list-style: none; 
+        padding: 0; 
+    }
+    
     .monument-card {
         background: white;
         margin-bottom: 20px;
-        padding: 20px;
+        padding: 0; /* Removing padding to let the image sit flush or controlled */
         border-left: 6px solid var(--terracotta);
         border-radius: 4px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        display: flex; /* This puts image and text side-by-side */
+        overflow: hidden; /* Keeps the image corners rounded with the card */
+        align-items: center;
     }
+
+    .card-image {
+        width: 120px; /* Small fixed size for the thumbnail */
+        height: 120px;
+        object-fit: cover; /* Ensures the photo isn't stretched */
+        flex-shrink: 0; /* Prevents the image from getting squashed */
+    }
+
+    .card-content {
+        padding: 20px;
+        flex-grow: 1;
+    }
+
     .monument-card a {
         color: var(--hist-teal);
         text-decoration: none;
@@ -107,150 +127,303 @@
         font-weight: bold;
     }
     .monument-card a:hover { color: var(--med-blue); }
-    .card-meta { color: var(--terracotta); font-size: 0.8rem; text-transform: uppercase; display: block; }
+    
+    .card-meta { 
+        color: var(--terracotta); 
+        font-size: 0.8rem; 
+        text-transform: uppercase; 
+        display: block; 
+    }
+
+    /* Stack them on very small screens */
+    @media (max-width: 480px) {
+        .monument-card { flex-direction: column; align-items: flex-start; }
+        .card-image { width: 100%; height: 150px; }
+    }
 </style>
 
 <ul class="monument-list">
 
   <li class="monument-card">
-    <span class="card-meta">Othomane — 1070 de l&#39;Hégire (1660 J.-C.)</span>
-    <a href="/algiers/monuments/djamaa-el-djedid/">Djamaa El Djedid</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Djamaâ el Djedid, également connue sous le nom de Mosquée de la Pêcherie</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Alger-Place-des-Martyrs-Casbah_cropped.jpg/1280px-Alger-Place-des-Martyrs-Casbah_cropped.jpg" alt="Djamaa El Djedid" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta">Othomane — 1070 de l&#39;Hégire (1660 J.-C.)</span>
+        <a href="/algiers/monuments/djamaa-el-djedid/">Djamaa El Djedid</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Djamaâ el Djedid, également connue sous le nom de Mosquée de la Pêcherie</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta">Othomane — 1642</span>
-    <a href="/algiers/monuments/djamaa-ketchawa/">Djamaa Ketchawa</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Dating back to 1612, this grand, prominent mosque once served as a Catholic cathedral.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://raw.githubusercontent.com/algiersstories-lang/images/refs/heads/main/Djamaa_Ketchawa.jpg" alt="Djamaa Ketchawa" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta">Othomane — 1642</span>
+        <a href="/algiers/monuments/djamaa-ketchawa/">Djamaa Ketchawa</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Dating back to 1612, this grand, prominent mosque once served as a Catholic cathedral.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta">Almoravide — 490 de l&#39;Hégire (1097 J.-C.)</span>
-    <a href="/algiers/monuments/djamaa-el-kebir/">Djamaa El Kebir</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Djamaâ El Kebir, ou la Grande Mosquée d&#39;Alger</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Minaret_de_la_Grande_Mosqu%C3%A9e_d%27Alger_%28Djam%C3%A2a_El_Kebir%29.jpg/250px-Minaret_de_la_Grande_Mosqu%C3%A9e_d%27Alger_%28Djam%C3%A2a_El_Kebir%29.jpg" alt="Djamaa El Kebir" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta">Almoravide — 490 de l&#39;Hégire (1097 J.-C.)</span>
+        <a href="/algiers/monuments/djamaa-el-kebir/">Djamaa El Kebir</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Djamaâ El Kebir, ou la Grande Mosquée d&#39;Alger</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta">Othomane — 1032 de l&#39;Hégire (1622)</span>
-    <a href="/algiers/monuments/djamaa-ali-betchine/">Djamaa Ali Betchine</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Ottoman-era mosque built in the 17th century by a converted corsair.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="Casbah Stories - Djamaa El Djedid" alt="Djamaa Ali Betchine" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta">Othomane — 1032 de l&#39;Hégire (1622)</span>
+        <a href="/algiers/monuments/djamaa-ali-betchine/">Djamaa Ali Betchine</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Ottoman-era mosque built in the 17th century by a converted corsair.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta">pre-othamane — 11 ieme siècle</span>
-    <a href="/algiers/monuments/djamaa-sidi-ramdane/">Djamaa Sidi Ramdane</a>
-    <p style="margin: 5px 0 0 0; color: #666;">One of the oldest mosques in Algiers, dating back to the 11th century.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://raw.githubusercontent.com/algiersstories-lang/images/refs/heads/main/Djamaa_Sidi_Ramdane.jpg" alt="Djamaa Sidi Ramdane" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta">pre-othamane — 11 ieme siècle</span>
+        <a href="/algiers/monuments/djamaa-sidi-ramdane/">Djamaa Sidi Ramdane</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">One of the oldest mosques in Algiers, dating back to the 11th century.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta">pre-othamane — 941 AH</span>
-    <a href="/algiers/monuments/djamaa-safir/">Djamaa Safir</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Ottoman mosque serving the lower Casbah community.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Djamaa Safir" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta">pre-othamane — 941 AH</span>
+        <a href="/algiers/monuments/djamaa-safir/">Djamaa Safir</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Ottoman mosque serving the lower Casbah community.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/djamaa-sidi-el-barani/">Djamaa Sidi El Barani</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Small historic mosque located near the outer parts of the Casbah.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Djamaa Sidi El Barani" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/djamaa-sidi-el-barani/">Djamaa Sidi El Barani</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Small historic mosque located near the outer parts of the Casbah.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/djamaa-sidi-mohamed-cherif/">Djamaa Sidi Mohamed Cherif</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Djamâa Sidi Ramadane (en arabe : جامع سيدي رمضان) ou Djamâa Kasba El Kedima (Mosquée de la vieille citadelle) est une mosquée de la Casbah d&#39;Alger datant de l&#39;époque médiévale, fondée par les zirides entre le Xe siècle et le XIe siècle, ce qui fait d&#39;elle potentiellement la plus vieille mosquée d&#39;Alger. Elle fut édifiée à proximité de l&#39;ancienne casbah (citadelle) d&#39;Alger[1].</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Djamaa Sidi Mohamed Cherif" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/djamaa-sidi-mohamed-cherif/">Djamaa Sidi Mohamed Cherif</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Djamâa Sidi Ramadane (en arabe : جامع سيدي رمضان) ou Djamâa Kasba El Kedima (Mosquée de la vieille citadelle) est une mosquée de la Casbah d&#39;Alger datant de l&#39;époque médiévale, fondée par les zirides entre le Xe siècle et le XIe siècle, ce qui fait d&#39;elle potentiellement la plus vieille mosquée d&#39;Alger. Elle fut édifiée à proximité de l&#39;ancienne casbah (citadelle) d&#39;Alger[1].</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — 1621</span>
-    <a href="/algiers/monuments/djamaa-sidi-abderrahmane/">Djamaa Sidi Abderrahmane</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Major spiritual site near the sea, associated with a revered saint.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg/960px-Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg" alt="Djamaa Sidi Abderrahmane" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — 1621</span>
+        <a href="/algiers/monuments/djamaa-sidi-abderrahmane/">Djamaa Sidi Abderrahmane</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Major spiritual site near the sea, associated with a revered saint.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/djamaa-ben-fares/">Djamaa Ben Fares</a>
-    <p style="margin: 5px 0 0 0; color: #666;">La mosquée Ibn Farès, anciennement connue sous le nom de Djamaa Lihoud, s’impose comme un témoin silencieux des métamorphoses qu’a traversées la Casbah d’Alger au fil des siècles. À l’origine, elle fut la mosquée Sidi el-Harbi, édifiée au XVe siècle en l’honneur d’un saint local.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <!-- Fallback if no photo exists -->
+      <div class="card-image" style="background: #eee; display: flex; align-items: center; justify-content: center; color: #ccc;">No Image</div>
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/djamaa-ben-fares/">Djamaa Ben Fares</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">La mosquée Ibn Farès, anciennement connue sous le nom de Djamaa Lihoud, s’impose comme un témoin silencieux des métamorphoses qu’a traversées la Casbah d’Alger au fil des siècles. À l’origine, elle fut la mosquée Sidi el-Harbi, édifiée au XVe siècle en l’honneur d’un saint local.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/djamaa-sidi-abdellah/">Djamaa Sidi Abdellah</a>
-    <p style="margin: 5px 0 0 0; color: #666;">d&#39;Alger, a récemment été restaurée avec le plus grand soin. Désormais ouverte aux visiteurs, elle a retrouvé toute sa splendeur d&#39;antan. Un exemple remarquable de préservation du patrimoine.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://algiersstories-lang.github.io/images/djamaa-sidi-abdellah.jpg" alt="Djamaa Sidi Abdellah" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/djamaa-sidi-abdellah/">Djamaa Sidi Abdellah</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">d&#39;Alger, a récemment été restaurée avec le plus grand soin. Désormais ouverte aux visiteurs, elle a retrouvé toute sa splendeur d&#39;antan. Un exemple remarquable de préservation du patrimoine.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/bab-azoun/">Bab Azoun</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Major spiritual site near the sea, associated with a revered saint.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Bab Azoun" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/bab-azoun/">Bab Azoun</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Major spiritual site near the sea, associated with a revered saint.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/bab-el-oued/">Bab El Oued</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Major spiritual site near the sea, associated with a revered saint.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Bab El Oued" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/bab-el-oued/">Bab El Oued</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Major spiritual site near the sea, associated with a revered saint.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/bab-el-jedid/">Bab EL Jedid</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Major spiritual site near the sea, associated with a revered saint.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Bab EL Jedid" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/bab-el-jedid/">Bab EL Jedid</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Major spiritual site near the sea, associated with a revered saint.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/bab-dzira/">Bab Dzira</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Major spiritual site near the sea, associated with a revered saint.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Bab Dzira" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/bab-dzira/">Bab Dzira</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Major spiritual site near the sea, associated with a revered saint.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/bab-el-bahr/">Bab El Bahr</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Major spiritual site near the sea, associated with a revered saint.</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Bab El Bahr" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/bab-el-bahr/">Bab El Bahr</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Major spiritual site near the sea, associated with a revered saint.</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/palais-des-reis/">Palais des Reis</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Le Palais des Raïs (en arabe : قصر الرياس ; en tamazight : ⴰⴽⵙⵓⵔ ⵏ ⵍⵉⵢⴰⵙ), également connu sous le nom de Bastion 23, est un ensemble de trois palais (numérotés 17, 18 et 23), ainsi que de six maisons des pêcheurs (numérotées 5, 7, 9, 11, 13 et 15), datant tous de l&#39;époque ottomane (construits entre le XVIe et le XVIIIe siècle).</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJNKyI1FwxNJPBXHqmiMrExURv6MtZdnm_sg&amp;s" alt="Palais des Reis" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/palais-des-reis/">Palais des Reis</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Le Palais des Raïs (en arabe : قصر الرياس ; en tamazight : ⴰⴽⵙⵓⵔ ⵏ ⵍⵉⵢⴰⵙ), également connu sous le nom de Bastion 23, est un ensemble de trois palais (numérotés 17, 18 et 23), ainsi que de six maisons des pêcheurs (numérotées 5, 7, 9, 11, 13 et 15), datant tous de l&#39;époque ottomane (construits entre le XVIe et le XVIIIe siècle).</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/dar-mustapha-pacha/">Dar Mustapha Pacha</a>
-    <p style="margin: 5px 0 0 0; color: #666;">musée national de l&#39;enluminure, la miniature et la calligraphie</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Dar Mustapha Pacha" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/dar-mustapha-pacha/">Dar Mustapha Pacha</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">musée national de l&#39;enluminure, la miniature et la calligraphie</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/dar-khedaoudj-el-amia/">Dar Khedaoudj El Amia</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Le Museo Nacional de Artes y Tradiciones Populares, دار خداوج, est un musée discret mais riche, installé dans une superbe demeure ottomane. Il offre un aperçu intéressant de l’artisanat algérien, des costumes traditionnels et des objets du … Plus</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Dar Khedaoudj El Amia" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/dar-khedaoudj-el-amia/">Dar Khedaoudj El Amia</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Le Museo Nacional de Artes y Tradiciones Populares, دار خداوج, est un musée discret mais riche, installé dans une superbe demeure ottomane. Il offre un aperçu intéressant de l’artisanat algérien, des costumes traditionnels et des objets du … Plus</p>
+    </div>
+  </li>
 
   <li class="monument-card">
-    <span class="card-meta"> — </span>
-    <a href="/algiers/monuments/dar-aziza/">Dar Aziza</a>
-    <p style="margin: 5px 0 0 0; color: #666;">Le Museo Nacional de Artes y Tradiciones Populares, دار خداوج, est un musée discret mais riche, installé dans une superbe demeure ottomane. Il offre un aperçu intéressant de l’artisanat algérien, des costumes traditionnels et des objets du … Plus</p>
-  </li>
+    <!-- Thumbnail Image -->
+    
+      <img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" alt="Dar Aziza" class="card-image">
+    
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta"> — </span>
+        <a href="/algiers/monuments/dar-aziza/">Dar Aziza</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">Le Museo Nacional de Artes y Tradiciones Populares, دار خداوج, est un musée discret mais riche, installé dans une superbe demeure ottomane. Il offre un aperçu intéressant de l’artisanat algérien, des costumes traditionnels et des objets du … Plus</p>
+    </div>
+  </li>
 
 </ul>
 
