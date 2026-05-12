@@ -6,15 +6,35 @@ title: "Heritage List"
 <p>Explore the architectural gems of the Casbah and beyond.</p>
 
 <style>
-    .monument-list { list-style: none; padding: 0; }
+    .monument-list { 
+        list-style: none; 
+        padding: 0; 
+    }
+    
     .monument-card {
         background: white;
         margin-bottom: 20px;
-        padding: 20px;
+        padding: 0; /* Removing padding to let the image sit flush or controlled */
         border-left: 6px solid var(--terracotta);
         border-radius: 4px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        display: flex; /* This puts image and text side-by-side */
+        overflow: hidden; /* Keeps the image corners rounded with the card */
+        align-items: center;
     }
+
+    .card-image {
+        width: 120px; /* Small fixed size for the thumbnail */
+        height: 120px;
+        object-fit: cover; /* Ensures the photo isn't stretched */
+        flex-shrink: 0; /* Prevents the image from getting squashed */
+    }
+
+    .card-content {
+        padding: 20px;
+        flex-grow: 1;
+    }
+
     .monument-card a {
         color: var(--hist-teal);
         text-decoration: none;
@@ -22,16 +42,38 @@ title: "Heritage List"
         font-weight: bold;
     }
     .monument-card a:hover { color: var(--med-blue); }
-    .card-meta { color: var(--terracotta); font-size: 0.8rem; text-transform: uppercase; display: block; }
+    
+    .card-meta { 
+        color: var(--terracotta); 
+        font-size: 0.8rem; 
+        text-transform: uppercase; 
+        display: block; 
+    }
+
+    /* Stack them on very small screens */
+    @media (max-width: 480px) {
+        .monument-card { flex-direction: column; align-items: flex-start; }
+        .card-image { width: 100%; height: 150px; }
+    }
 </style>
 
 <ul class="monument-list">
 {% for item in monuments %}
   <li class="monument-card">
-    <span class="card-meta">{{ item.dynasty }} — {{ item.period }}</span>
-    <a href="/algiers/monuments/{{ item.name | slugify }}/">{{ item.name }}</a>
-    <p style="margin: 5px 0 0 0; color: #666;">{{ item.description }}</p>
-  </li>
+    <!-- Thumbnail Image -->
+    {% if item.photo %}
+      <img src="{{ item.photo }}" alt="{{ item.name }}" class="card-image">
+    {% else %}
+      <!-- Fallback if no photo exists -->
+      <div class="card-image" style="background: #eee; display: flex; align-items: center; justify-content: center; color: #ccc;">No Image</div>
+    {% endif %}
 
+    <!-- Text Content -->
+    <div class="card-content">
+        <span class="card-meta">{{ item.dynasty }} — {{ item.period }}</span>
+        <a href="/algiers/monuments/{{ item.name | slugify }}/">{{ item.name }}</a>
+        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">{{ item.description }}</p>
+    </div>
+  </li>
 {% endfor %}
 </ul>
