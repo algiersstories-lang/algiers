@@ -2,38 +2,57 @@
 layout: base.njk
 title: "Heritage List"
 ---
+
 <h1>Historical Monuments of Algiers</h1>
-<p>Explore the architectural gems of the Casbah and beyond.</p>
+
+<!-- Section des Filtres -->
+<div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #ddd;">
+    <h3 style="margin-top: 0; color: var(--hist-teal); font-size: 1rem; text-transform: uppercase;">Filter by Category:</h3>
+    <div id="category-filters" style="display: flex; flex-wrap: wrap; gap: 15px;">
+        {% set categories = [] %}
+        {% for item in monuments %}
+            {% if item.category and item.category not in categories %}
+                {% set categories = (categories.push(item.category), categories) %}
+            {% endif %}
+        {% endfor %}
+
+        {% for cat in categories %}
+        <label style="display: flex; align-items: center; cursor: pointer; background: var(--parchment); padding: 5px 12px; border-radius: 20px; font-size: 0.9rem;">
+            <input type="checkbox" class="category-checkbox" value="{{ cat | slugify }}" checked style="margin-right: 8px;">
+            {{ cat }}
+        </label>
+        {% endfor %}
+    </div>
+</div>
 
 <style>
-    .monument-list { 
-        list-style: none; 
-        padding: 0; 
-    }
+    .monument-list { list-style: none; padding: 0; }
     
     .monument-card {
         background: white;
         margin-bottom: 20px;
-        padding: 0; /* Removing padding to let the image sit flush or controlled */
+        display: flex;
         border-left: 6px solid var(--terracotta);
         border-radius: 4px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        display: flex; /* This puts image and text side-by-side */
-        overflow: hidden; /* Keeps the image corners rounded with the card */
+        overflow: hidden;
         align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    /* Style pour masquer les éléments filtrés */
+    .monument-card.hidden {
+        display: none;
     }
 
     .card-image {
-        width: 120px; /* Small fixed size for the thumbnail */
+        width: 120px;
         height: 120px;
-        object-fit: cover; /* Ensures the photo isn't stretched */
-        flex-shrink: 0; /* Prevents the image from getting squashed */
+        object-fit: cover;
+        flex-shrink: 0;
     }
 
-    .card-content {
-        padding: 20px;
-        flex-grow: 1;
-    }
+    .card-content { padding: 20px; flex-grow: 1; }
 
     .monument-card a {
         color: var(--hist-teal);
@@ -41,39 +60,61 @@ title: "Heritage List"
         font-size: 1.4rem;
         font-weight: bold;
     }
-    .monument-card a:hover { color: var(--med-blue); }
     
     .card-meta { 
         color: var(--terracotta); 
         font-size: 0.8rem; 
         text-transform: uppercase; 
-        display: block; 
     }
 
-    /* Stack them on very small screens */
     @media (max-width: 480px) {
         .monument-card { flex-direction: column; align-items: flex-start; }
         .card-image { width: 100%; height: 150px; }
     }
 </style>
 
-<ul class="monument-list">
+<ul class="monument-list" id="monument-list">
 {% for item in monuments %}
-  <li class="monument-card">
-    <!-- Thumbnail Image -->
+  <li class="monument-card" data-category="{{ item.category | slugify }}">
     {% if item.photo %}
       <img src="{{ item.photo }}" alt="{{ item.name }}" class="card-image">
     {% else %}
-      <!-- Fallback if no photo exists -->
       <div class="card-image" style="background: #eee; display: flex; align-items: center; justify-content: center; color: #ccc;">No Image</div>
     {% endif %}
 
-    <!-- Text Content -->
     <div class="card-content">
-        <span class="card-meta">{{ item.dynasty }} — {{ item.period }}</span>
+        <span class="card-meta">{{ item.dynasty }} — {{ item.category }}</span><br>
         <a href="/algiers/monuments/{{ item.name | slugify }}/">{{ item.name }}</a>
         <p style="margin: 5px 0 0 0; color: #666; font-size: 0.95rem;">{{ item.description }}</p>
     </div>
   </li>
 {% endfor %}
 </ul>
+
+<!-- Script de Filtrage -->
+<script>
+    const checkboxes = document.querySelectorAll('.category-checkbox');
+    const cards = document.querySelectorAll('.monument-card');
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', filterMonuments);
+    });
+
+    function filterMonuments() {
+        // Récupérer les catégories cochées
+        const activeCategories = Array.from(checkboxes)
+            .filter(i => i.checked)
+            .map(i => i.value);
+
+        cards.forEach(card => {
+            const cardCat = card.getAttribute('data-category');
+            
+            // Si la catégorie du monument est dans la liste des catégories cochées
+            if (activeCategories.includes(cardCat)) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
+</script>
