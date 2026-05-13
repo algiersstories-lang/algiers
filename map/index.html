@@ -7,7 +7,7 @@
 <!-- Ajout du Favicon -->
     <link rel="icon" type="image/png" href="https://algiersstories-lang.github.io/images/icon-casbah.png">
 
-    <title>Map of Algiers | Algiers Stories</title>
+    <title>Interactive Map | Algiers Stories</title>
     <style>
         :root {
             --med-blue: #4CB6C9;
@@ -93,121 +93,209 @@
 
     <div class="page-content">
         
-<!-- 1. CSS spécifique à la carte -->
+<!-- 1. Leaflet Assets -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 <style>
-    /* On ajuste la taille pour tenir compte du menu */
+    /* Map Container - Adjusts for the top menu height */
     #map {
-        height: calc(100vh - 120px); /* 100vh moins la hauteur du menu et du footer */
+        height: calc(100vh - 150px); 
         width: 100%;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        border: 1px solid #ddd;
     }
 
+    /* Legend Styling */
     .legend {
-        background: rgba(255,255,255,0.95);
-        padding: 12px;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 15px;
         border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        font-family: sans-serif;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        font-family: 'Georgia', serif;
+        line-height: 1.5;
+        max-height: 300px;
+        overflow-y: auto;
     }
 
+    .legend h4 {
+        margin: 0 0 10px 0;
+        color: var(--hist-teal);
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+    }
+
+    /* Marker Labels */
     .label {
         font-size: 11px;
         font-weight: bold;
         color: var(--hist-teal);
-        background: rgba(255,255,255,0.8);
-        padding: 1px 4px;
-        border-radius: 3px;
-        border: 1px solid #ccc;
+        background: rgba(255,255,255,0.85);
+        padding: 2px 5px;
+        border-radius: 4px;
+        border: 1px solid rgba(0,0,0,0.1);
         white-space: nowrap;
+        pointer-events: none; /* Allows clicking markers through the labels */
+    }
+
+    /* Popup Styling */
+    .leaflet-popup-content-wrapper {
+        border-radius: 8px;
+        padding: 5px;
+    }
+    
+    .popup-btn {
+        display: block;
+        text-align: center;
+        background: var(--med-blue);
+        color: white !important;
+        padding: 8px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        margin-top: 10px;
+        font-size: 0.9rem;
     }
 </style>
 
-<!-- 2. HTML Simplifié -->
+<!-- 2. Page Structure -->
 <div id="map"></div>
 
 <!-- 3. Scripts -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
-    // Initialisation
+    // --- 1. INITIALIZE MAP ---
     var map = L.map('map').setView([36.78497, 3.06081], 16);
 
-    // Correction de la taille après chargement (important pour 11ty)
-    setTimeout(() => { map.invalidateSize(); }, 500);
+    // Ensure map renders correctly inside the layout container
+    setTimeout(() => { map.invalidateSize(); }, 400);
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; CartoDB'
+        attribution: '&copy; OpenStreetMap & CartoDB'
     }).addTo(map);
 
-    // Groupes de couches
-    var mosqueLayer = L.layerGroup().addTo(map);
-    var gateLayer = L.layerGroup().addTo(map);
-    var palaceLayer = L.layerGroup().addTo(map);
+    // --- 2. LAYERS & SETTINGS ---
+    var layers = {}; // Holds category groups: layers['mosquee']
     var labelLayer = L.layerGroup().addTo(map);
-    var labels = [];
+    var allLabels = [];
 
-    // Icones (Utilisation de vos URLs github images)
-    const iconSettings = { iconSize: [34, 34], iconAnchor: [17, 34], popupAnchor: [0, -30] };
-    var mosqueIcon = L.icon({ ...iconSettings, iconUrl: 'https://raw.githubusercontent.com/algiersstories-lang/images/main/mosque2.png' });
-    var gateIcon = L.icon({ ...iconSettings, iconUrl: 'https://raw.githubusercontent.com/algiersstories-lang/images/main/porte2.png' });
-    var palaceIcon = L.icon({ ...iconSettings, iconUrl: 'https://raw.githubusercontent.com/algiersstories-lang/images/main/palace.png' });
+    const iconSettings = { iconSize: [34, 34], iconAnchor: [17, 34], popupAnchor: [0, -32] };
+    const defaultIconUrl = 'https://raw.githubusercontent.com/algiersstories-lang/images/main/mosque2.png';
 
-    // Polygone Casbah
-    var casbahPolygon = [[36.7895, 3.0627], [36.7894, 3.0612], [36.7883, 3.0591], [36.7856, 3.0560], [36.7838, 3.0546], [36.7823, 3.0564], [36.7812, 3.0593], [36.7806, 3.0621], [36.7841, 3.0635], [36.7850, 3.0649], [36.7864, 3.0659], [36.7864, 3.0668], [36.7866, 3.0678], [36.7865, 3.0685], [36.7856, 3.0684], [36.7859, 3.0692], [36.7873, 3.0694], [36.7881, 3.0693], [36.7883, 3.0687], [36.7878, 3.0686], [36.7874, 3.0684], [36.7872, 3.0664], [36.7878, 3.0651], [36.7895, 3.0627]];
-    L.polygon(casbahPolygon, { color: '#8B0000', weight: 2, fillColor: '#d4a373', fillOpacity: 0.15, interactive: false }).addTo(map);
-
-    // Fetch Data
-    fetch("https://opensheet.elk.sh/1VXIKnUOE_k9W195-BjsM1fX-HvC5B7GD7Zd0blubEwY/markers")
-    .then(res => res.json())
-    .then(data => {
-        data.forEach(place => {
-            let lat = parseFloat(place.lat), lon = parseFloat(place.lon);
-            if(isNaN(lat) || isNaN(lon)) return;
-
-            let cat = (place.category || "").toLowerCase();
-            let markerIcon = mosqueIcon;
-            let targetLayer = mosqueLayer;
-
-            if (cat.includes("gate") || cat.includes("porte")) { markerIcon = gateIcon; targetLayer = gateLayer; }
-            else if (cat.includes("palais") || cat.includes("palace")) { markerIcon = palaceIcon; targetLayer = palaceLayer; }
-
-            let marker = L.marker([lat, lon], { icon: markerIcon }).addTo(targetLayer);
-            marker.bindPopup(`<b>${place.name}</b><br>${place.photo ? `<img src="${place.photo}" style="width:100%;margin-top:5px">` : ''}<p>${place.description || ''}</p>`);
-
-            let label = L.marker([lat, lon], {
-                icon: L.divIcon({ className: 'label', html: place.name, iconAnchor: [0, -10] })
-            });
-            labels.push(label);
-        });
-    });
-
-    // Zoom & Labels
-    map.on("zoomend", () => {
-        labelLayer.clearLayers();
-        if (map.getZoom() >= 17) labels.forEach(l => l.addTo(labelLayer));
-    });
-
-    // Filtres Légende
-    var legend = L.control({ position: 'bottomright' });
-    legend.onAdd = function () {
-        var div = L.DomUtil.create('div', 'legend');
-        div.innerHTML = `<h4>Filtres</h4>
-            <label><input type="checkbox" id="chkMosque" checked> Mosquées</label><br>
-            <label><input type="checkbox" id="chkGate" checked> Portes</label><br>
-            <label><input type="checkbox" id="chkPalace" checked> Palais</label>`;
-        L.DomEvent.disableClickPropagation(div);
-        return div;
+    // Map your spreadsheet categories to your GitHub icons
+    const iconMap = {
+        "mosquee": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/mosque2.png',
+        "gate": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/porte2.png',
+        "porte": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/porte2.png',
+        "palais": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/palace.png',
+        "palace": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/palace.png'
     };
-    legend.addTo(map);
 
-    // Event Delegation pour les filtres (plus robuste)
-    document.addEventListener('change', function(e){
-        if(e.target.id === 'chkMosque') e.target.checked ? map.addLayer(mosqueLayer) : map.removeLayer(mosqueLayer);
-        if(e.target.id === 'chkGate') e.target.checked ? map.addLayer(gateLayer) : map.removeLayer(gateLayer);
-        if(e.target.id === 'chkPalace') e.target.checked ? map.addLayer(palaceLayer) : map.removeLayer(palaceLayer);
+    // Helper: Create URL slugs to match Eleventy's monument pages
+    const slugify = t => t.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-');
+
+    // Casbah Heritage Perimeter
+    var casbahPolygon = [[36.7895, 3.0627], [36.7894, 3.0612], [36.7883, 3.0591], [36.7856, 3.0560], [36.7838, 3.0546], [36.7823, 3.0564], [36.7812, 3.0593], [36.7806, 3.0621], [36.7841, 3.0635], [36.7850, 3.0649], [36.7864, 3.0659], [36.7864, 3.0668], [36.7866, 3.0678], [36.7865, 3.0685], [36.7856, 3.0684], [36.7859, 3.0692], [36.7873, 3.0694], [36.7881, 3.0693], [36.7883, 3.0687], [36.7878, 3.0686], [36.7874, 3.0684], [36.7872, 3.0664], [36.7878, 3.0651], [36.7895, 3.0627]];
+    L.polygon(casbahPolygon, { color: '#A0522D', weight: 2, fillColor: '#F5F5DC', fillOpacity: 0.2, interactive: false }).addTo(map);
+
+    // --- 3. LOAD DATA FROM GOOGLE SHEET ---
+    fetch("https://opensheet.elk.sh/1VXIKnUOE_k9W195-BjsM1fX-HvC5B7GD7Zd0blubEwY/markers")
+        .then(res => res.json())
+        .then(data => {
+            let uniqueCategories = new Set();
+
+            data.forEach(place => {
+                let lat = parseFloat(place.lat), lon = parseFloat(place.lon);
+                if(isNaN(lat) || isNaN(lon)) return;
+
+                let categoryLabel = place.category || "General";
+                let catId = categoryLabel.toLowerCase().trim();
+                uniqueCategories.add(categoryLabel);
+
+                // Initialize layer group for category if new
+                if (!layers[catId]) {
+                    layers[catId] = L.layerGroup().addTo(map);
+                }
+
+                // Pick Icon
+                let iconUrl = iconMap[catId] || defaultIconUrl;
+                let customIcon = L.icon({ ...iconSettings, iconUrl: iconUrl });
+
+                // Create Marker
+                let monumentUrl = `/algiers/monuments/${slugify(place.name)}/`;
+                let marker = L.marker([lat, lon], { icon: customIcon }).addTo(layers[catId]);
+                
+                marker.bindPopup(`
+                    <div style="min-width:180px">
+                        <h3 style="margin:0 0 5px 0; color:var(--hist-teal); font-size:1.1rem;">${place.name}</h3>
+                        ${place.photo ? `<img src="${place.photo}" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">` : ''}
+                        <p style="font-size:0.85rem; margin:8px 0;">${place.description || ""}</p>
+                        <a href="${monumentUrl}" class="popup-btn">View Full Details →</a>
+                    </div>
+                `);
+
+                // Create Hidden Label
+                let label = L.marker([lat, lon], {
+                    icon: L.divIcon({ className: 'label', html: place.name, iconAnchor: [-10, 10] })
+                });
+                allLabels.push({ label: label, catId: catId });
+            });
+
+            createDynamicLegend(uniqueCategories);
+        });
+
+    // --- 4. DYNAMIC LEGEND GENERATOR ---
+    function createDynamicLegend(categories) {
+        var legend = L.control({ position: 'bottomright' });
+
+        legend.onAdd = function () {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML = `<h4>Map Filters</h4>`;
+
+            categories.forEach(cat => {
+                let id = cat.toLowerCase().trim();
+                let iconUrl = iconMap[id] || defaultIconUrl;
+                
+                div.innerHTML += `
+                    <label style="display:flex; align-items:center; margin-bottom:8px; cursor:pointer; font-size:0.9rem;">
+                        <input type="checkbox" class="map-filter" data-cat="${id}" checked style="margin-right:10px">
+                        <img src="${iconUrl}" width="18" style="margin-right:8px"> ${cat}
+                    </label>`;
+            });
+
+            L.DomEvent.disableClickPropagation(div);
+            return div;
+        };
+
+        legend.addTo(map);
+    }
+
+    // --- 5. EVENT LISTENERS (Filter & Zoom) ---
+    document.addEventListener('change', function(e) {
+        if (e.target.classList.contains('map-filter')) {
+            let cat = e.target.getAttribute('data-cat');
+            if (e.target.checked) {
+                map.addLayer(layers[cat]);
+            } else {
+                map.removeLayer(layers[cat]);
+            }
+            updateLabels(); // Refresh labels based on visible categories
+        }
     });
+
+    function updateLabels() {
+        labelLayer.clearLayers();
+        if (map.getZoom() >= 17) {
+            allLabels.forEach(item => {
+                // Only show label if its category layer is active on the map
+                if (map.hasLayer(layers[item.catId])) {
+                    item.label.addTo(labelLayer);
+                }
+            });
+        }
+    }
+
+    map.on("zoomend", updateLabels);
 </script>
 
     </div>
