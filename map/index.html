@@ -1,0 +1,121 @@
+---
+layout: base.njk
+title: "Map of Algiers"
+---
+
+<!-- 1. CSS spécifique à la carte -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<style>
+    /* On ajuste la taille pour tenir compte du menu */
+    #map {
+        height: calc(100vh - 120px); /* 100vh moins la hauteur du menu et du footer */
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .legend {
+        background: rgba(255,255,255,0.95);
+        padding: 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        font-family: sans-serif;
+    }
+
+    .label {
+        font-size: 11px;
+        font-weight: bold;
+        color: var(--hist-teal);
+        background: rgba(255,255,255,0.8);
+        padding: 1px 4px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        white-space: nowrap;
+    }
+</style>
+
+<!-- 2. HTML Simplifié -->
+<div id="map"></div>
+
+<!-- 3. Scripts -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+    // Initialisation
+    var map = L.map('map').setView([36.78497, 3.06081], 16);
+
+    // Correction de la taille après chargement (important pour 11ty)
+    setTimeout(() => { map.invalidateSize(); }, 500);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; CartoDB'
+    }).addTo(map);
+
+    // Groupes de couches
+    var mosqueLayer = L.layerGroup().addTo(map);
+    var gateLayer = L.layerGroup().addTo(map);
+    var palaceLayer = L.layerGroup().addTo(map);
+    var labelLayer = L.layerGroup().addTo(map);
+    var labels = [];
+
+    // Icones (Utilisation de vos URLs github images)
+    const iconSettings = { iconSize: [34, 34], iconAnchor: [17, 34], popupAnchor: [0, -30] };
+    var mosqueIcon = L.icon({ ...iconSettings, iconUrl: 'https://raw.githubusercontent.com/algiersstories-lang/images/main/mosque2.png' });
+    var gateIcon = L.icon({ ...iconSettings, iconUrl: 'https://raw.githubusercontent.com/algiersstories-lang/images/main/porte2.png' });
+    var palaceIcon = L.icon({ ...iconSettings, iconUrl: 'https://raw.githubusercontent.com/algiersstories-lang/images/main/palace.png' });
+
+    // Polygone Casbah
+    var casbahPolygon = [[36.7895, 3.0627], [36.7894, 3.0612], [36.7883, 3.0591], [36.7856, 3.0560], [36.7838, 3.0546], [36.7823, 3.0564], [36.7812, 3.0593], [36.7806, 3.0621], [36.7841, 3.0635], [36.7850, 3.0649], [36.7864, 3.0659], [36.7864, 3.0668], [36.7866, 3.0678], [36.7865, 3.0685], [36.7856, 3.0684], [36.7859, 3.0692], [36.7873, 3.0694], [36.7881, 3.0693], [36.7883, 3.0687], [36.7878, 3.0686], [36.7874, 3.0684], [36.7872, 3.0664], [36.7878, 3.0651], [36.7895, 3.0627]];
+    L.polygon(casbahPolygon, { color: '#8B0000', weight: 2, fillColor: '#d4a373', fillOpacity: 0.15, interactive: false }).addTo(map);
+
+    // Fetch Data
+    fetch("https://opensheet.elk.sh/1VXIKnUOE_k9W195-BjsM1fX-HvC5B7GD7Zd0blubEwY/markers")
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(place => {
+            let lat = parseFloat(place.lat), lon = parseFloat(place.lon);
+            if(isNaN(lat) || isNaN(lon)) return;
+
+            let cat = (place.category || "").toLowerCase();
+            let markerIcon = mosqueIcon;
+            let targetLayer = mosqueLayer;
+
+            if (cat.includes("gate") || cat.includes("porte")) { markerIcon = gateIcon; targetLayer = gateLayer; }
+            else if (cat.includes("palais") || cat.includes("palace")) { markerIcon = palaceIcon; targetLayer = palaceLayer; }
+
+            let marker = L.marker([lat, lon], { icon: markerIcon }).addTo(targetLayer);
+            marker.bindPopup(`<b>${place.name}</b><br>${place.photo ? `<img src="${place.photo}" style="width:100%;margin-top:5px">` : ''}<p>${place.description || ''}</p>`);
+
+            let label = L.marker([lat, lon], {
+                icon: L.divIcon({ className: 'label', html: place.name, iconAnchor: [0, -10] })
+            });
+            labels.push(label);
+        });
+    });
+
+    // Zoom & Labels
+    map.on("zoomend", () => {
+        labelLayer.clearLayers();
+        if (map.getZoom() >= 17) labels.forEach(l => l.addTo(labelLayer));
+    });
+
+    // Filtres Légende
+    var legend = L.control({ position: 'bottomright' });
+    legend.onAdd = function () {
+        var div = L.DomUtil.create('div', 'legend');
+        div.innerHTML = `<h4>Filtres</h4>
+            <label><input type="checkbox" id="chkMosque" checked> Mosquées</label><br>
+            <label><input type="checkbox" id="chkGate" checked> Portes</label><br>
+            <label><input type="checkbox" id="chkPalace" checked> Palais</label>`;
+        L.DomEvent.disableClickPropagation(div);
+        return div;
+    };
+    legend.addTo(map);
+
+    // Event Delegation pour les filtres (plus robuste)
+    document.addEventListener('change', function(e){
+        if(e.target.id === 'chkMosque') e.target.checked ? map.addLayer(mosqueLayer) : map.removeLayer(mosqueLayer);
+        if(e.target.id === 'chkGate') e.target.checked ? map.addLayer(gateLayer) : map.removeLayer(gateLayer);
+        if(e.target.id === 'chkPalace') e.target.checked ? map.addLayer(palaceLayer) : map.removeLayer(palaceLayer);
+    });
+</script>
