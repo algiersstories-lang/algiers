@@ -7,7 +7,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://algiersstories-lang.github.io/images/icon-casbah.png">
     
-    <title>Carte Interactive | Algiers Stories</title>
+    <title>Interactive Map | Algiers Stories</title>
     
     <style>
         :root {
@@ -145,50 +145,31 @@
 
     <main>
         
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 <style>
-    .map-page-container {
-        max-width: 1100px;
-        margin: 0 auto;
-    }
-
-    .map-header {
-        margin-bottom: 20px;
-    }
-
-    .map-title {
-        color: var(--hist-teal);
-        margin: 0 0 10px 0;
-        font-family: 'Georgia', serif;
-    }
-
-    /* Positionnement de la carte */
-    .map-wrapper {
-        position: relative; /* Nécessaire pour superposer le bouton sur la carte */
+    /* Container for layout alignment */
+    .map-wrapper-layout {
+        position: relative; /* Essential to let the locate button float over the map */
         width: 100%;
-        height: 600px;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        border: 2px solid rgba(0, 128, 128, 0.1);
     }
 
+    /* Map Container - Adjusts for the top menu height */
     #map {
+        height: calc(100vh - 150px); 
         width: 100%;
-        height: 100%;
-        border-radius: 6px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        border: 1px solid #ddd;
     }
 
-    /* Style du Bouton "Localisez-moi" personnalisé */
-    .locate-button {
+    /* Floating Locate Me Button Styling */
+    .locate-me-btn {
         position: absolute;
-        top: 80px; /* Placé juste sous les boutons Zoom (+ / -) de Leaflet */
+        top: 80px; /* Perfectly sits right below Leaflet's zoom (+ / -) controls */
         left: 10px;
-        z-index: 1000; /* Assure que le bouton flotte au-dessus des tuiles de la carte */
+        z-index: 1000;
         background-color: white;
         border: 2px solid rgba(0,0,0,0.2);
-        background-clip: padding-box;
         border-radius: 4px;
         width: 34px;
         height: 34px;
@@ -200,67 +181,112 @@
         transition: background-color 0.2s;
     }
 
-    .locate-button:hover {
+    .locate-me-btn:hover {
         background-color: #f4f4f4;
     }
 
-    /* Icône de cible simplifiée en SVG insérée dans le bouton */
-    .locate-button svg {
+    .locate-me-btn svg {
         width: 20px;
         height: 20px;
-        fill: var(--charcoal);
+        fill: var(--charcoal, #333);
     }
 
-    /* Style optionnel de notification d'erreur */
-    .location-error-toast {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1000;
-        background-color: #333;
-        color: white;
-        padding: 10px 20px;
+    /* Legend Styling */
+    .legend {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        font-family: 'Georgia', serif;
+        line-height: 1.5;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .legend h4 {
+        margin: 0 0 10px 0;
+        color: var(--hist-teal);
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+    }
+
+    /* Marker Labels */
+    .label {
+        font-size: 11px;
+        font-weight: bold;
+        color: var(--hist-teal);
+        background: rgba(255,255,255,0.85);
+        padding: 2px 5px;
         border-radius: 4px;
+        border: 1px solid rgba(0,0,0,0.1);
+        white-space: nowrap;
+        pointer-events: none; /* Allows clicking markers through the labels */
+    }
+
+    /* Popup Styling */
+    .leaflet-popup-content-wrapper {
+        border-radius: 8px;
+        padding: 5px;
+    }
+    
+    .popup-btn {
+        display: block;
+        text-align: center;
+        background: var(--med-blue);
+        color: white !important;
+        padding: 8px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        margin-top: 10px;
         font-size: 0.9rem;
-        display: none;
     }
 </style>
 
-<div class="map-page-container">
-    <div class="map-header">
-        <h1 class="map-title">Explorer la Casbah d'Alger</h1>
-        <p>Découvrez les monuments historiques à votre propre rythme ou géolocalisez-vous au cœur de la vieille ville.</p>
+<div class="map-wrapper-layout">
+    <div class="locate-me-btn" id="locateBtn" title="Me localiser sur la carte">
+        <svg viewBox="0 0 24 24">
+            <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
+        </svg>
     </div>
-
-    <div class="map-wrapper">
-        <div class="locate-button" id="locateBtn" title="Me localiser sur la carte">
-            <svg viewBox="0 0 24 24">
-                <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
-            </svg>
-        </div>
-
-        <div class="location-error-toast" id="errorToast">Accès à la position refusé ou indisponible.</div>
-
-        <div id="map"></div>
-    </div>
+    
+    <div id="map"></div>
 </div>
 
-<script>
-    // 1. Initialisation de la carte centrée sur la Casbah d'Alger
-    const map = L.map('map').setView([36.7845, 3.0585], 16);
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-    // 2. Ajout des tuiles cartographiques (OpenStreetMap standard ici)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+<script>
+    // --- 1. INITIALIZE MAP ---
+    var map = L.map('map').setView([36.78497, 3.06081], 16);
+
+    // Ensure map renders correctly inside the layout container
+    setTimeout(() => { map.invalidateSize(); }, 400);
+
+    // Your original base map choice preserved
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap & CartoDB'
     }).addTo(map);
 
-    // 3. Variables de suivi pour le marqueur utilisateur
-    let userLocationMarker = null;
+    // --- 2. LAYERS & SETTINGS ---
+    var layers = {}; // Holds category groups: layers['mosquee']
+    var labelLayer = L.layerGroup().addTo(map);
+    var allLabels = [];
+    let userLocationMarker = null; // Track geolocation point safely
 
-    // Icône personnalisée de couleur bleue vibrante pour l'utilisateur
-    const userIcon = L.icon({
+    const iconSettings = { iconSize: [34, 34], iconAnchor: [17, 34], popupAnchor: [0, -32] };
+    const defaultIconUrl = 'https://raw.githubusercontent.com/algiersstories-lang/images/main/mosque2.png';
+
+    // Map your spreadsheet categories to your GitHub icons
+    const iconMap = {
+        "mosquee": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/mosque2.png',
+        "gate": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/porte2.png',
+        "porte": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/porte2.png',
+        "palais": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/palace.png',
+        "musee": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/museum-icon.png'
+    };
+
+    // Custom blue point to contrast nicely with historical architecture icons
+    const userLocationIcon = L.icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [25, 41],
@@ -269,68 +295,139 @@
         shadowSize: [41, 41]
     });
 
-    // 4. Intégration fictive de vos marqueurs existants depuis le Google Sheet
-    // Remplacez cette boucle par votre logique Fetch de Google Sheet réelle
-    const sampleMonuments = [
-        { name: "Mosquée de la Pêcherie", lat: 36.7848, lng: 3.0631 },
-        { name: "Palais des Raïs", lat: 36.7865, lng: 3.0618 }
-    ];
+    // Helper: Create URL slugs to match Eleventy's monument pages
+    const slugify = t => t.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-');
 
-    sampleMonuments.forEach(monument => {
-        L.marker([monument.lat, monument.lng]).addTo(map)
-            .bindPopup(`<b>${monument.name}</b>`);
+    // Casbah Heritage Perimeter
+    var casbahPolygon = [[36.7895, 3.0627], [36.7894, 3.0612], [36.7883, 3.0591], [36.7856, 3.0560], [36.7838, 3.0546], [36.7823, 3.0564], [36.7812, 3.0593], [36.7806, 3.0621], [36.7841, 3.0635], [36.7850, 3.0649], [36.7864, 3.0659], [36.7864, 3.0668], [36.7866, 3.0678], [36.7865, 3.0685], [36.7856, 3.0684], [36.7859, 3.0692], [36.7873, 3.0694], [36.7881, 3.0693], [36.7883, 3.0687], [36.7878, 3.0686], [36.7874, 3.0684], [36.7872, 3.0664], [36.7878, 3.0651], [36.7895, 3.0627]];
+    L.polygon(casbahPolygon, { color: '#A0522D', weight: 2, fillColor: '#F5F5DC', fillOpacity: 0.2, interactive: false }).addTo(map);
+
+    // --- 3. LOAD DATA FROM GOOGLE SHEET ---
+    fetch("https://opensheet.elk.sh/1VXIKnUOE_k9W195-BjsM1fX-HvC5B7GD7Zd0blubEwY/markers")
+        .then(res => res.json())
+        .then(data => {
+            let uniqueCategories = new Set();
+
+            data.forEach(place => {
+                let lat = parseFloat(place.lat), lon = parseFloat(place.lon);
+                if(isNaN(lat) || isNaN(lon)) return;
+
+                let categoryLabel = place.category || "General";
+                let catId = categoryLabel.toLowerCase().trim();
+                uniqueCategories.add(categoryLabel);
+
+                // Initialize layer group for category if new
+                if (!layers[catId]) {
+                    layers[catId] = L.layerGroup().addTo(map);
+                }
+
+                // Pick Icon
+                let iconUrl = iconMap[catId] || defaultIconUrl;
+                let customIcon = L.icon({ ...iconSettings, iconUrl: iconUrl });
+
+                // Create Marker
+                let monumentUrl = `/algiers/monuments/${slugify(place.name)}/`;
+                let marker = L.marker([lat, lon], { icon: customIcon }).addTo(layers[catId]);
+                
+                marker.bindPopup(`
+                    <div style="min-width:180px">
+                        <h3 style="margin:0 0 5px 0; color:var(--hist-teal); font-size:1.1rem;">${place.name}</h3>
+                        ${place.photo ? `<img src="${place.photo}" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">` : ''}
+                        <p style="font-size:0.85rem; margin:8px 0;">${place.description || ""}</p>
+                        <a href="${monumentUrl}" class="popup-btn">View Full Details →</a>
+                    </div>
+                `);
+
+                // Create Hidden Label
+                let label = L.marker([lat, lon], {
+                    icon: L.divIcon({ className: 'label', html: place.name, iconAnchor: [-10, 10] })
+                });
+                allLabels.push({ label: label, catId: catId });
+            });
+
+            createDynamicLegend(uniqueCategories);
+        });
+
+    // --- 4. DYNAMIC LEGEND GENERATOR ---
+    function createDynamicLegend(categories) {
+        var legend = L.control({ position: 'bottomright' });
+
+        legend.onAdd = function () {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML = `<h4>Map Filters</h4>`;
+
+            categories.forEach(cat => {
+                let id = cat.toLowerCase().trim();
+                let iconUrl = iconMap[id] || defaultIconUrl;
+                
+                div.innerHTML += `
+                    <label style="display:flex; align-items:center; margin-bottom:8px; cursor:pointer; font-size:0.9rem;">
+                        <input type="checkbox" class="map-filter" data-cat="${id}" checked style="margin-right:10px">
+                        <img src="${iconUrl}" width="18" style="margin-right:8px"> ${cat}
+                    </label>`;
+            });
+
+            L.DomEvent.disableClickPropagation(div);
+            return div;
+        };
+
+        legend.addTo(map);
+    }
+
+    // --- 5. EVENT LISTENERS (Filter & Zoom) ---
+    document.addEventListener('change', function(e) {
+        if (e.target.classList.contains('map-filter')) {
+            let cat = e.target.getAttribute('data-cat');
+            if (e.target.checked) {
+                map.addLayer(layers[cat]);
+            } else {
+                map.removeLayer(layers[cat]);
+            }
+            updateLabels(); 
+        }
     });
 
-    // 5. Logique de Géolocalisation liée au bouton cible
-    const locateBtn = document.getElementById('locateBtn');
-    const errorToast = document.getElementById('errorToast');
+    function updateLabels() {
+        labelLayer.clearLayers();
+        if (map.getZoom() >= 17) {
+            allLabels.forEach(item => {
+                if (map.hasLayer(layers[item.catId])) {
+                    item.label.addTo(labelLayer);
+                }
+            });
+        }
+    }
 
-    locateBtn.addEventListener('click', () => {
-        // Vérification de la compatibilité du navigateur
+    map.on("zoomend", updateLabels);
+
+    // --- 6. GEOLOCATION SYSTEM ---
+    document.getElementById('locateBtn').addEventListener('click', function() {
         if (!navigator.geolocation) {
-            showError("Votre navigateur ne supporte pas la géolocalisation.");
+            alert("Your browser does not support geolocation features.");
             return;
         }
 
-        // Requête de géolocalisation native
         navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const lat = position.coords.latitude;
-                const lng = position.coords.longitude;
+            function(position) {
+                var uLat = position.coords.latitude;
+                var uLon = position.coords.longitude;
 
-                // Si un marqueur de position existait déjà, on le déplace au lieu d'en créer un doublon
                 if (userLocationMarker) {
-                    userLocationMarker.setLatLng([lat, lng]);
+                    userLocationMarker.setLatLng([uLat, uLon]);
                 } else {
-                    // Sinon, création du marqueur bleu de l'utilisateur
-                    userLocationMarker = L.marker([lat, lng], { icon: userIcon }).addTo(map)
-                        .bindPopup("<b>Vous êtes ici</b>")
-                        .openPopup();
+                    userLocationMarker = L.marker([uLat, uLon], { icon: userLocationIcon }).addTo(map)
+                        .bindPopup("<b>You are here</b>");
                 }
-
-                // Déplacement fluide de la carte vers la position de l'utilisateur avec un zoom ajusté
-                map.flyTo([lat, lng], 17);
+                
+                userLocationMarker.openPopup();
+                map.flyTo([uLat, uLon], 17); // Smooth animated glide to current position
             },
-            (error) => {
-                // Gestion des erreurs (Ex: l'utilisateur clique sur "Bloquer" l'accès)
-                showError("Impossible de récupérer votre position.");
+            function(error) {
+                alert("Unable to access location. Ensure tracking is permitted in your browser settings.");
             },
-            {
-                enableHighAccuracy: true, // Force l'usage du GPS si disponible pour plus de précision
-                timeout: 5000,
-                maximumAge: 0
-            }
+            { enableHighAccuracy: true, timeout: 6000 }
         );
     });
-
-    // Fonction utilitaire pour afficher un bandeau d'erreur temporaire
-    function showError(message) {
-        errorToast.innerText = message;
-        errorToast.style.display = 'block';
-        setTimeout(() => {
-            errorToast.style.display = 'none';
-        }, 3000);
-    }
 </script>
 
     </main>
