@@ -1,0 +1,124 @@
+---
+layout: base.njk
+title: "Histoire d'Alger"
+---
+
+<style>
+    .history-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .history-title {
+        color: var(--hist-teal);
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .history-subtitle {
+        font-style: italic;
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+    }
+
+    .history-hero-box {
+        margin-bottom: 40px;
+    }
+
+    .history-img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .history-caption {
+        font-size: 0.85rem;
+        color: #777;
+        text-align: center;
+        margin-top: 8px;
+    }
+
+    .history-era {
+        margin-bottom: 35px;
+    }
+
+    .history-era h3 {
+        color: var(--terracotta);
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(160, 82, 45, 0.2);
+        padding-bottom: 5px;
+    }
+
+    .history-era p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        text-align: justify;
+    }
+
+    /* Info banner for future timeline */
+    .timeline-teaser {
+        background-color: white;
+        border-left: 4px solid var(--med-blue);
+        padding: 20px;
+        margin-top: 50px;
+        border-radius: 0 8px 8px 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .timeline-teaser h4 {
+        margin: 0 0 8px 0;
+        color: var(--charcoal);
+        font-size: 1.1rem;
+    }
+
+    .timeline-teaser p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #555;
+    }
+</style>
+
+<div class="history-wrapper">
+    <h1 class="history-title">Une Cité Millénaire</h1>
+    <p class="history-subtitle">Aperçu historique de la transition d'un comptoir antique à la mythique Ville Blanche.</p>
+
+    <!-- Photo historique de secours en attendant l'image finale dans votre dossier /images -->
+    <div class="history-hero-box">
+        <img src="https://algiersstories-lang.github.io/images/hero-casbah.webp" alt="Panorama historique d'Alger" class="history-img">
+        <p class="history-caption">Alger et sa topographie unique en amphithéâtre face à la Méditerranée.</p>
+    </div>
+
+    <section class="history-content">
+        <div class="history-era">
+            <h3>Les Origines : D'Ikosim à El-Djazair</h3>
+            <p>
+                Bien avant de s'étendre sur ses collines emblématiques, le site d'Alger débute son aventure historique sous le nom d'Ikosim, un modeste comptoir phénicien puis romain. C'est au Xe siècle, vers l'an 950, que Bologhine ibn Ziri, fondateur de la dynastie berbère des Zirides, pose les fondations de la cité moderne sous le nom d'El-Djazair, en référence aux îlots qui faisaient face à sa baie.
+            </p>
+        </div>
+
+        <div class="history-era">
+            <h3>L'Âge d'Or : La Période Ottomane</h3>
+            <p>
+                Au XVIe siècle, pour se défendre des ambitions espagnoles, la ville s'allie à l'Empire ottoman sous l'impulsion des frères Barberousse. Alger devient alors la capitale d'une régence maritime redoutable. C'est durant cette ère de prospérité que se cristallise le tissu urbain de la Casbah : un dédale défensif unique au monde, jalonné de palais somptueux, de mosquées majestueuses et de maisons à colonnades imbriquées les unes dans les autres.
+            </p>
+        </div>
+
+        <div class="history-era">
+            <h3>La Traversée Coloniale et la Mémoire</h3>
+            <p>
+                Le débarquement français de 1830 bouleverse à jamais la physionomie de la ville basse, rasée pour faire place à des places d'armes et des architectures haussmanniennes. Confinée dans ses remparts invisibles, la haute Casbah devient le cœur battant de la préservation culturelle et, plus tard, le bastion central de la résistance durant la guerre d'indépendance algérienne.
+            </p>
+        </div>
+    </section>
+
+    <!-- Teaser pour l'avenir -->
+    <div class="timeline-teaser">
+        <h4>Chronologie interactive en cours de numérisation</h4>
+        <p>Nos équipes assemblent une frise chronologique détaillée reliant chaque monument à son époque charnière. En attendant son déploiement, vous pouvez explorer ces lieux directement sur notre <a href="/algiers/map/" style="color: var(--hist-teal); font-weight: bold;">carte interactive</a>.</p>
+    </div>
+</div>
