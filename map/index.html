@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://algiersstories-lang.github.io/images/icon-casbah.png">
+    
+    <title>Carte Interactive | Algiers Stories</title>
+    
+    <style>
+        :root {
+            --hist-teal: #008080;
+            --med-blue: #4CB6C9;
+            --terracotta: #A0522D;
+            --parchment: #F5F5DC;
+            --charcoal: #333333;
+            --max-width: 1100px;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: var(--parchment);
+            color: var(--charcoal);
+        }
+
+        /* Navigation Header */
+        header {
+            background-color: white;
+            border-bottom: 3px solid var(--hist-teal);
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Logo and Title Container */
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-title {
+            color: var(--hist-teal);
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Navigation Links */
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--med-blue);
+        }
+
+        /* Layout Containers */
+        main {
+            padding: 40px 20px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            min-height: 80vh;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background-color: transparent; 
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .header-container { 
+                flex-direction: column; 
+                gap: 15px; 
+                text-align: center; 
+            }
+            nav ul { 
+                gap: 15px; 
+                font-size: 0.9rem; 
+            }
+            .logo-img { 
+                height: 40px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="/algiers/" class="brand">
+                <img src="https://algiersstories-lang.github.io/images/logo-casbah.png" alt="Algiers Stories Logo" class="logo-img">
+                <h1 class="site-title">Algiers Stories</h1>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/algiers/">Home</a></li>
+                    <li><a href="/algiers/list/">Monuments</a></li>
+                    <li><a href="/algiers/map/">Map</a></li>
+                    <li><a href="/algiers/history/">History</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<style>
+    .map-page-container {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .map-header {
+        margin-bottom: 20px;
+    }
+
+    .map-title {
+        color: var(--hist-teal);
+        margin: 0 0 10px 0;
+        font-family: 'Georgia', serif;
+    }
+
+    /* Positionnement de la carte */
+    .map-wrapper {
+        position: relative; /* Nécessaire pour superposer le bouton sur la carte */
+        width: 100%;
+        height: 600px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border: 2px solid rgba(0, 128, 128, 0.1);
+    }
+
+    #map {
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+    }
+
+    /* Style du Bouton "Localisez-moi" personnalisé */
+    .locate-button {
+        position: absolute;
+        top: 80px; /* Placé juste sous les boutons Zoom (+ / -) de Leaflet */
+        left: 10px;
+        z-index: 1000; /* Assure que le bouton flotte au-dessus des tuiles de la carte */
+        background-color: white;
+        border: 2px solid rgba(0,0,0,0.2);
+        background-clip: padding-box;
+        border-radius: 4px;
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+        transition: background-color 0.2s;
+    }
+
+    .locate-button:hover {
+        background-color: #f4f4f4;
+    }
+
+    /* Icône de cible simplifiée en SVG insérée dans le bouton */
+    .locate-button svg {
+        width: 20px;
+        height: 20px;
+        fill: var(--charcoal);
+    }
+
+    /* Style optionnel de notification d'erreur */
+    .location-error-toast {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        display: none;
+    }
+</style>
+
+<div class="map-page-container">
+    <div class="map-header">
+        <h1 class="map-title">Explorer la Casbah d'Alger</h1>
+        <p>Découvrez les monuments historiques à votre propre rythme ou géolocalisez-vous au cœur de la vieille ville.</p>
+    </div>
+
+    <div class="map-wrapper">
+        <div class="locate-button" id="locateBtn" title="Me localiser sur la carte">
+            <svg viewBox="0 0 24 24">
+                <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
+            </svg>
+        </div>
+
+        <div class="location-error-toast" id="errorToast">Accès à la position refusé ou indisponible.</div>
+
+        <div id="map"></div>
+    </div>
+</div>
+
+<script>
+    // 1. Initialisation de la carte centrée sur la Casbah d'Alger
+    const map = L.map('map').setView([36.7845, 3.0585], 16);
+
+    // 2. Ajout des tuiles cartographiques (OpenStreetMap standard ici)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // 3. Variables de suivi pour le marqueur utilisateur
+    let userLocationMarker = null;
+
+    // Icône personnalisée de couleur bleue vibrante pour l'utilisateur
+    const userIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    // 4. Intégration fictive de vos marqueurs existants depuis le Google Sheet
+    // Remplacez cette boucle par votre logique Fetch de Google Sheet réelle
+    const sampleMonuments = [
+        { name: "Mosquée de la Pêcherie", lat: 36.7848, lng: 3.0631 },
+        { name: "Palais des Raïs", lat: 36.7865, lng: 3.0618 }
+    ];
+
+    sampleMonuments.forEach(monument => {
+        L.marker([monument.lat, monument.lng]).addTo(map)
+            .bindPopup(`<b>${monument.name}</b>`);
+    });
+
+    // 5. Logique de Géolocalisation liée au bouton cible
+    const locateBtn = document.getElementById('locateBtn');
+    const errorToast = document.getElementById('errorToast');
+
+    locateBtn.addEventListener('click', () => {
+        // Vérification de la compatibilité du navigateur
+        if (!navigator.geolocation) {
+            showError("Votre navigateur ne supporte pas la géolocalisation.");
+            return;
+        }
+
+        // Requête de géolocalisation native
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+
+                // Si un marqueur de position existait déjà, on le déplace au lieu d'en créer un doublon
+                if (userLocationMarker) {
+                    userLocationMarker.setLatLng([lat, lng]);
+                } else {
+                    // Sinon, création du marqueur bleu de l'utilisateur
+                    userLocationMarker = L.marker([lat, lng], { icon: userIcon }).addTo(map)
+                        .bindPopup("<b>Vous êtes ici</b>")
+                        .openPopup();
+                }
+
+                // Déplacement fluide de la carte vers la position de l'utilisateur avec un zoom ajusté
+                map.flyTo([lat, lng], 17);
+            },
+            (error) => {
+                // Gestion des erreurs (Ex: l'utilisateur clique sur "Bloquer" l'accès)
+                showError("Impossible de récupérer votre position.");
+            },
+            {
+                enableHighAccuracy: true, // Force l'usage du GPS si disponible pour plus de précision
+                timeout: 5000,
+                maximumAge: 0
+            }
+        );
+    });
+
+    // Fonction utilitaire pour afficher un bandeau d'erreur temporaire
+    function showError(message) {
+        errorToast.innerText = message;
+        errorToast.style.display = 'block';
+        setTimeout(() => {
+            errorToast.style.display = 'none';
+        }, 3000);
+    }
+</script>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Algiers Stories - Safeguarding the Memory of the White City.</p>
+    </footer>
+
+</body>
+</html>
