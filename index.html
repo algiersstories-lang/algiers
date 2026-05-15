@@ -7,7 +7,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://algiersstories-lang.github.io/images/icon-casbah.png">
     
-    <title>Welcome to Algiers Stories | Algiers Stories</title>
+    <title>Accueil | Algiers Stories</title>
     
     <style>
         :root {
@@ -145,53 +145,97 @@
 
     <main>
         
-<div style="text-align: center; padding: 60px 20px;">
-    <!-- Hero Header -->
-    <h1 style="font-size: clamp(2.5rem, 8vw, 4rem); color: var(--hist-teal); margin-bottom: 10px;">Algiers Stories</h1>
-    <p style="font-size: 1.25rem; max-width: 700px; margin: 0 auto 40px auto; color: #555; line-height: 1.6;">
-        Journey through the history, architecture, and legends of the Casbah and the Mediterranean soul of the White City.
-    </p>
+<style>
+    /* Hero Section */
+    .hero-container {
+        position: relative;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .hero-img {
+        width: 100%;
+        max-width: 1100px; /* Parfaitement aligné avec base.njk */
+        height: 450px;
+        object-fit: cover; /* Recadre proprement l'image peu importe l'écran */
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        display: block;
+    }
+
+    /* Introduction Text styling */
+    .welcome-section {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px 0;
+    }
+
+    .main-slogan {
+        color: var(--hist-teal);
+        font-size: 2.2rem;
+        font-family: 'Georgia', serif;
+        margin-bottom: 20px;
+        line-height: 1.3;
+    }
+
+    .intro-text {
+        font-size: 1.2rem;
+        color: var(--charcoal);
+        line-height: 1.8;
+        margin-bottom: 35px;
+    }
+
+    /* Interactive Button */
+    .cta-button {
+        display: inline-block;
+        background-color: var(--terracotta);
+        color: white !important;
+        text-decoration: none;
+        padding: 14px 30px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        border-radius: 6px;
+        box-shadow: 0 4px 10px rgba(160, 82, 45, 0.3);
+        transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .cta-button:hover {
+        background-color: #8B4513; /* Terracotta un peu plus sombre au survol */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(160, 82, 45, 0.4);
+    }
+
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 768px) {
+        .hero-img {
+            height: 250px; /* Plus petite hauteur sur mobile pour voir le texte tout de suite */
+        }
+        .main-slogan {
+            font-size: 1.6rem;
+        }
+        .intro-text {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+<div class="hero-container">
+    <img src="https://algiersstories-lang.github.io/images/hero-casbah.webp" alt="Ruelle mystérieuse de la Casbah d'Alger" class="hero-img">
+</div>
+
+<section class="welcome-section">
+    <h2 class="main-slogan">Derrière chaque porte, un siècle d'histoire à découvrir.</h2>
     
-    <!-- Discovery Cards -->
-    <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-top: 20px;">
-        
-        <!-- Card 1: Interactive Map -->
-        <a href="/algiers/map/" style="text-decoration: none; color: inherit; width: 280px;">
-            <div style="background: white; padding: 30px; border-radius: 12px; border-bottom: 6px solid var(--med-blue); box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
-                <span style="font-size: 3.5rem; display: block; margin-bottom: 15px;">🗺️</span>
-                <h3 style="color: var(--hist-teal); margin-bottom: 10px;">Interactive Map</h3>
-                <p style="color: #666; font-size: 0.95rem;">Locate historical monuments and hidden gems across the city.</p>
-            </div>
-        </a>
-
-        <!-- Card 2: Heritage Archive -->
-        <a href="/algiers/list/" style="text-decoration: none; color: inherit; width: 280px;">
-            <div style="background: white; padding: 30px; border-radius: 12px; border-bottom: 6px solid var(--terracotta); box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
-                <span style="font-size: 3.5rem; display: block; margin-bottom: 15px;">🏛️</span>
-                <h3 style="color: var(--hist-teal); margin-bottom: 10px;">Heritage Archive</h3>
-                <p style="color: #666; font-size: 0.95rem;">Browse the full collection of documented sites and palaces.</p>
-            </div>
-        </a>
-
-        <!-- Card 3: History of Algiers (New) -->
-        <a href="/algiers/history/" style="text-decoration: none; color: inherit; width: 280px;">
-            <div style="background: white; padding: 30px; border-radius: 12px; border-bottom: 6px solid var(--hist-teal); box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
-                <span style="font-size: 3.5rem; display: block; margin-bottom: 15px;">📜</span>
-                <h3 style="color: var(--hist-teal); margin-bottom: 10px;">City History</h3>
-                <p style="color: #666; font-size: 0.95rem;">Timeline of Algiers, from Icosium to the Ottoman era.</p>
-            </div>
-        </a>
-
-    </div>
-</div>
-
-<!-- Bottom Story Section -->
-<div style="margin-top: 40px; background: white; padding: 50px; border-radius: 15px; border: 1px solid #eee; box-shadow: inset 0 0 50px rgba(0,96,100,0.02);">
-    <h2 style="color: var(--terracotta); font-variant: small-caps;">Preserving the Memory of Algiers</h2>
-    <p style="font-size: 1.1rem; color: #444;">
-        This project is a digital tribute to <strong>Alger la Blanche</strong>. Every stone in the Casbah tells a story of dynasties, craftsmanship, and a Mediterranean identity that has endured for centuries. By documenting these monuments, we ensure the narrative of our ancestors remains alive for the next generation.
+    <p class="intro-text">
+        Alger Stories n'est pas qu'une simple carte, c'est une clé de lecture pour la Ville Blanche. 
+        Des secrets de la mosquée de la Pêcherie aux palais ottomans oubliés, chaque lieu documenté 
+        renferme un fragment de mémoire qui n'attend que vous pour revivre. Serez-vous de ceux qui 
+        gardent les yeux ouverts ?
     </p>
-</div>
+
+    <a href="/algiers/map/" class="cta-button">Commencer l'exploration →</a>
+</section>
 
     </main>
 
