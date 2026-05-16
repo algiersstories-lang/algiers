@@ -1,5 +1,150 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://algiersstories-lang.github.io/images/icon-casbah.png">
+    
+    <title>Accueil | Algiers Stories</title>
+    
+    <style>
+        :root {
+            --hist-teal: #008080;
+            --med-blue: #4CB6C9;
+            --terracotta: #A0522D;
+            --parchment: #F5F5DC;
+            --charcoal: #333333;
+            --max-width: 1100px;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: var(--parchment);
+            color: var(--charcoal);
+        }
+
+        /* Navigation Header */
+        header {
+            background-color: white;
+            border-bottom: 3px solid var(--hist-teal);
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Logo and Title Container */
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-title {
+            color: var(--hist-teal);
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Navigation Links */
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--med-blue);
+        }
+
+        /* Layout Containers */
+        main {
+            padding: 40px 20px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            min-height: 80vh;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background-color: transparent; 
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .header-container { 
+                flex-direction: column; 
+                gap: 15px; 
+                text-align: center; 
+            }
+            nav ul { 
+                gap: 15px; 
+                font-size: 0.9rem; 
+            }
+            .logo-img { 
+                height: 40px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="/algiers/" class="brand">
+                <img src="https://algiersstories-lang.github.io/images/logo-casbah.png" alt="Algiers Stories Logo" class="logo-img">
+                <h1 class="site-title">Algiers Stories</h1>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/algiers/">Home</a></li>
+                    <li><a href="/algiers/list/">Monuments</a></li>
+                    <li><a href="/algiers/map/">Map</a></li>
+                    <li><a href="/algiers/history/">History</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -260,3 +405,12 @@
 </body>
 </html>
 
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Algiers Stories - Safeguarding the Memory of the White City.</p>
+    </footer>
+
+</body>
+</html>
