@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://algiersstories-lang.github.io/images/icon-casbah.png">
+    
+    <title> | Algiers Stories</title>
+    
+    <style>
+        :root {
+            --hist-teal: #008080;
+            --med-blue: #4CB6C9;
+            --terracotta: #A0522D;
+            --parchment: #F5F5DC;
+            --charcoal: #333333;
+            --max-width: 1100px;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: var(--parchment);
+            color: var(--charcoal);
+        }
+
+        /* Navigation Header */
+        header {
+            background-color: white;
+            border-bottom: 3px solid var(--hist-teal);
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Logo and Title Container */
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-title {
+            color: var(--hist-teal);
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Navigation Links */
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--med-blue);
+        }
+
+        /* Layout Containers */
+        main {
+            padding: 40px 20px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            min-height: 80vh;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background-color: transparent; 
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .header-container { 
+                flex-direction: column; 
+                gap: 15px; 
+                text-align: center; 
+            }
+            nav ul { 
+                gap: 15px; 
+                font-size: 0.9rem; 
+            }
+            .logo-img { 
+                height: 40px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="/algiers/" class="brand">
+                <img src="https://algiersstories-lang.github.io/images/logo-casbah.png" alt="Algiers Stories Logo" class="logo-img">
+                <h1 class="site-title">Algiers Stories</h1>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/algiers/">Home</a></li>
+                    <li><a href="/algiers/list/">Monuments</a></li>
+                    <li><a href="/algiers/map/">Map</a></li>
+                    <li><a href="/algiers/history/">History</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+<style>
+    .short-desc { font-style: italic; font-size: 1.3rem; color: #555; margin-bottom: 30px; }
+    
+    .history-box {
+        background: var(--hist-teal);
+        color: white;
+        padding: 20px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 40px;
+    }
+
+    .main-img {
+        width: 100%;
+        border: 10px solid white;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        margin-bottom: 40px;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    .gallery-grid img { width: 100%; border: 5px solid white; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+
+    .map-btn-container {
+        text-align: center;
+        background: white;
+        padding: 20px;
+        border: 2px dashed var(--med-blue);
+        margin: 30px 0;
+    }
+    .map-btn { color: var(--hist-teal); text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+    .external-btn {
+        display: block;
+        text-align: center;
+        background: var(--med-blue);
+        color: white;
+        padding: 15px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        margin-top: 50px;
+    }
+</style>
+
+<!-- 1. Name -->
+<h1>La Citadelle</h1>
+
+<!-- 2. Description -->
+<div class="short-desc"></div>
+
+<!-- 3. History Box -->
+<div class="history-box">
+    <span><strong>Dynasty:</strong> </span>
+    <span><strong>Period:</strong> </span>
+</div>
+
+<!-- 4. Photo -->
+
+
+<!-- 5. Long Description -->
+<div class="long-description">
+    <p></p>
+</div>
+
+<!-- 6. Photography -->
+
+
+<!-- Map Link with Icon -->
+<div class="map-btn-container">
+    <a href="https://www.google.com/maps/search/?api=1&query=," target="_blank" class="map-btn">
+        Find direction to La Citadelle on Google Map
+        <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Map Icon" style="width: 50px;">
+    </a>
+</div>
+
+<!-- 7. History -->
+<h2>History</h2>
+<p></p>
+
+<!-- 8. Architecture -->
+<h2>Architecture</h2>
+<p></p>
+
+<!-- 9. External Link -->
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Algiers Stories - Safeguarding the Memory of the White City.</p>
+    </footer>
+
+</body>
+</html>

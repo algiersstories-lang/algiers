@@ -210,6 +210,19 @@
         padding-bottom: 5px;
     }
 
+* Style pour le texte fixe de la Citadelle */
+.citadelle-static-label {
+    font-family: 'Georgia', serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--terracotta); /* Rappelle la couleur des remparts */
+    text-shadow: 1px 1px 0px white, -1px -1px 0px white, 1px -1px 0px white, -1px 1px 0px white;
+    white-space: nowrap;
+    background: transparent;
+    border: none;
+}
+
+	
     /* Marker Labels */
     .label {
         font-size: 11px;
@@ -314,7 +327,15 @@
     L.polygon(citadelPolygon, { color: '#4CB6C9', weight: 2, fillColor: '#4CB6C9', fillOpacity: 0.3, interactive: false }).addTo(map);
 	
 
-
+// Ajout du label statique pour la Citadelle d'Alger
+L.marker([36.78373113362246, 3.0556930250778698], {
+    icon: L.divIcon({
+        className: 'citadelle-static-label',
+        html: "La Citadelle d'Alger",
+        iconAnchor: [60, 5] // Ajuste l'alignement pour centrer le texte sur le point
+    }),
+    interactive: false // Empêche le texte de bloquer les clics sur la carte
+}).addTo(map);
     
     // --- 3. LOAD DATA FROM GOOGLE SHEET ---
     fetch("https://opensheet.elk.sh/1VXIKnUOE_k9W195-BjsM1fX-HvC5B7GD7Zd0blubEwY/markers")
