@@ -1,275 +1,262 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://algiersstories-lang.github.io/images/icon-casbah.png">
-    
-    <title>Histoire d&#39;Alger | Algiers Stories</title>
-    
+    <title>L'Histoire d'Alger - Algiers Stories</title>
     <style>
+        /* --- VARIABLES ET THÈME PARCHMENT --- */
         :root {
-            --hist-teal: #008080;
-            --med-blue: #4CB6C9;
+            --parchment: #F5F2EB;
+            --parchment-dark: #EADFC9;
+            --charcoal: #2C2C2C;
             --terracotta: #A0522D;
-            --parchment: #F5F5DC;
-            --charcoal: #333333;
-            --max-width: 1100px;
+            --hist-teal: #1E4D4A;
+            --white: #FFFFFF;
         }
 
+        /* --- STYLES GÉNÉRAUX --- */
         body {
             font-family: 'Georgia', serif;
-            line-height: 1.6;
-            margin: 0;
             background-color: var(--parchment);
             color: var(--charcoal);
-        }
-
-        /* Navigation Header */
-        header {
-            background-color: white;
-            border-bottom: 3px solid var(--hist-teal);
-            position: sticky;
-            top: 0;
-            z-index: 1001;
-            padding: 10px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .header-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        /* Logo and Title Container */
-        .brand {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            gap: 12px;
-        }
-
-        .logo-img {
-            height: 48px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .site-title {
-            color: var(--hist-teal);
-            margin: 0;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        /* Navigation Links */
-        nav ul {
-            list-style: none;
             margin: 0;
             padding: 0;
-            display: flex;
-            gap: 20px;
+            line-height: 1.7;
         }
 
-        nav a {
-            text-decoration: none;
-            color: var(--charcoal);
-            font-weight: bold;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--med-blue);
-        }
-
-        /* Layout Containers */
-        main {
-            padding: 40px 20px;
-            max-width: var(--max-width);
+        .container {
+            max-width: 1100px;
             margin: 0 auto;
-            min-height: 80vh;
-        }
-
-        footer {
-            text-align: center;
             padding: 40px 20px;
-            font-size: 0.9rem;
-            color: var(--charcoal);
-            opacity: 0.8;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            background-color: transparent; 
         }
 
-        /* Mobile Optimization */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            border-bottom: 2px solid var(--parchment-dark);
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            color: var(--hist-teal);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-style: italic;
+            color: var(--terracotta);
+            font-size: 1.2rem;
+        }
+
+        /* --- STRUCTURE D'ALTERANCE (Z-PATTERN) --- */
+        .epoch-section {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 80px;
+            padding-bottom: 40px;
+            border-bottom: 1px dashed var(--parchment-dark);
+        }
+
+        /* Une époque sur deux est inversée automatiquement */
+        .epoch-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* --- BLOCS DE TEXTE --- */
+        .epoch-text {
+            flex: 1;
+        }
+
+        .epoch-text h2 {
+            font-size: 1.8rem;
+            color: var(--hist-teal);
+            margin-top: 0;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .epoch-text h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--terracotta);
+            margin-top: 8px;
+        }
+
+        .epoch-text p {
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        /* --- BLOCS D'IMAGES --- */
+        .epoch-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .epoch-card {
+            background-color: var(--white);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--parchment-dark);
+            width: 100%;
+            max-width: 480px;
+            transition: transform 0.3s ease;
+        }
+
+        .epoch-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .epoch-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .epoch-caption {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #666;
+            text-align: center;
+        }
+
+        /* --- RESPONSIVE (MOBILE) --- */
         @media (max-width: 768px) {
-            .header-container { 
-                flex-direction: column; 
-                gap: 15px; 
-                text-align: center; 
+            .epoch-section, .epoch-section:nth-child(even) {
+                flex-direction: column;
+                gap: 30px;
+                margin-bottom: 50px;
             }
-            nav ul { 
-                gap: 15px; 
-                font-size: 0.9rem; 
+            
+            .epoch-card img {
+                height: 220px;
             }
-            .logo-img { 
-                height: 40px; 
+            
+            header h1 {
+                font-size: 2.2rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-container">
-            <a href="/algiers/" class="brand">
-                <img src="https://algiersstories-lang.github.io/images/logo-casbah.png" alt="Algiers Stories Logo" class="logo-img">
-                <h1 class="site-title">Algiers Stories</h1>
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="/algiers/">Home</a></li>
-                    <li><a href="/algiers/list/">Monuments</a></li>
-                    <li><a href="/algiers/map/">Map</a></li>
-                    <li><a href="/algiers/history/">History</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div class="container">
+        <header>
+            <h1>Chronique d'El-Djazair</h1>
+            <p>Le fil de l'histoire, des origines antiques au défi contemporain</p>
+        </header>
 
-    <main>
-        
-<style>
-    .history-wrapper {
-        max-width: 800px;
-        margin: 0 auto;
-    }
+        <main>
+            <!-- 1. AVANT LES ROMAINS (Texte à gauche, Image à droite) -->
+            <section class="epoch-section">
+                <div class="epoch-text">
+                    <h2>Avant les Romains : L’aube d'Ikosim</h2>
+                    <p>Bien avant que les pierres de la Casbah ne s’élèvent sur les collines de la baie, le site d'Alger palpite déjà d’une activité maritime intense sous les pieds des populations autochtones numides (berbères). Vers le IVe siècle avant notre ère, les navigateurs et marchands phéniciens, lancés dans la colonisation commerciale de la Méditerranée, repèrent ce golfe naturel unique protégé par un chapelet de petits îlots rocheux. Ils y établissent un comptoir stable qu’ils nomment <strong>Ikosim</strong>, un terme poétique signifiant généralement « l'île aux mouettes » ou « l'île aux épines ». Ce havre devient une escale indispensable et un abri de sûreté pour les floutes carthaginoises naviguant vers le détroit de Gibraltar, troquant les produits manufacturés d'Orient contre les ressources agricoles de l'hinterland. Loin d'être une simple enclave fermée, Ikosim s'intègre profondément dans les dynamiques des puissants royaumes numides voisins, posant les bases d'une vocation bimillénaire : celle d'une cité-pont jetée entre les richesses de la terre africaine et les routes de la mer.</p>
+                </div>
+                <div class="epoch-image-container">
+                    <div class="epoch-card">
+                        <img src="https://i.redd.it/vpy8igtzdtx61.jpg" alt="Stèle funéraire phénicienne retrouvée à Alger">
+                        <div class="epoch-caption">Stèle d'époque punique découverte sur l'antique site d'Ikosim</div>
+                    </div>
+                </div>
+            </section>
 
-    .history-title {
-        color: var(--hist-teal);
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-    }
+            <!-- 2. LA PÉRIODE ROMAINE (Image à gauche, Texte à droite) -->
+            <section class="epoch-section">
+                <div class="epoch-text">
+                    <h2>La Période Romaine : L’impact d'Icosium</h2>
+                    <p>À la suite de l'assassinat du dernier roi numide Ptolémée en l’an 40 de notre ère, Rome annexe définitivement la région pour créer la province de Maurétanie Césarienne. L’antique comptoir change alors de visage et de nom pour devenir <strong>Icosium</strong>. Vers l'an 75, sous l'impulsion décisive de l'empereur Vespasien, la cité change de statut juridique et est élevée au rang prestigieux de colonie de droit romain, déclenchant de grands travaux d'urbanisation à la romaine. Les ingénieurs impériaux structurent la ville basse autour d’axes routiers majeurs et de rues à portiques — dont le tracé invisible survit encore aujourd'hui sous la morphologie de la rue Bab Azoun. La ville se pare d'aqueducs, de temples et de villas pavées de mosaïques, vivant au rythme de l’Empire pendant plusieurs siècles de relative prospérité. Au IVe siècle, Icosium devient un centre chrétien actif doté de basiliques et d’un siège épiscopal, avant d'entamer un lent déclin provoqué par les révoltes berbères intérieures, le sac dévastateur des Vandales au Ve siècle, et une brève reconquête byzantine qui la laissera finalement à l'état de ruines.</p>
+                </div>
+                <div class="epoch-image-container">
+                    <div class="epoch-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Monnaie_-_Plomb%2C_Icosium%2C_Maur%C3%A9tanie_-_btv1b8551631m_%282_of_2%29.jpg" alt="Monnaie antique en plomb d'Icosium">
+                        <div class="epoch-caption">Monnaie en plomb frappée à Icosium sous l'Empire romain</div>
+                    </div>
+                </div>
+            </section>
 
-    .history-subtitle {
-        font-style: italic;
-        color: #666;
-        margin-bottom: 30px;
-        font-size: 1.1rem;
-    }
+            <!-- 3. L'ÈRE PRÉ-OTTOMANE (Texte à gauche, Image à droite) -->
+            <section class="epoch-section">
+                <div class="epoch-text">
+                    <h2>L’Ère Pré-Ottomane : La refondation ziri</h2>
+                    <p>Après plusieurs siècles de sommeil et d’abandon à la suite des premières conquêtes islamiques, le site d'Icosium va renaître de ses cendres grâce à un acte politique fondateur majeur. En l’an 950, le prince berbère Sanhadja <strong>Bologhine Ibn Ziri</strong>, agissant sous l'autorité du calife fatimide, décide de rebâtir et de fortifier la ville sur l’emplacement stratégique des ruines antiques. Il baptise cette nouvelle cité médiévale <strong>El-Djazair</strong> <em>(El-Djazair Beni Mezghanna)</em>, en référence directe aux îlots qui sécurisent son port et en hommage aux tribus berbères locales qui l'entourent. Bologhine reconstruit les premiers remparts sur les hauteurs, réveille l'activité portuaire et fait d’Alger un nœud économique prospère relié aux routes caravanières du Sahara. Au cours des siècles suivants, la ville suscite la convoitise des grandes dynasties musulmanes occidentales : elle passe successivement sous la coupe des Hammadides, des Almoravides avec Youssef Ibn Tachfine qui y érige la Grande Mosquée (Jamaa el-Kebir) en 1097, des Almohades et des Zianides de Tlemcen. C'est à la fin de cette période, en 1302, que les Espagnols profitent des faiblesses locales pour s’emparer des îlots et y bâtir la forteresse du Peñon, point de départ d'un blocus étouffant qui va changer l'histoire de la cité.</p>
+                </div>
+                <div class="epoch-image-container">
+                    <div class="epoch-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Statue_de_Bologhine_ibn_Ziri_%28Alger%29.jpg" alt="Statue du prince Bologhine Ibn Ziri à Alger">
+                        <div class="epoch-caption">Statue commémorative de Bologhine Ibn Ziri, fondateur d'El-Djazair</div>
+                    </div>
+                </div>
+            </section>
 
-    .history-hero-box {
-        margin-bottom: 40px;
-    }
+            <!-- 4. LA PÉRIODE OTTOMANE (Image à gauche, Texte à droite) -->
+            <section class="epoch-section">
+                <div class="epoch-text">
+                    <h2>La Période Ottomane : L'apogée de la Régence</h2>
+                    <p>Étouffés par le canon espagnol du Peñon, les notables d'Alger prennent en 1516 une décision radicale : appeler à l'aide les célèbres frères corsaires Aroudj et Khayr ad-Din Barberousse. Cette alliance scelle l’intégration d'Alger à l'Empire ottoman et marque la fondation de la redoutable Régence d'Alger, dont la ville devient la capitale souveraine. En 1529, Khayr ad-Din Barberousse réalise un exploit d’ingénierie et de guerre en détruisant le Peñon et en reliant les îlots à la terre ferme par une immense jetée, créant ainsi le premier véritable port fortifié moderne d’Alger. C'est le début d’un âge d'or exceptionnel qui va façonne à jamais l'identity visuelle de la ville. C’est durant ces trois siècles de domination maritime que <strong>se construit et s’organise la structure urbaine unique de la Casbah</strong> : un labyrinthe défensif génial de ruelles en escaliers, de maisons imbriquées à colonnades et de palais somptueux (Dar Aziza, Palais des Raïs) protégés par une immense muraille flanquée de portes fortifiées. La ville devient une puissance internationale redoutable, résistant à d'innombrables sièges européens avant de plier au XIXe siècle sous les mutations géopolitiques mondiales.</p>
+                </div>
+                <div class="epoch-image-container">
+                    <div class="epoch-card">
+                        <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQnvRt4NDDZL01F2k2h-3CriZf1FggbKckgO5MLePE_3cZiTJci1ADZzs88W-Rzw4_J6sVvpvNPmGOfmzo" alt="Façade de la Mosquée Ketchaoua dans la Casbah">
+                        <div class="epoch-caption">La mosquée Ketchaoua, joyau architectural de la Casbah ottomane</div>
+                    </div>
+                </div>
+            </section>
 
-    .history-img {
-        width: 100%;
-        height: auto;
-        max-height: 400px;
-        object-fit: cover;
-        border-radius: 6px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+            <!-- 5. LA PÉRIODE COLONIALE (Texte à gauche, Image à droite) -->
+            <section class="epoch-section">
+                <div class="epoch-text">
+                    <h2>La Période Coloniale : La fracture de la Ville Blanche</h2>
+                    <p>Le 5 juillet 1830, le Dey Hussein capitule face aux troupes françaises du maréchal de Bourmont, marquant le début d'une colonisation de 132 ans qui va profondément et violemment bouleverser la physionomie d'Alger. Dès les premières décennies, l'administration coloniale entreprend de grands travaux de modernisation destructrice : la basse Casbah, son front de mer historique, ses palais et ses mosquées traditionnelles sont rasés sans ménagement pour laisser place à une architecture haussmannienne monumentale, des places d'armes (l'actuelle Place des Martyrs) et des arcades géométriques. Une rupture géographique et sociale s'installe alors : la ville nouvelle européenne s'étend vers le sud avec ses larges boulevards, tandis que la population autochtone est refoulée et confinée dans la haute Casbah. Devenue un espace de ségrégation, la vieille ville se densifie de manière extrême, les familles partageant les anciennes demeures ottomanes, mais ce confinement forcé transforme paradoxalement le quartier en un sanctuaire inviolable de la culture algéroise, de la langue et des traditions face à la politique d'assimilation.</p>
+                </div>
+                <div class="epoch-image-container">
+                    <div class="epoch-card">
+                        <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSi97tl52tiPxB85_4KlNA8k1g5DucBqaKcHW5K64ZLgcn2gn18Qvq-qGbL5DgKiqdNzOiQBXXZIX2ZS8E" alt="Architecture de type haussmannien à Alger">
+                        <div class="epoch-caption">Immeubles de style colonial construits en contrebas de la vieille Casbah</div>
+                    </div>
+                </div>
+            </section>
 
-    .history-caption {
-        font-size: 0.85rem;
-        color: #777;
-        text-align: center;
-        margin-top: 8px;
-    }
+            <!-- 6. LA GUERRE DE LIBÉRATION (Image à gauche, Texte à droite) -->
+            <section class="epoch-section">
+                <div class="epoch-text">
+                    <h2>La Guerre de Libération : Le bastion de la Casbah</h2>
+                    <p>Lorsque la révolution éclate le 1er novembre 1954, Alger s'impose rapidement comme le centre de gravité politique et médiatique du conflit, et la Casbah en devient le bastion clandestin le plus imprenable. Entre 1956 et 1957, le quartier est le théâtre de la mythique <strong>Bataille d'Alger</strong>, une campagne de guérilla urbaine d'une intensité dramatique menée par la Zone Autonome d'Alger du FLN. Sous la direction de figures comme Larbi Ben M'hidi et Yacef Saâdi, le tissu architectural complexe de la Casbah est exploité au maximum de ses capacités stratégiques : les combattants, portés par des figures iconiques comme Ali la Pointe ou Hassiba Ben Bouali, utilisent les terrasses interconnectées pour fuir, cachent les bombes et les militants dans des cloisons secrètes et des faux plafonds au cœur des maisons traditionnelles. Malgré une répression militaire féroce menée par les parachutistes du général Massu et le dynamitage de plusieurs maisons, la Casbah ne pliera pas spirituellement. Les manifestations populaires massives de décembre 1960 qui y débutent prouveront au monde entier l'adhésion irréversible du peuple à la cause de l'indépendance.</p>
+                </div>
+                <div class="epoch-image-container">
+                    <div class="epoch-card">
+                        <img src="https://www.newarab.com/sites/default/files/1233574155.jpeg" alt="Patrouille militaire dans les escaliers de la Casbah pendant la Bataille d'Alger">
+                        <div class="epoch-caption">Soldat en patrouille dans les ruelles fortifiées de la Casbah (1957)</div>
+                    </div>
+                </div>
+            </section>
 
-    .history-era {
-        margin-bottom: 35px;
-    }
-
-    .history-era h3 {
-        color: var(--terracotta);
-        font-size: 1.4rem;
-        margin-bottom: 10px;
-        border-bottom: 1px solid rgba(160, 82, 45, 0.2);
-        padding-bottom: 5px;
-    }
-
-    .history-era p {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        text-align: justify;
-    }
-
-    /* Info banner for future timeline */
-    .timeline-teaser {
-        background-color: white;
-        border-left: 4px solid var(--med-blue);
-        padding: 20px;
-        margin-top: 50px;
-        border-radius: 0 8px 8px 0;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .timeline-teaser h4 {
-        margin: 0 0 8px 0;
-        color: var(--charcoal);
-        font-size: 1.1rem;
-    }
-
-    .timeline-teaser p {
-        margin: 0;
-        font-size: 0.95rem;
-        color: #555;
-    }
-</style>
-
-<div class="history-wrapper">
-    <h1 class="history-title">Une Cité Millénaire</h1>
-    <p class="history-subtitle">Aperçu historique de la transition d'un comptoir antique à la mythique Ville Blanche.</p>
-
-    <!-- Photo historique de secours en attendant l'image finale dans votre dossier /images -->
-    <div class="history-hero-box">
-        <img src="https://algiersstories-lang.github.io/images/hero-history.webp" alt="Panorama historique d'Alger" class="history-img">
-        <p class="history-caption">Alger et sa topographie unique en amphithéâtre face à la Méditerranée.</p>
+            <!-- 7. POST-LIBÉRATION ET CONTEMPORAIN (Texte à gauche, Image à droite) -->
+            <section class="epoch-section">
+                <div class="epoch-text">
+                    <h2>Post-Libération et Contemporain : Préserver la mémoire</h2>
+                    <p>Le 5 juillet 1962, dans une explosion de joie populaire, Alger célèbre la proclamation de l'indépendance et redevient la capitale souveraine de la République Algérienne. Les décennies qui suivent voient la ville exploser démographiquement et s'étendre bien au-delà de ses frontières historiques, se modernisant à travers de grands projets d'infrastructures contemporains. Cependant, ce boom urbain plonge la vieille Casbah dans une crise majeure d'entretien, le vieillissement des structures en bois et en tuf ottoman provoquant des effondrements tragiques de bâtisses historiques. En décembre 1992, la prise de conscience internationale se concrétise par <strong>le classement de la Casbah d'Alger au patrimoine mondial de l'UNESCO</strong>, actant la valeur universelle exceptionnelle de sa structure urbaine et de son histoire. Aujourd'hui, Alger fait face à son plus grand défi patrimonial : mener des plans de restauration complexes, scientifiques et respectueux pour stabiliser ses maisons ancestrales et numériser sa mémoire vivante afin que la mythique Ville Blanche continue de raconter son histoire aux générations futures.</p>
+                </div>
+                <div class="epoch-image-container">
+                    <div class="epoch-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQAl1Igb8xLrTQ30HxFME7AZ6mV1b0SCDvVchHPIGbKiBqbfo0AD4_j3hJDDZaE7L6PypgSZwd66HrK_Qo" alt="Vue panoramique actuelle de la Casbah d'Alger classée UNESCO">
+                        <div class="epoch-caption">La Casbah aujourd'hui, un héritage mondial face au défi de sa restauration</div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-
-    <section class="history-content">
-        <div class="history-era">
-            <h3>Les Origines : D'Ikosim à El-Djazair</h3>
-            <p>
-                Bien avant de s'étendre sur ses collines emblématiques, le site d'Alger débute son aventure historique sous le nom d'Ikosim, un modeste comptoir phénicien puis romain. C'est au Xe siècle, vers l'an 950, que Bologhine ibn Ziri, fondateur de la dynastie berbère des Zirides, pose les fondations de la cité moderne sous le nom d'El-Djazair, en référence aux îlots qui faisaient face à sa baie.
-            </p>
-        </div>
-
-        <div class="history-era">
-            <h3>L'Âge d'Or : La Période Ottomane</h3>
-            <p>
-                Au XVIe siècle, pour se défendre des ambitions espagnoles, la ville s'allie à l'Empire ottoman sous l'impulsion des frères Barberousse. Alger devient alors la capitale d'une régence maritime redoutable. C'est durant cette ère de prospérité que se cristallise le tissu urbain de la Casbah : un dédale défensif unique au monde, jalonné de palais somptueux, de mosquées majestueuses et de maisons à colonnades imbriquées les unes dans les autres.
-            </p>
-        </div>
-
-        <div class="history-era">
-            <h3>La Traversée Coloniale et la Mémoire</h3>
-            <p>
-                Le débarquement français de 1830 bouleverse à jamais la physionomie de la ville basse, rasée pour faire place à des places d'armes et des architectures haussmanniennes. Confinée dans ses remparts invisibles, la haute Casbah devient le cœur battant de la préservation culturelle et, plus tard, le bastion central de la résistance durant la guerre d'indépendance algérienne.
-            </p>
-        </div>
-    </section>
-
-    <!-- Teaser pour l'avenir -->
-    <div class="timeline-teaser">
-        <h4>Chronologie interactive en cours de numérisation</h4>
-        <p>Nos équipes assemblent une frise chronologique détaillée reliant chaque monument à son époque charnière. En attendant son déploiement, vous pouvez explorer ces lieux directement sur notre <a href="/algiers/map/" style="color: var(--hist-teal); font-weight: bold;">carte interactive</a>.</p>
-    </div>
-</div>
-
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Algiers Stories - Safeguarding the Memory of the White City.</p>
-    </footer>
 
 </body>
 </html>
+
