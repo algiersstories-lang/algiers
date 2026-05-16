@@ -210,16 +210,29 @@
         padding-bottom: 5px;
     }
 
-* Style pour le texte fixe de la Citadelle */
+/* Style mis à jour pour le texte fixe de la Citadelle */
 .citadelle-static-label {
     font-family: 'Georgia', serif;
     font-size: 13px;
     font-weight: bold;
-    color: var(--terracotta); /* Rappelle la couleur des remparts */
-    text-shadow: 1px 1px 0px white, -1px -1px 0px white, 1px -1px 0px white, -1px 1px 0px white;
+    color: var(--terracotta, #A0522D);
     white-space: nowrap;
-    background: transparent;
-    border: none;
+    
+    /* 1. FORCE LA SUPPRESSION DES STYLES PAR DÉFAUT DE LEAFLET */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    /* 2. LE SECRET DU CENTRAGE PARFAIT AU ZOOM : */
+    /* On décale le texte de -50% en largeur et -50% en hauteur */
+    transform: translate(-50%, -50%); 
+    text-align: center;
+
+    /* 3. CONTOUR BLANC RENFORCÉ (Multi-directionnel) */
+    text-shadow: 
+        -2px -2px 0 #fff,  2px -2px 0 #fff, -2px  2px 0 #fff,  2px  2px 0 #fff,
+        -1px -1px 0 #fff,  1px -1px 0 #fff, -1px  1px 0 #fff,  1px  1px 0 #fff,
+         0px -2px 0 #fff,  0px  2px 0 #fff, -2px  0px 0 #fff,  2px  0px 0 #fff;
 }
 
 	
@@ -328,13 +341,14 @@
 	
 
 // Ajout du label statique pour la Citadelle d'Alger
+// Ajout du label statique parfaitement ancré au centre
 L.marker([36.78373113362246, 3.0556930250778698], {
     icon: L.divIcon({
         className: 'citadelle-static-label',
-        html: "La Citadelle d'Alger",
-        iconAnchor: [60, 5] // Ajuste l'alignement pour centrer le texte sur le point
+        html: "La Citadelle d'Alger"
+        // Ne pas mettre d'iconAnchor ici, le CSS s'en occupe !
     }),
-    interactive: false // Empêche le texte de bloquer les clics sur la carte
+    interactive: false
 }).addTo(map);
     
     // --- 3. LOAD DATA FROM GOOGLE SHEET ---
