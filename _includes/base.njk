@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://algiersstories-lang.github.io/images/icon-casbah.png">
     
     <title>{{ title }} | Algiers Stories</title>
@@ -95,6 +94,28 @@
             max-width: var(--max-width);
             margin: 0 auto;
             min-height: 80vh;
+        }
+
+        /* Inline Text Links Styling */
+        p a {
+            color: var(--hist-teal);
+            text-decoration: underline;
+            text-decoration-color: rgba(0, 128, 128, 0.4); /* Faded teal line so it doesn't crowd text */
+            text-underline-offset: 3px;
+            font-weight: 500; /* Distinct weight to flag readability */
+            transition: color 0.2s ease, text-decoration-color 0.2s ease;
+        }
+
+        /* Inline Text Links Hover State */
+        p a:hover {
+            color: var(--med-blue);
+            text-decoration-color: var(--med-blue);
+        }
+
+        /* External Links Custom Hover Accent */
+        p a[target="_blank"]:hover {
+            color: var(--terracotta);
+            text-decoration-color: var(--terracotta);
         }
 
         footer {
