@@ -12,37 +12,56 @@ renderData:
 <style>
     .short-desc { font-style: italic; font-size: 1.3rem; color: #555; margin-bottom: 30px; }
     
-    .history-box {
+    .info-grid-box {
         background: var(--hist-teal);
         color: white;
         padding: 20px;
         border-radius: 4px;
-        display: flex;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
         margin-bottom: 40px;
     }
+    .info-grid-box span { font-size: 1.05rem; }
 
-    .main-img {
+    .interleaved-img {
         width: 100%;
+        max-height: 500px;
+        object-fit: cover;
         border: 10px solid white;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        margin-bottom: 40px;
+        margin: 30px 0;
+        display: block;
+    }
+
+    .section-block {
+        margin-bottom: 30px;
+    }
+    .section-block h2 {
+        margin-top: 0;
     }
 
     .gallery-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
+        margin-top: 20px;
         margin-bottom: 30px;
     }
-    .gallery-grid img { width: 100%; border: 5px solid white; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+    .gallery-grid img { 
+        width: 100%; 
+        height: 200px;
+        object-fit: cover;
+        border: 5px solid white; 
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1); 
+    }
 
     .map-btn-container {
         text-align: center;
         background: white;
         padding: 20px;
         border: 2px dashed var(--med-blue);
-        margin: 30px 0;
+        margin: 40px 0 20px 0;
     }
     .map-btn { color: var(--hist-teal); text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
@@ -55,38 +74,62 @@ renderData:
         text-decoration: none;
         border-radius: 4px;
         font-weight: bold;
-        margin-top: 50px;
+        margin: 20px 0 50px 0;
     }
 </style>
 
 <h1>{{ item.name }}</h1>
 
-<div class="short-desc">{{ item.description }}</div>
-
-<div class="history-box">
-    <span><strong>Dynasty:</strong> {{ item.dynasty }}</span>
-    <span><strong>Period:</strong> {{ item.period }}</span>
+<div class="info-grid-box">
+    <span><strong>Category:</strong> {{ item.category if item.category else 'N/A' }}</span>
+    <span><strong>Period:</strong> {{ item.period if item.period else 'N/A' }}</span>
+    <span><strong>Dynasty:</strong> {{ item.dynasty if item.dynasty else 'N/A' }}</span>
+    <span><strong>Status:</strong> {{ item.status if item.status else 'N/A' }}</span>
 </div>
 
-{# Create a reusable array by splitting the comma-separated string #}
+{# Convert the comma-separated cell into a clean array list #}
 {% set imageList = item.images.split(',') if item.images else [] %}
 
-{% if imageList.length > 0 %}
-<img src="{{ imageList[0] | trim }}" class="main-img" alt="{{ item.name }}">
+<div class="short-desc">{{ item.description }}</div>
+
+{% if imageList[0] %}
+<img src="{{ imageList[0] | trim }}" class="interleaved-img" alt="{{ item.name }}">
 {% endif %}
 
-<div class="long-description">
+<div class="section-block long-description">
     <p>{{ item.long_description }}</p>
 </div>
 
-{% if imageList.length > 1 %}
-<h2>Photography</h2>
-<div class="gallery-grid">
-    {% for photoUrl in imageList %}
-        {% if not loop.first %}
-            <img src="{{ photoUrl | trim }}" alt="{{ item.name }} gallery image">
-        {% endif %}
-    {% endfor %}
+{% if imageList[1] %}
+<img src="{{ imageList[1] | trim }}" class="interleaved-img" alt="{{ item.name }} secondary view">
+{% endif %}
+
+{% if item.geography %}
+<div class="section-block">
+    <h2>Geography</h2>
+    <p>{{ item.geography }}</p>
+</div>
+{% endif %}
+
+{% if imageList[2] %}
+<img src="{{ imageList[2] | trim }}" class="interleaved-img" alt="{{ item.name }} geographic view">
+{% endif %}
+
+{% if item.history %}
+<div class="section-block">
+    <h2>History</h2>
+    <p>{{ item.history }}</p>
+</div>
+{% endif %}
+
+{% if imageList[3] %}
+<img src="{{ imageList[3] | trim }}" class="interleaved-img" alt="{{ item.name }} historical archive view">
+{% endif %}
+
+{% if item.architecture %}
+<div class="section-block">
+    <h2>Architecture</h2>
+    <p>{{ item.architecture }}</p>
 </div>
 {% endif %}
 
@@ -97,12 +140,18 @@ renderData:
     </a>
 </div>
 
-<h2>History</h2>
-<p>{{ item.history }}</p>
-
-<h2>Architecture</h2>
-<p>{{ item.architecture }}</p>
-
 {% if item.external_link %}
 <a href="{{ item.external_link }}" target="_blank" class="external-btn">Read more ...</a>
+{% endif %}
+
+{% if imageList.length > 4 %}
+<h2>More Photography</h2>
+<div class="gallery-grid">
+    {% for photoUrl in imageList %}
+        {# Skip the first 4 images since they are displayed sequentially above #}
+        {% if loop.index0 >= 4 %}
+            <img src="{{ photoUrl | trim }}" alt="{{ item.name }} additional image">
+        {% endif %}
+    {% endfor %}
+</div>
 {% endif %}
