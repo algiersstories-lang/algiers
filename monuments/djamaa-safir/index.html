@@ -169,37 +169,56 @@
 <style>
     .short-desc { font-style: italic; font-size: 1.3rem; color: #555; margin-bottom: 30px; }
     
-    .history-box {
+    .info-grid-box {
         background: var(--hist-teal);
         color: white;
         padding: 20px;
         border-radius: 4px;
-        display: flex;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
         margin-bottom: 40px;
     }
+    .info-grid-box span { font-size: 1.05rem; }
 
-    .main-img {
+    .interleaved-img {
         width: 100%;
+        max-height: 500px;
+        object-fit: cover;
         border: 10px solid white;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        margin-bottom: 40px;
+        margin: 30px 0;
+        display: block;
+    }
+
+    .section-block {
+        margin-bottom: 30px;
+    }
+    .section-block h2 {
+        margin-top: 0;
     }
 
     .gallery-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
+        margin-top: 20px;
         margin-bottom: 30px;
     }
-    .gallery-grid img { width: 100%; border: 5px solid white; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+    .gallery-grid img { 
+        width: 100%; 
+        height: 200px;
+        object-fit: cover;
+        border: 5px solid white; 
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1); 
+    }
 
     .map-btn-container {
         text-align: center;
         background: white;
         padding: 20px;
         border: 2px dashed var(--med-blue);
-        margin: 30px 0;
+        margin: 40px 0 20px 0;
     }
     .map-btn { color: var(--hist-teal); text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
@@ -212,29 +231,27 @@
         text-decoration: none;
         border-radius: 4px;
         font-weight: bold;
-        margin-top: 50px;
+        margin: 20px 0 50px 0;
     }
 </style>
 
-<!-- 1. Name -->
 <h1>Djamaa Safir</h1>
 
-<!-- 2. Description -->
-<div class="short-desc">Ottoman mosque serving the lower Casbah community.</div>
-
-<!-- 3. History Box -->
-<div class="history-box">
-    <span><strong>Dynasty:</strong> pre-othamane</span>
+<div class="info-grid-box">
+    <span><strong>Category:</strong> Mosque</span>
     <span><strong>Period:</strong> 941 AH</span>
+    <span><strong>Dynasty:</strong> pre-othamane</span>
+    <span><strong>Status:</strong> N/A</span>
 </div>
 
-<!-- 4. Photo -->
-
-<img src="https://alger.mta.gov.dz/wp-content/uploads/sites/6/2022/01/Djaama-Ketchaoua.jpg" class="main-img" alt="Djamaa Safir">
 
 
-<!-- 5. Long Description -->
-<div class="long-description">
+
+<div class="short-desc">Ottoman mosque serving the lower Casbah community.</div>
+
+
+
+<div class="section-block long-description">
     <p>Aperçu La mosquée Djamaâ El Safir est une institution religieuse et historique de premier plan située dans le secteur sauvegardé de la Casbah
 . Elle est officiellement reconnue comme un bien culturel d&#39;une valeur inestimable, protégée par la législation algérienne sur le patrimoine
 . En tant que l&#39;une des mosquées principales de la vieille ville, elle joue un rôle central dans la vie spirituelle des fidèles locaux
@@ -243,39 +260,55 @@
 .</p>
 </div>
 
-<!-- 6. Photography -->
 
 
-<!-- Map Link with Icon -->
-<div class="map-btn-container">
-    <a href="https://www.google.com/maps/search/?api=1&query=36.78330,3.05759" target="_blank" class="map-btn">
-        Find direction to Djamaa Safir on Google Map
-        <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Map Icon" style="width: 50px;">
-    </a>
+
+<div class="section-block">
+    <h2>Geography</h2>
+    <p>Cet édifice religieux se trouve implanté dans le quartier historique de la Casbah, zone riche en monuments et en palais d&#39;époque. Les relevés cartographiques indiquent qu&#39;elle se situe à une distance d&#39;environ 534 mètres de la mosquée Ali Bitchin. Elle bénéficie d&#39;une position privilégiée au sein du réseau complexe de la médina, facilitant son accès pour la communauté environnante. Son insertion urbaine témoigne du rôle central que joue la mosquée dans l&#39;organisation des quartiers traditionnels d&#39;Alger. Elle occupe un emplacement qui participe à la morphologie unique en amphithéâtre de la cité faisant face à la mer.</p>
 </div>
 
-<!-- 7. History -->
-<h2>History</h2>
-<p> L&#39;importance historique de Djamaâ El Safir est formellement consacrée par son classement parmi les monuments historiques le 13 mai 1905
+
+
+
+
+<div class="section-block">
+    <h2>History</h2>
+    <p> L&#39;importance historique de Djamaâ El Safir est formellement consacrée par son classement parmi les monuments historiques le 13 mai 1905
 . Cette protection administrative précoce a permis de sauvegarder l&#39;édifice durant la période coloniale, évitant ainsi des démolitions majeures
 . Elle fait partie de la liste des mosquées de la Casbah ayant survécu aux remaniements urbains profonds opérés au XIXe siècle
 . Son existence est intimement liée au développement de la ville sous la Régence d&#39;Alger, marquant l&#39;histoire religieuse locale
 . Aujourd&#39;hui, elle est un symbole fort de la réappropriation et de la protection du patrimoine historique de l&#39;Algérie indépendante
 .</p>
+</div>
 
-<!-- 8. Architecture -->
-<h2>Architecture</h2>
-<p>L&#39;architecture de Djamaâ El Safir est représentative du style raffiné que l&#39;on retrouve dans les mosquées historiques de la cité d&#39;Alger
+
+
+
+
+<div class="section-block">
+    <h2>Architecture</h2>
+    <p>L&#39;architecture de Djamaâ El Safir est représentative du style raffiné que l&#39;on retrouve dans les mosquées historiques de la cité d&#39;Alger
 . Bien que les sources ne décrivent pas chaque détail intérieur, son classement en 1905 atteste d&#39;une structure d&#39;une grande qualité esthétique
 . Elle respecte probablement les codes des salles de prière traditionnelles du Maghreb, conçues pour le recueillement et la prière collective
 . Son intégration dans le secteur sauvegardé de l&#39;UNESCO implique la préservation de techniques de construction ancestrales
 . Sa silhouette participe au charme unique de la Casbah, caractérisée par ses façades blanches et ses éléments architecturaux authentiques
 .
 Souhaitez-vous que j&#39;essaie de trouver des sources externes pour obtenir des descriptions plus précises de l&#39;intérieur de Djamaâ El Safir, comme le style de son mihrab ou de son minbar ?</p>
+</div>
 
-<!-- 9. External Link -->
+
+<div class="map-btn-container">
+    <a href="https://www.google.com/maps/search/?api=1&query=36,78330,3,05759" target="_blank" class="map-btn">
+        Find direction to Djamaa Safir on Google Map
+        <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Map Icon" style="width: 50px;">
+    </a>
+</div>
+
 
 <a href="https://lecourrier-dalgerie.com/wp-content/uploads/2025/10/Re%CC%81ouverture-de-la-mosque%CC%81e-historique-Djama%CC%82a-Es-Safir-a%CC%80-la-Casbah-dAlger.jpeg" target="_blank" class="external-btn">Read more ...</a>
+
+
 
 
     </main>

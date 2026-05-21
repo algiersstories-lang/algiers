@@ -427,7 +427,12 @@ L.marker([36.78468878202779, 3.054979095979314], {
 }).addTo(map);
     
     // --- 3. LOAD DATA FROM GOOGLE SHEET ---
-    fetch("https://opensheet.elk.sh/1VXIKnUOE_k9W195-BjsM1fX-HvC5B7GD7Zd0blubEwY/markers")
+	
+    // old sheet
+	// fetch("https://opensheet.elk.sh/1VXIKnUOE_k9W195-BjsM1fX-HvC5B7GD7Zd0blubEwY/markers")
+	//
+	
+	fetch("https://opensheet.elk.sh/1mbCRLp8PVtJ5J2gKGBn3QQzzLbqnoVmRJ7yLnEw0ZrQ/markers")	
         .then(res => res.json())
         .then(data => {
             let uniqueCategories = new Set();

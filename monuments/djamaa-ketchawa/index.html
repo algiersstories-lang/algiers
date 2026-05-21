@@ -169,37 +169,56 @@
 <style>
     .short-desc { font-style: italic; font-size: 1.3rem; color: #555; margin-bottom: 30px; }
     
-    .history-box {
+    .info-grid-box {
         background: var(--hist-teal);
         color: white;
         padding: 20px;
         border-radius: 4px;
-        display: flex;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
         margin-bottom: 40px;
     }
+    .info-grid-box span { font-size: 1.05rem; }
 
-    .main-img {
+    .interleaved-img {
         width: 100%;
+        max-height: 500px;
+        object-fit: cover;
         border: 10px solid white;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        margin-bottom: 40px;
+        margin: 30px 0;
+        display: block;
+    }
+
+    .section-block {
+        margin-bottom: 30px;
+    }
+    .section-block h2 {
+        margin-top: 0;
     }
 
     .gallery-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
+        margin-top: 20px;
         margin-bottom: 30px;
     }
-    .gallery-grid img { width: 100%; border: 5px solid white; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+    .gallery-grid img { 
+        width: 100%; 
+        height: 200px;
+        object-fit: cover;
+        border: 5px solid white; 
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1); 
+    }
 
     .map-btn-container {
         text-align: center;
         background: white;
         padding: 20px;
         border: 2px dashed var(--med-blue);
-        margin: 30px 0;
+        margin: 40px 0 20px 0;
     }
     .map-btn { color: var(--hist-teal); text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
@@ -212,64 +231,70 @@
         text-decoration: none;
         border-radius: 4px;
         font-weight: bold;
-        margin-top: 50px;
+        margin: 20px 0 50px 0;
     }
 </style>
 
-<!-- 1. Name -->
 <h1>Djamaa Ketchawa</h1>
 
-<!-- 2. Description -->
-<div class="short-desc">Dating back to 1612, this grand, prominent mosque once served as a Catholic cathedral.</div>
-
-<!-- 3. History Box -->
-<div class="history-box">
-    <span><strong>Dynasty:</strong> Othomane</span>
+<div class="info-grid-box">
+    <span><strong>Category:</strong> Mosque</span>
     <span><strong>Period:</strong> 1642</span>
+    <span><strong>Dynasty:</strong> Othomane</span>
+    <span><strong>Status:</strong> N/A</span>
 </div>
 
-<!-- 4. Photo -->
-
-<img src="https://raw.githubusercontent.com/algiersstories-lang/images/refs/heads/main/Djamaa_Ketchawa.jpg" class="main-img" alt="Djamaa Ketchawa">
 
 
-<!-- 5. Long Description -->
-<div class="long-description">
+
+<div class="short-desc">Dating back to 1612, this grand, prominent mosque once served as a Catholic cathedral.</div>
+
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ketchaoua_Mosque_-_Architectural_and_Cultural_Heritage_of_the_Casbah_of_Algiers_1.jpg/960px-Ketchaoua_Mosque_-_Architectural_and_Cultural_Heritage_of_the_Casbah_of_Algiers_1.jpg" class="interleaved-img" alt="Djamaa Ketchawa">
+
+
+<div class="section-block long-description">
     <p>La mosquée Ketchaoua, joyau architectural situé au pied de la Casbah d&#39;Alger, est l&#39;un des symboles les plus puissants de l&#39;histoire mouvementée de l&#39;Algérie
 . Classée au patrimoine mondial de l&#39;UNESCO, elle se distingue par une architecture unique mêlant influences mauresques, ottomanes et romano-byzantines
 . Ce monument est célèbre pour sa triple métamorphose : d&#39;abord mosquée ottomane, elle fut convertie en cathédrale Saint-Philippe durant la période coloniale française avant de redevenir un lieu de culte musulman à l&#39;indépendance du pays en 1962
 .</p>
 </div>
 
-<!-- 6. Photography -->
 
-<h2>Photography</h2>
-<div class="gallery-grid">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ketchaoua_Mosque_-_Architectural_and_Cultural_Heritage_of_the_Casbah_of_Algiers_1.jpg/960px-Ketchaoua_Mosque_-_Architectural_and_Cultural_Heritage_of_the_Casbah_of_Algiers_1.jpg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Alger_cathedrale_1899_2.jpg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ketchaoua_Mosque_-_Architectural_and_Cultural_Heritage_of_the_Casbah_of_Algiers_1.jpg/960px-Ketchaoua_Mosque_-_Architectural_and_Cultural_Heritage_of_the_Casbah_of_Algiers_1.jpg" class="interleaved-img" alt="Djamaa Ketchawa secondary view">
+
+
+
+<div class="section-block">
+    <h2>Geography</h2>
+    <p>L&#39;édifice est stratégiquement situé dans la basse Casbah d&#39;Alger, marquant la transition entre la ville haute et le front de mer
+. Il s&#39;élève sur la première des nombreuses montées d&#39;escaliers de la Casbah, dominant l&#39;actuelle Place des Martyrs
+. La mosquée se trouve à proximité immédiate de l&#39;ancien palais Hassan Pacha (Dar Hassan Pacha) et à environ 250 mètres à l&#39;est de la Grande Mosquée d&#39;Alger (Djamaâ El Kebir)
+. À l&#39;époque ottomane, son emplacement au cœur d&#39;un quartier aristocratique en faisait l&#39;un des points névralgiques de la ville
+.</p>
 </div>
 
 
-<!-- Map Link with Icon -->
-<div class="map-btn-container">
-    <a href="https://www.google.com/maps/search/?api=1&query=36.78497,3.06081" target="_blank" class="map-btn">
-        Find direction to Djamaa Ketchawa on Google Map
-        <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Map Icon" style="width: 50px;">
-    </a>
-</div>
 
-<!-- 7. History -->
-<h2>History</h2>
-<p>Bien que ses origines puissent remonter au XIVe siècle, un acte de propriété confirme l&#39;existence de la mosquée en 1612
+
+
+<div class="section-block">
+    <h2>History</h2>
+    <p>Bien que ses origines puissent remonter au XIVe siècle, un acte de propriété confirme l&#39;existence de la mosquée en 1612
 . Elle fut considérablement agrandie en 1794 sous le règne du Dey Hassan Pacha, devenant l&#39;une des mosquées les plus prestigieuses de la cité
 . En 1832, après la conquête française, l&#39;édifice fut réquisitionné pour le culte catholique malgré la résistance désespérée des habitants ; les récits rapportent que près de 4 000 musulmans qui s&#39;y étaient retranchés furent expulsés par la force ou périrent lors de la prise du bâtiment par le duc de Rovigo
 . Entre 1845 et 1860, la structure fut presque entièrement démolie pour laisser place à une cathédrale beaucoup plus vaste
 . Le 2 novembre 1962, quelques mois après l&#39;indépendance, Ketchaoua fut solennellement rendue à l&#39;Islam lors d&#39;une cérémonie historique
 . Fragilisée par le séisme de 2003, elle a bénéficié d&#39;une importante restauration menée par l&#39;agence turque TIKA et a rouvert ses portes en avril 2018</p>
+</div>
 
-<!-- 8. Architecture -->
-<h2>Architecture</h2>
-<p>L&#39;architecture actuelle de la mosquée est un exemple pur d&#39;éclectisme, mariant des modèles structurels européens à un décor orientalisant
+
+
+
+
+<div class="section-block">
+    <h2>Architecture</h2>
+    <p>L&#39;architecture actuelle de la mosquée est un exemple pur d&#39;éclectisme, mariant des modèles structurels européens à un décor orientalisant
 .
 Façade et Minarets : La façade monumentale s&#39;inspire du modèle des églises gothiques avec deux tours octogonales symétriques en guise de minarets, encadrant un porche à trois arcades
 . Un grand escalier de 23 marches mène à l&#39;entrée
@@ -280,10 +305,20 @@ Structure intérieure : La salle de prière suit un plan basilical avec une nef 
 Décoration : L&#39;intérieur est richement orné de stucs mauresques, de marbres et de mosaïques
 . Lors de la dernière restauration, des calligraphies coraniques ont été replacées sur les murs, remplaçant celles qui avaient disparu lors de la transformation en cathédrale au XIXe siècle
 .</p>
+</div>
 
-<!-- 9. External Link -->
+
+<div class="map-btn-container">
+    <a href="https://www.google.com/maps/search/?api=1&query=36,78497,3,06081" target="_blank" class="map-btn">
+        Find direction to Djamaa Ketchawa on Google Map
+        <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Map Icon" style="width: 50px;">
+    </a>
+</div>
+
 
 <a href="https://fr.wikipedia.org/wiki/Mosqu%C3%A9e_Ketchaoua_d%27Alger" target="_blank" class="external-btn">Read more ...</a>
+
+
 
 
     </main>

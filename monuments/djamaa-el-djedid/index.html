@@ -169,37 +169,56 @@
 <style>
     .short-desc { font-style: italic; font-size: 1.3rem; color: #555; margin-bottom: 30px; }
     
-    .history-box {
+    .info-grid-box {
         background: var(--hist-teal);
         color: white;
         padding: 20px;
         border-radius: 4px;
-        display: flex;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
         margin-bottom: 40px;
     }
+    .info-grid-box span { font-size: 1.05rem; }
 
-    .main-img {
+    .interleaved-img {
         width: 100%;
+        max-height: 500px;
+        object-fit: cover;
         border: 10px solid white;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        margin-bottom: 40px;
+        margin: 30px 0;
+        display: block;
+    }
+
+    .section-block {
+        margin-bottom: 30px;
+    }
+    .section-block h2 {
+        margin-top: 0;
     }
 
     .gallery-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
+        margin-top: 20px;
         margin-bottom: 30px;
     }
-    .gallery-grid img { width: 100%; border: 5px solid white; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+    .gallery-grid img { 
+        width: 100%; 
+        height: 200px;
+        object-fit: cover;
+        border: 5px solid white; 
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1); 
+    }
 
     .map-btn-container {
         text-align: center;
         background: white;
         padding: 20px;
         border: 2px dashed var(--med-blue);
-        margin: 30px 0;
+        margin: 40px 0 20px 0;
     }
     .map-btn { color: var(--hist-teal); text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
@@ -212,29 +231,29 @@
         text-decoration: none;
         border-radius: 4px;
         font-weight: bold;
-        margin-top: 50px;
+        margin: 20px 0 50px 0;
     }
 </style>
 
-<!-- 1. Name -->
 <h1>Djamaa El Djedid</h1>
 
-<!-- 2. Description -->
-<div class="short-desc">Djamaâ el Djedid, également connue sous le nom de Mosquée de la Pêcherie</div>
-
-<!-- 3. History Box -->
-<div class="history-box">
-    <span><strong>Dynasty:</strong> Othomane</span>
+<div class="info-grid-box">
+    <span><strong>Category:</strong> Mosque</span>
     <span><strong>Period:</strong> 1070 de l&#39;Hégire (1660 J.-C.)</span>
+    <span><strong>Dynasty:</strong> Othomane</span>
+    <span><strong>Status:</strong> N/A</span>
 </div>
 
-<!-- 4. Photo -->
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Alger-Place-des-Martyrs-Casbah_cropped.jpg/1280px-Alger-Place-des-Martyrs-Casbah_cropped.jpg" class="main-img" alt="Djamaa El Djedid">
 
 
-<!-- 5. Long Description -->
-<div class="long-description">
+
+<div class="short-desc">Djamaâ el Djedid, également connue sous le nom de Mosquée de la Pêcherie</div>
+
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Alger-Place-des-Martyrs-Casbah_cropped.jpg/1280px-Alger-Place-des-Martyrs-Casbah_cropped.jpg" class="interleaved-img" alt="Djamaa El Djedid">
+
+
+<div class="section-block long-description">
     <p>Djamaâ el Djedid, également connue sous le nom de Mosquée de la Pêcherie, est l&#39;un des monuments les plus emblématiques de la capitale algérienne. 
 
 Construite durant la période ottomane en 1660, il se distingue par son appartenance au rite hanéfite, contrairement à la majorité des mosquées de la région qui suivaient le rite malékite.
@@ -242,29 +261,39 @@ Son nom, qui signifie « Nouvelle Mosquée », servait initialement à la diffé
 Aujourd&#39;hui, cet édifice est classé au patrimoine national et fait partie intégrante du secteur sauvegardé de la Casbah d&#39;Alger.</p>
 </div>
 
-<!-- 6. Photography -->
 
 
-<!-- Map Link with Icon -->
-<div class="map-btn-container">
-    <a href="https://www.google.com/maps/search/?api=1&query=36.78482,3.06310" target="_blank" class="map-btn">
-        Find direction to Djamaa El Djedid on Google Map
-        <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Map Icon" style="width: 50px;">
-    </a>
+
+<div class="section-block">
+    <h2>Geography</h2>
+    <p>La mosquée est stratégiquement située dans la basse Casbah d&#39;Alger
+. Elle s&#39;élève sur le côté est de l&#39;actuelle Place des Martyrs
+. Dominant majestueusement le front de mer, elle se trouvait autrefois près de la Porte de la Mer (Bab al-Bahr) et du port de pêche, ce qui lui a valu son surnom populaire
+. Le mur de la qibla borde le boulevard Amilcar Cabral, plaçant l&#39;édifice à seulement 70 mètres à l&#39;est de la Grande Mosquée d&#39;Alger
+.</p>
 </div>
 
-<!-- 7. History -->
-<h2>History</h2>
-<p>L&#39;édifice a été érigé en 1070 de l&#39;Hégire (1660 J.-C.) sur l&#39;emplacement de l&#39;ancienne madrasa Bou Anan
+
+
+
+
+<div class="section-block">
+    <h2>History</h2>
+    <p>L&#39;édifice a été érigé en 1070 de l&#39;Hégire (1660 J.-C.) sur l&#39;emplacement de l&#39;ancienne madrasa Bou Anan
 . Sa construction a été commanditée par le Dey Mustapha Pacha
 . Une inscription gravée près du mihrab authentifie la genèse de l&#39;œuvre et cite al-Hâjj Habîb comme maître d&#39;œuvre ou assistant ayant dirigé les travaux
 . Une légende célèbre raconte qu&#39;un esclave chrétien aurait conçu le plan en forme de croix latine pour marquer le bâtiment du symbole de sa foi, mais les historiens réfutent cette thèse en soulignant que le style est inspiré des modèles ottomans d&#39;Istanbul, tels que la basilique Sainte-Sophie
 . En 1852, sous la période coloniale, une horloge provenant du Palais de la Jénina a été intégrée à son minaret par l&#39;architecte Bournichon
 .</p>
+</div>
 
-<!-- 8. Architecture -->
-<h2>Architecture</h2>
-<p>L&#39;architecture de la mosquée est une synthèse unique d&#39;influences ottomanes, maghrébines et européennes
+
+
+
+
+<div class="section-block">
+    <h2>Architecture</h2>
+    <p>L&#39;architecture de la mosquée est une synthèse unique d&#39;influences ottomanes, maghrébines et européennes
 .
 Structure et Coupoles : Le plan basilical présente une nef centrale et un transept surélevés formant une croix latine
 . La coupole centrale ovoïde s&#39;élève à 24 mètres de hauteur et repose sur quatre piliers massifs via un tambour et des pendentifs
@@ -277,10 +306,20 @@ Décoration intérieure : Le mihrab possède une niche octogonale ornée de carr
 . Le magnifique minbar en marbre blanc, fabriqué en Italie, provient de la mosquée Es-Sayida qui fut démolie en 1832
 . L&#39;extérieur du bâtiment est entièrement blanchi à la chaux, lui conférant une silhouette blanche immaculée
 .</p>
+</div>
 
-<!-- 9. External Link -->
+
+<div class="map-btn-container">
+    <a href="https://www.google.com/maps/search/?api=1&query=36,78482,3,06310" target="_blank" class="map-btn">
+        Find direction to Djamaa El Djedid on Google Map
+        <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Map Icon" style="width: 50px;">
+    </a>
+</div>
+
 
 <a href="https://fr.wikipedia.org/wiki/Djama%C3%A2_el_Djedid" target="_blank" class="external-btn">Read more ...</a>
+
+
 
 
     </main>

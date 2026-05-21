@@ -169,37 +169,56 @@
 <style>
     .short-desc { font-style: italic; font-size: 1.3rem; color: #555; margin-bottom: 30px; }
     
-    .history-box {
+    .info-grid-box {
         background: var(--hist-teal);
         color: white;
         padding: 20px;
         border-radius: 4px;
-        display: flex;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
         margin-bottom: 40px;
     }
+    .info-grid-box span { font-size: 1.05rem; }
 
-    .main-img {
+    .interleaved-img {
         width: 100%;
+        max-height: 500px;
+        object-fit: cover;
         border: 10px solid white;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        margin-bottom: 40px;
+        margin: 30px 0;
+        display: block;
+    }
+
+    .section-block {
+        margin-bottom: 30px;
+    }
+    .section-block h2 {
+        margin-top: 0;
     }
 
     .gallery-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
+        margin-top: 20px;
         margin-bottom: 30px;
     }
-    .gallery-grid img { width: 100%; border: 5px solid white; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+    .gallery-grid img { 
+        width: 100%; 
+        height: 200px;
+        object-fit: cover;
+        border: 5px solid white; 
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1); 
+    }
 
     .map-btn-container {
         text-align: center;
         background: white;
         padding: 20px;
         border: 2px dashed var(--med-blue);
-        margin: 30px 0;
+        margin: 40px 0 20px 0;
     }
     .map-btn { color: var(--hist-teal); text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
@@ -212,52 +231,51 @@
         text-decoration: none;
         border-radius: 4px;
         font-weight: bold;
-        margin-top: 50px;
+        margin: 20px 0 50px 0;
     }
 </style>
 
-<!-- 1. Name -->
 <h1>Djamaa Sidi Abdellah</h1>
 
-<!-- 2. Description -->
-<div class="short-desc">d&#39;Alger, a récemment été restaurée avec le plus grand soin. Désormais ouverte aux visiteurs, elle a retrouvé toute sa splendeur d&#39;antan. Un exemple remarquable de préservation du patrimoine.</div>
-
-<!-- 3. History Box -->
-<div class="history-box">
-    <span><strong>Dynasty:</strong> </span>
-    <span><strong>Period:</strong> </span>
+<div class="info-grid-box">
+    <span><strong>Category:</strong> Mosque</span>
+    <span><strong>Period:</strong> N/A</span>
+    <span><strong>Dynasty:</strong> N/A</span>
+    <span><strong>Status:</strong> N/A</span>
 </div>
 
-<!-- 4. Photo -->
-
-<img src="https://algiersstories-lang.github.io/images/djamaa-sidi-abdellah.jpg" class="main-img" alt="Djamaa Sidi Abdellah">
 
 
-<!-- 5. Long Description -->
-<div class="long-description">
+
+<div class="short-desc">d&#39;Alger, a récemment été restaurée avec le plus grand soin. Désormais ouverte aux visiteurs, elle a retrouvé toute sa splendeur d&#39;antan. Un exemple remarquable de préservation du patrimoine.</div>
+
+
+
+<div class="section-block long-description">
     <p>La mosquée Sidi Abdellah (Djamaa Sidi Abdellah) est un édifice historique situé dans la Casbah d&#39;Alger, datant du 10ème siècle de l&#39;ère chrétienne. Elle se trouve au cœur du souk de la Casbah, dominant les ruelles de ce quartier historique, et a fait l&#39;objet de projets de restauration en raison de son importance patrimoniale.</p>
 </div>
 
-<!-- 6. Photography -->
 
 
-<!-- Map Link with Icon -->
+
+
+
+
+
+
+
+
+
+
 <div class="map-btn-container">
-    <a href="https://www.google.com/maps/search/?api=1&query=36.78515611,3.058626484" target="_blank" class="map-btn">
+    <a href="https://www.google.com/maps/search/?api=1&query=36,78515611,3,058626484" target="_blank" class="map-btn">
         Find direction to Djamaa Sidi Abdellah on Google Map
         <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Map Icon" style="width: 50px;">
     </a>
 </div>
 
-<!-- 7. History -->
-<h2>History</h2>
-<p></p>
 
-<!-- 8. Architecture -->
-<h2>Architecture</h2>
-<p></p>
 
-<!-- 9. External Link -->
 
 
     </main>

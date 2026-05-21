@@ -169,37 +169,56 @@
 <style>
     .short-desc { font-style: italic; font-size: 1.3rem; color: #555; margin-bottom: 30px; }
     
-    .history-box {
+    .info-grid-box {
         background: var(--hist-teal);
         color: white;
         padding: 20px;
         border-radius: 4px;
-        display: flex;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
         margin-bottom: 40px;
     }
+    .info-grid-box span { font-size: 1.05rem; }
 
-    .main-img {
+    .interleaved-img {
         width: 100%;
+        max-height: 500px;
+        object-fit: cover;
         border: 10px solid white;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        margin-bottom: 40px;
+        margin: 30px 0;
+        display: block;
+    }
+
+    .section-block {
+        margin-bottom: 30px;
+    }
+    .section-block h2 {
+        margin-top: 0;
     }
 
     .gallery-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
+        margin-top: 20px;
         margin-bottom: 30px;
     }
-    .gallery-grid img { width: 100%; border: 5px solid white; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+    .gallery-grid img { 
+        width: 100%; 
+        height: 200px;
+        object-fit: cover;
+        border: 5px solid white; 
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1); 
+    }
 
     .map-btn-container {
         text-align: center;
         background: white;
         padding: 20px;
         border: 2px dashed var(--med-blue);
-        margin: 30px 0;
+        margin: 40px 0 20px 0;
     }
     .map-btn { color: var(--hist-teal); text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
@@ -212,29 +231,27 @@
         text-decoration: none;
         border-radius: 4px;
         font-weight: bold;
-        margin-top: 50px;
+        margin: 20px 0 50px 0;
     }
 </style>
 
-<!-- 1. Name -->
 <h1>Djamaa Sidi Abderrahmane</h1>
 
-<!-- 2. Description -->
-<div class="short-desc">Major spiritual site near the sea, associated with a revered saint.</div>
-
-<!-- 3. History Box -->
-<div class="history-box">
-    <span><strong>Dynasty:</strong> </span>
+<div class="info-grid-box">
+    <span><strong>Category:</strong> Mosque</span>
     <span><strong>Period:</strong> 1621</span>
+    <span><strong>Dynasty:</strong> N/A</span>
+    <span><strong>Status:</strong> N/A</span>
 </div>
 
-<!-- 4. Photo -->
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg/960px-Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg" class="main-img" alt="Djamaa Sidi Abderrahmane">
 
 
-<!-- 5. Long Description -->
-<div class="long-description">
+
+<div class="short-desc">Major spiritual site near the sea, associated with a revered saint.</div>
+
+
+
+<div class="section-block long-description">
     <p>
 Voir aussi
 
@@ -297,32 +314,27 @@ Architecture
 Albert Delvoux décrit son architecture comme typiquement berbère, avec un lourd minaret carré, des toits en double pente et recouverts de tuiles. Mais selon lui elle ne présente pas de qualité ornementale particulière et semble d&#39;une architecture assez grossière dans l&#39;ensemble[2]. Cette mosquée correspond au cadre pauvre et austère dans lesquelles priaient les premières population de la ville d&#39;Alger[1].</p>
 </div>
 
-<!-- 6. Photography -->
-
-<h2>Photography</h2>
-<div class="gallery-grid">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg/960px-Sidi_Ramadan_Mosque_or_the_Kasbah_Mosque.jpg">
-    <img src="https://media.nouvelobs.com/referentiel/1200x800/16275690.jpg">
-</div>
 
 
-<!-- Map Link with Icon -->
+
+
+
+
+
+
+
+
+
+
 <div class="map-btn-container">
-    <a href="https://www.google.com/maps/search/?api=1&query=36.7883,3.05942" target="_blank" class="map-btn">
+    <a href="https://www.google.com/maps/search/?api=1&query=36,7883,3,05942" target="_blank" class="map-btn">
         Find direction to Djamaa Sidi Abderrahmane on Google Map
         <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Map Icon" style="width: 50px;">
     </a>
 </div>
 
-<!-- 7. History -->
-<h2>History</h2>
-<p></p>
 
-<!-- 8. Architecture -->
-<h2>Architecture</h2>
-<p></p>
 
-<!-- 9. External Link -->
 
 
     </main>
