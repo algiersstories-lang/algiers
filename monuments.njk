@@ -9,123 +9,112 @@ renderData:
   title: "{{ item.name }}"
 ---
 
-<div style="background: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 15px; margin-bottom: 20px; border-radius: 4px; font-family: monospace;">
-  <strong>[Debug Mode] Raw Spreadsheet Column Data:</strong><br>
-  {% if item.images %}
-    <span style="word-break: break-all;">"{{ item.images }}"</span>
-  {% else %}
-    <span style="color: red; font-weight: bold;">Error: The 'images' column is empty, missing, or capitalized incorrectly in your Google Sheet!</span>
-  {% endif %}
-</div>
-
 {% if item.images %}
   {% set imageList = item.images.split(',') %}
 {% else %}
   {% set imageList = [] %}
 {% endif %}
 
-<article class="monument-container">
+<article class="monument-container" style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: system-ui, -apple-system, sans-serif; color: #333; line-height: 1.6;">
   
-  <h1 class="monument-title">{{ item.name }}</h1>
+  <h1 class="monument-title" style="font-size: 2.5rem; color: var(--charcoal, #222); margin-bottom: 10px;">{{ item.name }}</h1>
 
-  <div class="info-box" style="background-color: var(--med-blue, #f0f4f8); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-    <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
-      <li><strong>Category:</strong> {{ item.category if item.category else 'N/A' }}</li>
-      <li><strong>Period:</strong> {{ item.period if item.period else 'N/A' }}</li>
-      <li><strong>Dynasty:</strong> {{ item.dynasty if item.dynasty else 'N/A' }}</li>
-      <li><strong>Status:</strong> {{ item.status if item.status else 'N/A' }}</li>
+  <div class="info-box" style="background-color: var(--med-blue, #f0f4f8); padding: 20px; border-radius: 8px; margin-bottom: 30px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+    <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
+      <li><strong style="color: #555;">Category:</strong> {{ item.category if item.category else 'N/A' }}</li>
+      <li><strong style="color: #555;">Period:</strong> {{ item.period if item.period else 'N/A' }}</li>
+      <li><strong style="color: #555;">Dynasty:</strong> {{ item.dynasty if item.dynasty else 'N/A' }}</li>
+      <li><strong style="color: #555;">Status:</strong> {{ item.status if item.status else 'N/A' }}</li>
     </ul>
   </div>
 
   {% if item.description %}
-    <div class="description section">
+    <div class="description section" style="margin-bottom: 30px; font-size: 1.1rem; color: #444;">
       <p>{{ item.description }}</p>
     </div>
   {% endif %}
 
   {% if imageList[0] %}
-    <div class="interleaved-image">
-      <img src="{{ imageList[0] | trim }}" alt="{{ item.name }} - View 1" style="width: 100%; height: auto; border-radius: 8px; margin: 20px 0;">
+    <div class="interleaved-image-wrapper" style="display: flex; justify-content: center; margin: 30px 0;">
+      <img src="{{ imageList[0] | trim }}" alt="{{ item.name }} - View 1" style="max-width: 400px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
     </div>
   {% endif %}
 
   {% if item.long_description %}
-    <div class="long-description section">
+    <div class="long-description section" style="margin-bottom: 30px;">
       <p>{{ item.long_description }}</p>
     </div>
   {% endif %}
 
   {% if imageList[1] %}
-    <div class="interleaved-image">
-      <img src="{{ imageList[1] | trim }}" alt="{{ item.name }} - View 2" style="width: 100%; height: auto; border-radius: 8px; margin: 20px 0;">
+    <div class="interleaved-image-wrapper" style="display: flex; justify-content: center; margin: 30px 0;">
+      <img src="{{ imageList[1] | trim }}" alt="{{ item.name }} - View 2" style="max-width: 400px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
     </div>
   {% endif %}
 
   {% if item.geography %}
-    <div class="geography section">
-      <h3 style="color: var(--hist-teal, #008080);">Geography</h3>
+    <div class="geography section" style="margin-bottom: 30px;">
+      <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Geography</h3>
       <p>{{ item.geography }}</p>
     </div>
   {% endif %}
 
   {% if imageList[2] %}
-    <div class="interleaved-image">
-      <img src="{{ imageList[2] | trim }}" alt="{{ item.name }} - Geography context" style="width: 100%; height: auto; border-radius: 8px; margin: 20px 0;">
+    <div class="interleaved-image-wrapper" style="display: flex; justify-content: center; margin: 30px 0;">
+      <img src="{{ imageList[2] | trim }}" alt="{{ item.name }} - Geography context" style="max-width: 400px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
     </div>
   {% endif %}
 
   {% if item.history %}
-    <div class="history section">
-      <h3 style="color: var(--hist-teal, #008080);">History</h3>
+    <div class="history section" style="margin-bottom: 30px;">
+      <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">History</h3>
       <p>{{ item.history }}</p>
     </div>
   {% endif %}
 
   {% if imageList[3] %}
-    <div class="interleaved-image">
-      <img src="{{ imageList[3] | trim }}" alt="{{ item.name }} - Historical View" style="width: 100%; height: auto; border-radius: 8px; margin: 20px 0;">
+    <div class="interleaved-image-wrapper" style="display: flex; justify-content: center; margin: 30px 0;">
+      <img src="{{ imageList[3] | trim }}" alt="{{ item.name }} - Historical View" style="max-width: 400px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
     </div>
   {% endif %}
 
   {% if item.architecture %}
-    <div class="architecture section">
-      <h3 style="color: var(--hist-teal, #008080);">Architecture</h3>
+    <div class="architecture section" style="margin-bottom: 30px;">
+      <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Architecture</h3>
       <p>{{ item.architecture }}</p>
     </div>
   {% endif %}
 
-  {% if item.latitude and item.longitude %}
-    <div class="map-link section" style="margin: 25px 0;">
-      <a href="https://www.google.com/maps/search/?api=1&query={{ item.latitude }},{{ item.longitude }}" 
+  <div class="actions-panel" style="display: flex; flex-wrap: wrap; gap: 15px; margin: 35px 0; padding-top: 20px; border-top: 1px solid #eee;">
+    {% if item.latitude and item.longitude %}
+      <a href="http://maps.google.com/?q={{ item.latitude }},{{ item.longitude }}" 
          target="_blank" 
          rel="noopener noreferrer" 
          class="btn map-btn" 
-         style="display: inline-block; padding: 10px 20px; background-color: var(--hist-teal, #008080); color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">
+         style="display: inline-block; padding: 12px 24px; background-color: var(--hist-teal, #008080); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
          🗺️ View on Google Maps
       </a>
-    </div>
-  {% endif %}
+    {% endif %}
 
-  {% if item.external_link %}
-    <div class="external-link section" style="margin: 25px 0;">
+    {% if item.external_link %}
       <a href="{{ item.external_link }}" 
          target="_blank" 
          rel="noopener noreferrer" 
          class="btn external-btn" 
-         style="display: inline-block; padding: 10px 20px; background-color: var(--med-blue, #0056b3); color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">
+         style="display: inline-block; padding: 12px 24px; background-color: var(--med-blue, #0056b3); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
          Read More External Coverage...
       </a>
-    </div>
-  {% endif %}
+    {% endif %}
+  </div>
 
   {% if imageList.length > 4 %}
-    <div class="remaining-gallery section" style="margin-top: 40px; border-top: 2px solid #eee; padding-top: 20px;">
-      <h3 style="color: var(--hist-teal, #008080); margin-bottom: 20px;">Photo Gallery</h3>
-      <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;">
+    <div class="remaining-gallery section" style="margin-top: 50px; border-top: 2px solid #eee; padding-top: 20px;">
+      <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; margin-bottom: 20px;">Additional Photo Gallery</h3>
+      <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px;">
         {% for photoUrl in imageList.slice(4) %}
           {% if photoUrl | trim %}
-            <div class="gallery-item">
-              <img src="{{ photoUrl | trim }}" alt="Additional view of {{ item.name }}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <div class="gallery-item" style="display: flex; justify-content: center;">
+              <img src="{{ photoUrl | trim }}" alt="Additional view of {{ item.name }}" style="max-width: 400px; width: 100%; height: 180px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
             </div>
           {% endif %}
         {% endfor %}
