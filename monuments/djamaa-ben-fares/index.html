@@ -166,14 +166,20 @@
 
     <main>
         
+<!-- ======================================================================
+     ARRAY PROCESSING
+     Converts the comma-separated string into a clean Nunjucks array
+     ====================================================================== -->
 
   
 
 
 <article class="monument-container" style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: system-ui, -apple-system, sans-serif; color: #333; line-height: 1.6;">
   
+  <!-- 1. Monument Name -->
   <h1 class="monument-title" style="font-size: 2.5rem; color: var(--charcoal, #222); margin-bottom: 10px;">Djamaa Ben Fares</h1>
 
+  <!-- 2. Info Box (Category, Period, Dynasty, Status) -->
   <div class="info-box" style="background-color: var(--med-blue, #f0f4f8); padding: 20px; border-radius: 8px; margin-bottom: 30px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
     <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
       <li><strong style="color: #555;">Category:</strong> Mosque</li>
@@ -183,30 +189,39 @@
     </ul>
   </div>
 
+  <!-- 3. Short Description -->
   
     <div class="description section" style="margin-bottom: 30px; font-size: 1.1rem; color: #444;">
       <p>La mosquée Ibn Farès, anciennement connue sous le nom de Djamaa Lihoud, s’impose comme un témoin silencieux des métamorphoses qu’a traversées la Casbah d’Alger au fil des siècles.</p>
     </div>
   
 
+  <!-- 4. Image 1 (Clickable, Opens Full Size) -->
   
     <div class="interleaved-image-wrapper" style="display: flex; justify-content: center; margin: 30px 0;">
-      <img src="https://photos.wikimapia.org/p/00/00/48/44/64_big.jpg" alt="Djamaa Ben Fares - View 1" style="max-width: 400px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      <a href="https://photos.wikimapia.org/p/00/00/48/44/64_big.jpg" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 400px; cursor: zoom-in;">
+        <img src="https://photos.wikimapia.org/p/00/00/48/44/64_big.jpg" alt="Djamaa Ben Fares - View 1" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity 0.2s;">
+      </a>
     </div>
   
 
+  <!-- 5. Long Description -->
   
     <div class="long-description section" style="margin-bottom: 30px;">
       <p>La mosquée Ibn Farès, anciennement connue sous le nom de Djamaa Lihoud, s’impose comme un témoin silencieux des métamorphoses qu’a traversées la Casbah d’Alger au fil des siècles. À l’origine, elle fut la mosquée Sidi el-Harbi, édifiée au XVe siècle en l’honneur d’un saint local.</p>
     </div>
   
 
+  <!-- 6. Image 2 (Clickable, Opens Full Size) -->
   
 
+  <!-- 7. Geography -->
   
 
+  <!-- 8. Image 3 (Clickable, Opens Full Size) -->
   
 
+  <!-- 9. History -->
   
     <div class="history section" style="margin-bottom: 30px;">
       <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">History</h3>
@@ -214,8 +229,10 @@
     </div>
   
 
+  <!-- 10. Image 4 (Clickable, Opens Full Size) -->
   
 
+  <!-- 11. Architecture -->
   
     <div class="architecture section" style="margin-bottom: 30px;">
       <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Architecture</h3>
@@ -239,12 +256,16 @@ Souhaitez-vous que j&#39;essaie de trouver des sources externes pour obtenir des
     </div>
   
 
+  <!-- Actions Panel (Maps & Links) -->
   <div class="actions-panel" style="display: flex; flex-wrap: wrap; gap: 15px; margin: 35px 0; padding-top: 20px; border-top: 1px solid #eee;">
+    <!-- 12. Google Map Button -->
     
 
+    <!-- 13. External Link -->
     
   </div>
 
+  <!-- 14. Remaining Images Gallery (Clickable, Sized Consistently) -->
   
 
 </article>
