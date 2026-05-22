@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "Accueil"
+title: "Histoire"
 ---
 <html lang="fr">
 <head>
@@ -132,6 +132,15 @@ title: "Accueil"
             color: #666;
             text-align: center;
         }
+
+/* Annulation forcée des styles hérités de base.njk pour l'en-tête */
+        header {
+            position: static !important;
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+
+
 
         /* --- RESPONSIVE (MOBILE) --- */
         @media (max-width: 768px) {
