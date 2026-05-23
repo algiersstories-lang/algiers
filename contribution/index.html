@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" type="image/png" href="https://algiersstories-lang.github.io/images/icon-casbah.png">
+    
+    <title>Contributions - Casbah Explorer | CASBAH EXPLORER</title>
+    
+    <style>
+        :root {
+            --hist-teal: #008080;
+            --med-blue: #4CB6C9;
+            --terracotta: #A0522D;
+            --parchment: #F5F5DC;
+            --charcoal: #333333;
+            --max-width: 1100px;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: var(--parchment);
+            color: var(--charcoal);
+        }
+
+        /* Navigation Header */
+        header {
+            background-color: white;
+            border-bottom: 3px solid var(--hist-teal);
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Logo and Title Container */
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-title {
+            color: var(--hist-teal);
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Navigation Links */
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--med-blue);
+        }
+
+        /* Layout Containers */
+        main {
+            padding: 40px 20px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            min-height: 80vh;
+        }
+
+        /* Inline Text Links Styling */
+        p a {
+            color: var(--hist-teal);
+            text-decoration: underline;
+            text-decoration-color: rgba(0, 128, 128, 0.4); /* Faded teal line so it doesn't crowd text */
+            text-underline-offset: 3px;
+            font-weight: 500; /* Distinct weight to flag readability */
+            transition: color 0.2s ease, text-decoration-color 0.2s ease;
+        }
+
+        /* Inline Text Links Hover State */
+        p a:hover {
+            color: var(--med-blue);
+            text-decoration-color: var(--med-blue);
+        }
+
+        /* External Links Custom Hover Accent */
+        p a[target="_blank"]:hover {
+            color: var(--terracotta);
+            text-decoration-color: var(--terracotta);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background-color: transparent; 
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .header-container { 
+                flex-direction: column; 
+                gap: 15px; 
+                text-align: center; 
+            }
+            nav ul { 
+                gap: 15px; 
+                font-size: 0.9rem; 
+            }
+            .logo-img { 
+                height: 40px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="/algiers/" class="brand">
+                <img src="https://algiersstories-lang.github.io/images/logo-casbah.png" alt="Casbah Explorer Logo" class="logo-img">
+                <h1 class="site-title">CASBAH Explorer</h1>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/algiers/">Home</a></li>
+                    <li><a href="/algiers/list/">Monuments</a></li>
+                    <li><a href="/algiers/map/">Map</a></li>
+                    <li><a href="/algiers/history/">History</a></li>
+                    <li><a href="/algiers/about/">À Propos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+<style>
+  /* --- STYLES DE LA PAGE FEEDBACK --- */
+  
+  .feedback-page {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Georgia', serif;
+    background-color: var(--parchment, #fdfbf7);
+    color: var(--charcoal, #2c2c2c);
+    line-height: 1.7;
+  }
+
+  .feedback-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .feedback-header h1 {
+    font-size: 2.2rem;
+    color: var(--hist-teal, #2c5e5a);
+    margin-bottom: 10px;
+  }
+
+  .feedback-header p {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #555;
+  }
+
+  /* --- LE CONTENEUR MAGIQUE DU IFRAME (RESPONSIVE) --- */
+  .iframe-container {
+    position: relative;
+    width: 100%;
+    /* Hauteur confortable pour faire défiler le formulaire à l'intérieur sur PC et Mobile */
+    height: 950px; 
+    border: 2px solid var(--hist-teal, #2c5e5a);
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    background-color: #ffffff; /* Fond blanc propre pour le formulaire Google */
+    margin-bottom: 30px;
+  }
+
+  .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* --- NOTE DE CONFIDENTIALITÉ --- */
+  .feedback-footer-note {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 20px;
+  }
+
+  /* --- ADAPTATION MOBILE --- */
+  @media (max-width: 768px) {
+    .feedback-page {
+      padding: 20px 15px;
+    }
+    .feedback-header h1 {
+      font-size: 1.8rem;
+    }
+    .iframe-container {
+      height: 1100px; /* Un peu plus haut sur mobile car les champs s'empilent */
+    }
+  }
+</style>
+
+<main class="feedback-page">
+  
+  <header class="feedback-header">
+    <h1>🏛️ Soumettre une contribution</h1>
+    <p>Aidez-nous à parfaire l'expérience d'exploration numérique d'Alger et de sa Casbah.</p>
+  </header>
+
+  <div class="iframe-container">
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLScfDMBwW3b_AYUWwRHL3PTdEYtrtVzr9oHbp35NmJ7PzA272w/viewform?embedded=true" 
+      frameborder="0" 
+      marginheight="0" 
+      marginwidth="0"
+      title="Formulaire de Feedback Casbah Explorer">
+      Chargement du formulaire en cours…
+    </iframe>
+  </div>
+
+  <footer class="feedback-footer-note">
+    <p>Vos réponses sont enregistrées de manière anonyme et servent uniquement à améliorer la plateforme Casbah Explorer.</p>
+  </footer>
+
+</main>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Casbah Explorer - Safeguarding the Memory of the White City.</p>
+    </footer>
+
+</body>
+</html>
