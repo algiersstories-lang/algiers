@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" type="image/png" href="https://algiersstories-lang.github.io/images/icon-casbah.png">
+    
+    <title>À Propos | CASBAH EXPLORER</title>
+    
+    <style>
+        :root {
+            --hist-teal: #008080;
+            --med-blue: #4CB6C9;
+            --terracotta: #A0522D;
+            --parchment: #F5F5DC;
+            --charcoal: #333333;
+            --max-width: 1100px;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: var(--parchment);
+            color: var(--charcoal);
+        }
+
+        /* Navigation Header */
+        header {
+            background-color: white;
+            border-bottom: 3px solid var(--hist-teal);
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Logo and Title Container */
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-title {
+            color: var(--hist-teal);
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Navigation Links */
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--med-blue);
+        }
+
+        /* Layout Containers */
+        main {
+            padding: 40px 20px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            min-height: 80vh;
+        }
+
+        /* Inline Text Links Styling */
+        p a {
+            color: var(--hist-teal);
+            text-decoration: underline;
+            text-decoration-color: rgba(0, 128, 128, 0.4); /* Faded teal line so it doesn't crowd text */
+            text-underline-offset: 3px;
+            font-weight: 500; /* Distinct weight to flag readability */
+            transition: color 0.2s ease, text-decoration-color 0.2s ease;
+        }
+
+        /* Inline Text Links Hover State */
+        p a:hover {
+            color: var(--med-blue);
+            text-decoration-color: var(--med-blue);
+        }
+
+        /* External Links Custom Hover Accent */
+        p a[target="_blank"]:hover {
+            color: var(--terracotta);
+            text-decoration-color: var(--terracotta);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background-color: transparent; 
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .header-container { 
+                flex-direction: column; 
+                gap: 15px; 
+                text-align: center; 
+            }
+            nav ul { 
+                gap: 15px; 
+                font-size: 0.9rem; 
+            }
+            .logo-img { 
+                height: 40px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="/algiers/" class="brand">
+                <img src="https://algiersstories-lang.github.io/images/logo-casbah.png" alt="Casbah Explorer Logo" class="logo-img">
+                <h1 class="site-title">CASBAH Explorer</h1>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/algiers/">Home</a></li>
+                    <li><a href="/algiers/list/">Monuments</a></li>
+                    <li><a href="/algiers/map/">Map</a></li>
+                    <li><a href="/algiers/history/">History</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+<style>
+    /* Styles spécifiques pour la page À Propos */
+    .about-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        font-family: 'Georgia', serif;
+        color: var(--charcoal);
+        line-height: 1.8;
+    }
+
+    .about-header {
+        text-align: center;
+        margin-bottom: 40px;
+        border-bottom: 2px solid var(--hist-teal, #2c5e5a); /* Utilise votre couleur de thème */
+        padding-bottom: 20px;
+    }
+
+    .about-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        color: var(--hist-teal, #2c5e5a);
+    }
+
+    .about-header .subtitle {
+        font-style: italic;
+        font-size: 1.2rem;
+        color: #666;
+    }
+
+    .about-section {
+        margin-bottom: 40px;
+    }
+
+    .about-section h2 {
+        font-size: 1.8rem;
+        color: var(--hist-teal, #2c5e5a);
+        margin-bottom: 20px;
+    }
+
+    /* Style des piliers et listes */
+    .pillars-list, .cta-list {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .pillars-list li, .cta-list li {
+        margin-bottom: 20px;
+        padding-left: 30px;
+        position: relative;
+    }
+
+    /* Ajout d'une petite icône ou puce stylisée (par exemple un petit monument ou un point élégant) */
+    .pillars-list li::before {
+        content: "🏛️";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 1.1rem;
+    }
+
+    .cta-list li::before {
+        content: "✨";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 1.1rem;
+    }
+
+    .pillars-list strong, .cta-list strong {
+        color: var(--charcoal);
+        font-size: 1.1rem;
+    }
+
+    /* Style pour le bouton d'action (Lien vers le formulaire) */
+    .cta-button-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background-color: var(--med-blue, #1a5f7a);
+        color: #ffffff !important;
+        padding: 12px 28px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: background-color 0.3s, transform 0.2s;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .cta-button:hover {
+        background-color: var(--hist-teal, #2c5e5a);
+        transform: translateY(-2px);
+    }
+
+    .closing-text {
+        text-align: center;
+        font-style: italic;
+        margin-top: 50px;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+</style>
+
+<div class="about-container">
+    
+    <header class="about-header">
+        <h1>À propos de Casbah Explorer</h1>
+        <p class="subtitle">Votre Guide Interactif au Cœur d'Alger</p>
+    </header>
+
+    <section class="about-section">
+        <p>Chaque pierre d'Alger raconte une histoire, chaque ruelle de sa mythique Casbah est une invitation à l'exploration. Conçu pour les voyageurs curieux, les passionnés d'histoire et les promeneurs, <strong>Casbah Explorer</strong> est votre compagnon de route numérique indispensable.</p>
+        <p>Notre mission est de rendre la richesse historique et architecturale d'Alger fluide, accessible et captivante. Que vous exploriez les quartiers un téléphone à la main ou que vous planifiiez votre séjour, notre plateforme vous donne toutes les clés pour décoder le patrimoine algérois.</p>
+    </section>
+
+    <section class="about-section">
+        <h2>Préparez votre Itinéraire et Explorez la Ville</h2>
+        <p>Pensé comme un guide immersif, Casbah Explorer structure votre découverte autour de trois piliers :</p>
+        
+        <ul class="pillars-list">
+            <li>
+                <strong>Un Guide Géographique :</strong> Grâce à notre cartographie interactive et aux coordonnées physiques précises, repérez instantanément les monuments autour de vous et orientez-vous facilement.
+            </li>
+            <li>
+                <strong>Des Récits Captivants :</strong> Ne vous contentez pas de regarder les façades. Découvrez les légendes, les anecdotes et les grands destins qui ont façonné l'âme de chaque édifice.
+            </li>
+            <li>
+                <strong>Un Regard Architectural :</strong> Apprenez à reconnaître l'empreinte des différentes époques à travers des descriptions visuelles simples des styles et des structures.
+            </li>
+        </ul>
+    </section>
+
+    <section class="about-section">
+        <h2>Un Compagnon de Route Vivant et Fiable</h2>
+        <p>Parce qu'un bon guide se doit d'être à jour, notre répertoire numérique est une archive dynamique. Chaque semaine, de nouveaux points d'intérêt, des galeries photos et des infos pratiques enrichissent la plateforme.</p>
+        <p>Pour vous garantir une exploration sereine, chaque descriptif est rigoureusement vérifié et croisé avec des sources historiques fiables.</p>
+    </section>
+
+    <section class="about-section">
+        <h2>Prenez Part à l'Aventure (Devenez Co-Guide !)</h2>
+        <p>La préservation de la mémoire d'Alger est un projet collectif. Habitants, guides locaux, photographes ou voyageurs, aidez-nous à enrichir ce guide :</p>
+        
+        <ul class="cta-list">
+            <li>Un monument historique ou un lieu secret est absent de notre carte ?</li>
+            <li>Vous possédez une anecdote locale ou des précisions sur un site ?</li>
+            <li>Vous souhaitez partager vos plus beaux clichés de voyage ?</li>
+        </ul>
+
+        <div class="cta-button-container">
+            <a href="https://LIEN_VERS_VOTRE_FORMULAIRE" class="cta-button" target="_blank" rel="noopener noreferrer">
+                Soumettre vos éléments via notre formulaire
+            </a>
+        </div>
+    </section>
+
+    <p class="closing-text">Parcourez les ruelles et laissez-vous guider par Casbah Explorer !</p>
+
+</div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Casbah Explorer - Safeguarding the Memory of the White City.</p>
+    </footer>
+
+</body>
+</html>
