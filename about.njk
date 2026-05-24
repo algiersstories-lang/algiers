@@ -16,9 +16,11 @@ title: "À Propos"
 
     .about-header {
         text-align: center;
+        margin-top: 100px; /* Aligne le titre sous le menu fixe global sans le chevaucher */
         margin-bottom: 40px;
         border-bottom: 2px solid var(--hist-teal, #2c5e5a); /* Utilise votre couleur de thème */
         padding-bottom: 20px;
+        background: transparent;
     }
 
     .about-header h1 {
@@ -93,6 +95,7 @@ title: "À Propos"
         font-weight: bold;
         transition: background-color 0.3s, transform 0.2s;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin: 5px;
     }
 
     .cta-button:hover {
@@ -107,19 +110,6 @@ title: "À Propos"
         font-size: 1.2rem;
         font-weight: bold;
     }
-
-/*added to remove the fxi white block effect */
-
-header {
-    position: static;
-    text-align: center;
-    margin-top: 80px; /* Prevents the fixed top menu from overlapping the title on load */
-    margin-bottom: 40px;
-    background: transparent; /* Prevents a solid white box from overlaying the navigation */
-}
-
-
-
 </style>
 
 <div class="about-container">
@@ -143,7 +133,7 @@ header {
                 <strong>Un Guide Géographique :</strong> Grâce à notre cartographie interactive et aux coordonnées physiques précises, repérez instantanément les monuments autour de vous et orientez-vous facilement.
             </li>
             <li>
-                <strong>Des Récits Captivants :</strong> Ne vous contentez pas de regarder les façades. Découvrez les légendes, les anecdotes et les grands destins qui ont façonné l'âme de chaque édifice.
+                <strong>Des Récits Captivants :</strong> Ne vous contentez pas de regarder les façades. Découvrez les légendes, les anecdotes et les grands destins qui ont façonnés l'âme de chaque édifice.
             </li>
             <li>
                 <strong>Un Regard Architectural :</strong> Apprenez à reconnaître l'empreinte des différentes époques à travers des descriptions visuelles simples des styles et des structures.
@@ -171,12 +161,9 @@ header {
             <a href="https://algiersstories-lang.github.io/algiers/feedback/" class="cta-button" target="_blank" rel="noopener noreferrer">
                 Votre avis compte
             </a>
-            <p> </p>
-             <a href="https://algiersstories-lang.github.io/algiers/contribution/" class="cta-button" target="_blank" rel="noopener noreferrer">
-                Soummetre une contribution
+            <a href="https://algiersstories-lang.github.io/algiers/contribution/" class="cta-button" target="_blank" rel="noopener noreferrer">
+                Soumettre une contribution
             </a>
-
-
         </div>
     </section>
 
