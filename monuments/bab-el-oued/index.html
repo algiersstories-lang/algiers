@@ -1,165 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="icon" type="image/png" href="https://algiersstories-lang.github.io/images/icon-casbah.png">
-    
-    <title> | CASBAH EXPLORER</title>
-    
+    <title> | Casbah Explorer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
     <style>
+        /* --- BRANDING COLOR MATRIX (Variables) --- */
         :root {
-            --hist-teal: #008080;
-            --med-blue: #4CB6C9;
-            --terracotta: #A0522D;
-            --parchment: #F5F5DC;
-            --charcoal: #333333;
+            --parchment: #fcfaf2;   /* Soft historical crème background */
+            --charcoal: #2b2b2b;    /* High contrast dark tone for reading comfort */
+            --hist-teal: #005a5b;   /* Main heritage accent tone */
+            --med-blue: #1d70b8;    /* Interactive action state links */
+            --white: #ffffff;
             --max-width: 1100px;
         }
 
-        body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
+        /* --- BASIC RESET & CORE LAYOUT --- */
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', serif; /* Traditional literary body default */
             background-color: var(--parchment);
             color: var(--charcoal);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Navigation Header */
-        header {
-            background-color: white;
+        /* --- GLOBAL TITLES SETUP --- */
+        h1, h2, h3, h4, .site-title {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            font-weight: 700;
+            color: var(--hist-teal);
+        }
+
+        /* --- RE-ARCHITECTED GLOBAL NAVIGATION HEADER --- */
+        /* Fixed layout structure with independent scoping to prevent local pages from leaking styles */
+        header.site-header {
+            background-color: var(--white);
             border-bottom: 3px solid var(--hist-teal);
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 1001;
+            left: 0;
+            width: 100%;
+            z-index: 1001; /* Prevents maps or iframe elements from overlaying the menu */
             padding: 10px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
-        .header-container {
+        .nav-container {
             max-width: var(--max-width);
             margin: 0 auto;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
         }
 
-        /* Logo and Title Container */
-        .brand {
+        /* Site Identity / Logo Title */
+        .site-branding {
             display: flex;
             align-items: center;
             text-decoration: none;
-            gap: 12px;
-        }
-
-        .logo-img {
-            height: 48px;
-            width: auto;
-            object-fit: contain;
         }
 
         .site-title {
+            font-size: 1.4rem;
             color: var(--hist-teal);
-            margin: 0;
-            font-size: 1.5rem;
-            font-weight: bold;
+            letter-spacing: 0.5px;
         }
 
-        /* Navigation Links */
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
+        /* Menu Links */
+        nav.main-navigation ul {
             display: flex;
+            list-style: none;
             gap: 20px;
         }
 
-        nav a {
+        nav.main-navigation a {
             text-decoration: none;
             color: var(--charcoal);
             font-weight: bold;
             font-size: 1rem;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
-        nav a:hover {
+        nav.main-navigation a:hover,
+        nav.main-navigation a.active {
             color: var(--med-blue);
         }
 
-        /* Layout Containers */
+        /* --- MAIN VIEWPORT CONTAINMENT --- */
         main {
+            flex: 1;
             padding: 40px 20px;
             max-width: var(--max-width);
+            width: 100%;
             margin: 0 auto;
+            /* Offset to account for the fixed header height so local layout top-titles are fully visible */
+            margin-top: 80px; 
             min-height: 80vh;
         }
 
-        /* Inline Text Links Styling */
-        p a {
-            color: var(--hist-teal);
-            text-decoration: underline;
-            text-decoration-color: rgba(0, 128, 128, 0.4); /* Faded teal line so it doesn't crowd text */
-            text-underline-offset: 3px;
-            font-weight: 500; /* Distinct weight to flag readability */
-            transition: color 0.2s ease, text-decoration-color 0.2s ease;
-        }
-
-        /* Inline Text Links Hover State */
-        p a:hover {
-            color: var(--med-blue);
-            text-decoration-color: var(--med-blue);
-        }
-
-        /* External Links Custom Hover Accent */
-        p a[target="_blank"]:hover {
-            color: var(--terracotta);
-            text-decoration-color: var(--terracotta);
-        }
-
-        footer {
+        /* --- GLOBAL FOOTER ARCHIVE STYLING --- */
+        footer.site-footer {
+            background-color: #f1ebd9; /* Marginally darker parchment hue for separation */
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             font-size: 0.9rem;
-            color: var(--charcoal);
-            opacity: 0.8;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            background-color: transparent; 
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            color: #555555;
         }
 
-        /* Mobile Optimization */
+        /* --- MOBILE MEDIA DISPARITIES ADJUSTMENTS --- */
         @media (max-width: 768px) {
-            .header-container { 
-                flex-direction: column; 
-                gap: 15px; 
-                text-align: center; 
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
             }
-            nav ul { 
-                gap: 15px; 
-                font-size: 0.9rem; 
+            
+            nav.main-navigation ul {
+                gap: 15px;
+                font-size: 0.9rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
-            .logo-img { 
-                height: 40px; 
+
+            main {
+                margin-top: 110px; /* Expands top safe offset buffer space when nav wraps on smaller mobiles */
+                padding: 20px 15px;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-container">
-            <a href="/algiers/" class="brand">
-                <img src="https://algiersstories-lang.github.io/images/logo-casbah.png" alt="Casbah Explorer Logo" class="logo-img">
-                <h1 class="site-title">CASBAH Explorer</h1>
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="/" class="site-branding">
+                <span class="site-title">Casbah Explorer</span>
             </a>
-            <nav>
+            <nav class="main-navigation">
                 <ul>
-                    <li><a href="/algiers/">Home</a></li>
-                    <li><a href="/algiers/list/">Sites</a></li>
-                    <li><a href="/algiers/map/">Map</a></li>
-                    <li><a href="/algiers/history/">History</a></li>
-                    <li><a href="/algiers/about/">À Propos</a></li>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/monuments/">Monuments</a></li>
+                    <li><a href="/carte/">Carte Interactive</a></li>
+                    <li><a href="/histoire/">Histoire</a></li>
+                    <li><a href="/about/">À Propos</a></li>
                 </ul>
             </nav>
         </div>
@@ -237,8 +234,8 @@
 
     </main>
 
-    <footer>
-        <p>&copy; 2026 Casbah Explorer - Safeguarding the Memory of the White City.</p>
+    <footer class="site-footer">
+        <p>&copy; 2026 Casbah Explorer. Projet patrimonial, bénévole et indépendant dédié à la mémoire d'Alger.</p>
     </footer>
 
 </body>
