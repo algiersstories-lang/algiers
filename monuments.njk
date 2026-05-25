@@ -111,8 +111,8 @@ renderData:
   <!-- Actions Panel (Maps & Links) -->
   <div class="actions-panel" style="display: flex; flex-wrap: wrap; gap: 15px; margin: 35px 0; padding-top: 20px; border-top: 1px solid #eee;">
     <!-- 12. Google Map Button -->
-    {% if item.latitude and item.longitude %}
-      <a href="http://maps.google.com/?q={{ item.latitude }},{{ item.longitude }}" 
+    {% if item.lat and item.lon %}
+      <a href="http://maps.google.com/?q={{ item.lat }},{{ item.lon }}" 
          target="_blank" 
          rel="noopener noreferrer" 
          class="btn map-btn" 
