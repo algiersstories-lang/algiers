@@ -34,6 +34,17 @@ renderData:
     </ul>
   </div>
 
+
+{% if item.lat and item.lon %}
+      <a href="http://maps.google.com/?q={{ item.lat }},{{ item.lon }}" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="btn map-btn" 
+         style="display: inline-block; padding: 12px 24px; background-color: var(--mybrowny, #008080); color: (--hist-teal); text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
+         🗺️ View on Google Maps
+      </a>
+    {% endif %}
+
   <!-- 3. Short Description -->
   {% if item.description %}
     <div class="description section" style="margin-bottom: 30px; font-size: 1.1rem; color: #444;">
@@ -111,15 +122,17 @@ renderData:
   <!-- Actions Panel (Maps & Links) -->
   <div class="actions-panel" style="display: flex; flex-wrap: wrap; gap: 15px; margin: 35px 0; padding-top: 20px; border-top: 1px solid #eee;">
     <!-- 12. Google Map Button -->
-    {% if item.lat and item.lon %}
+
+{% if item.lat and item.lon %}
       <a href="http://maps.google.com/?q={{ item.lat }},{{ item.lon }}" 
          target="_blank" 
          rel="noopener noreferrer" 
          class="btn map-btn" 
-         style="display: inline-block; padding: 12px 24px; background-color: var(--hist-teal, #008080); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
+         style="display: inline-block; padding: 12px 24px; background-color: var(--mybrowny, #008080); color: (--hist-teal); text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
          🗺️ View on Google Maps
       </a>
     {% endif %}
+
 
     <!-- 13. External Link -->
     {% if item.external_link %}
@@ -127,8 +140,8 @@ renderData:
          target="_blank" 
          rel="noopener noreferrer" 
          class="btn external-btn" 
-         style="display: inline-block; padding: 12px 24px; background-color: var(--med-blue, #0056b3); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
-         Read More External Coverage...
+         style="display: inline-block; padding: 12px 24px; background-color: var(--mybrowny, #0056b3); color: var(--hist-teal); text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
+         Plus d'information sur le site...
       </a>
     {% endif %}
   </div>
