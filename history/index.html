@@ -185,17 +185,6 @@
 
         /* --- STYLES GÉNÉRAUX --- */
 
-        .hero-img {
-        width: 100%;
-        max-width: 1100px; /* Parfaitement aligné avec base.njk */
-        height: 450px;
-        object-fit: cover; /* Recadre proprement l'image peu importe l'écran */
-        border-radius: 12px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        display: block;
-        }
-
-
         body {
             font-family: 'Georgia', serif;
             background-color: var(--parchment);
@@ -208,11 +197,29 @@
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
+            /* Changement ici : On retire le padding du haut (0) pour coller au menu fixe */
+            padding: 0px 20px 40px 20px; 
+        }
+
+        .hero-container {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 1100px;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 0 0 12px 12px; /* Optionnel : arrondit uniquement le bas pour épouser le haut du site */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            display: block;
         }
 
         header {
             text-align: center;
+            margin-top: 40px; /* Ajout d'un espace sous la photo pour aérer le titre */
             margin-bottom: 60px;
             border-bottom: 2px solid var(--parchment-dark);
             padding-bottom: 20px;
@@ -222,12 +229,14 @@
             font-size: 2.8rem;
             color: var(--hist-teal);
             margin-bottom: 10px;
+            margin-top: 0;
         }
 
         header p {
             font-style: italic;
             color: var(--terracotta);
             font-size: 1.2rem;
+            margin: 0;
         }
 
         /* --- STRUCTURE D'ALTERANCE (Z-PATTERN) --- */
@@ -240,7 +249,6 @@
             border-bottom: 1px dashed var(--parchment-dark);
         }
 
-        /* Une époque sur deux est inversée automatiquement */
         .epoch-section:nth-child(even) {
             flex-direction: row-reverse;
         }
@@ -310,14 +318,12 @@
             text-align: center;
         }
 
-/* Annulation forcée des styles hérités de base.njk pour l'en-tête */
+        /* Annulation forcée des styles hérités de base.njk pour l'en-tête LOCAL */
         header {
             position: static !important;
             background-color: transparent !important;
             box-shadow: none !important;
         }
-
-
 
         /* --- RESPONSIVE (MOBILE) --- */
         @media (max-width: 768px) {
@@ -334,6 +340,10 @@
             header h1 {
                 font-size: 2.2rem;
             }
+
+            .hero-img {
+                height: 250px; /* Plus adapté aux écrans de smartphones */
+            }
         }
     </style>
 </head>
@@ -341,9 +351,9 @@
 
     <div class="container">
 
-<div class="hero-container">
-    <img src="https://algiersstories-lang.github.io/images/palais_de_la_Jenina.jpeg" alt="Place_et_palais_de_la_Jenina_1832" class="hero-img">
-</div>
+        <div class="hero-container">
+            <img src="https://algiersstories-lang.github.io/images/palais_de_la_Jenina.jpeg" alt="Place_et_palais_de_la_Jenina_1832" class="hero-img">
+        </div>
 
         <header>
             <h1>Chronique d'El-Djazair</h1>
@@ -351,11 +361,10 @@
         </header>
 
         <main>
-            <!-- 1. AVANT LES ROMAINS (Texte à gauche, Image à droite) -->
             <section class="epoch-section">
                 <div class="epoch-text">
                     <h2>Avant les Romains : L’aube d'Ikosim</h2>
-                    <p>Bien avant que les pierres de la Casbah ne s’élèvent sur les collines de la baie, le site d'Alger palpite déjà d’une activité maritime intense sous les pieds des populations autochtones numides (berbères). Vers le IVe siècle avant notre ère, les navigateurs et marchands phéniciens, lancés dans la colonisation commerciale de la Méditerranée, repèrent ce golfe naturel unique protégé par un chapelet de petits îlots rocheux. Ils y établissent un comptoir stable qu’ils nomment <strong>Ikosim</strong>, un terme poétique signifiant généralement « l'île aux mouettes » ou « l'île aux épines ». Ce havre devient une escale indispensable et un abri de sûreté pour les floutes carthaginoises naviguant vers le détroit de Gibraltar, troquant les produits manufacturés d'Orient contre les ressources agricoles de l'hinterland. Loin d'être une simple enclave fermée, Ikosim s'intègre profondément dans les dynamiques des puissants royaumes numides voisins, posant les bases d'une vocation bimillénaire : celle d'une cité-pont jetée entre les richesses de la terre africaine et les routes de la mer.</p>
+                    <p>Bien avant que les pierres de la Casbah ne s’élvassent sur les collines de la baie, le site d'Alger palpite déjà d’une activité maritime intense sous les pieds des populations autochtones numides (berbères). Vers le IVe siècle avant notre ère, les navigateurs et marchands phéniciens, lancés dans la colonisation commerciale de la Méditerranée, repèrent ce golfe naturel unique protégé par un chapelet de petits îlots rocheux. Ils y établissent un comptoir stable qu’ils nomment <strong>Ikosim</strong>, un terme poétique signifiant généralement « l'île aux mouettes » ou « l'île aux épines ». Ce havre devient une escale indispensable et un abri de sûreté pour les flottes carthaginoises naviguant vers le détroit de Gibraltar, troquant les produits manufacturés d'Orient contre les ressources agricoles de l'hinterland. Loin d'être une simple enclave fermée, Ikosim s'intègre profondément dans les dynamiques des puissants royaumes numides voisins, posant les bases d'une vocation bimillénaire : celle d'une cité-pont jetée entre les richesses de la terre africaine et les routes de la mer.</p>
                 </div>
                 <div class="epoch-image-container">
                     <div class="epoch-card">
@@ -365,7 +374,6 @@
                 </div>
             </section>
 
-            <!-- 2. LA PÉRIODE ROMAINE (Image à gauche, Texte à droite) -->
             <section class="epoch-section">
                 <div class="epoch-text">
                     <h2>La Période Romaine : L’impact d'Icosium</h2>
@@ -379,7 +387,6 @@
                 </div>
             </section>
 
-            <!-- 3. L'ÈRE PRÉ-OTTOMANE (Texte à gauche, Image à droite) -->
             <section class="epoch-section">
                 <div class="epoch-text">
                     <h2>L’Ère Pré-Ottomane : La refondation ziri</h2>
@@ -393,11 +400,10 @@
                 </div>
             </section>
 
-            <!-- 4. LA PÉRIODE OTTOMANE (Image à gauche, Texte à droite) -->
             <section class="epoch-section">
                 <div class="epoch-text">
                     <h2>La Période Ottomane : L'apogée de la Régence</h2>
-                    <p>Étouffés par le canon espagnol du Peñon, les notables d'Alger prennent en 1516 une décision radicale : appeler à l'aide les célèbres frères corsaires Aroudj et Khayr ad-Din Barberousse. Cette alliance scelle l’intégration d'Alger à l'Empire ottoman et marque la fondation de la redoutable Régence d'Alger, dont la ville devient la capitale souveraine. En 1529, Khayr ad-Din Barberousse réalise un exploit d’ingénierie et de guerre en détruisant le Peñon et en reliant les îlots à la terre ferme par une immense jetée, créant ainsi le premier véritable port fortifié moderne d’Alger. C'est le début d’un âge d'or exceptionnel qui va façonne à jamais l'identity visuelle de la ville. C’est durant ces trois siècles de domination maritime que <strong>se construit et s’organise la structure urbaine unique de la Casbah</strong> : un labyrinthe défensif génial de ruelles en escaliers, de maisons imbriquées à colonnades et de palais somptueux (Dar Aziza, Palais des Raïs) protégés par une immense muraille flanquée de portes fortifiées. La ville devient une puissance internationale redoutable, résistant à d'innombrables sièges européens avant de plier au XIXe siècle sous les mutations géopolitiques mondiales.</p>
+                    <p>Étouffés par le canon espagnol du Peñon, les notables d'Alger prennent en 1516 une décision radicale : appeler à l'aide les célèbres frères corsaires Aroudj et Khayr ad-Din Barberousse. Cette alliance scelle l’intégration d'Alger à l'Empire ottoman et marque la fondation de la redoutable Régence d'Alger, dont la ville devient la capitale souveraine. En 1529, Khayr ad-Din Barberousse réalise un exploit d’ingénierie et de guerre en détruisant le Peñon et en reliant les îlots à la terre ferme par une immense jetée, criando ainsi le premier véritable port fortifié moderne d’Alger. C'est le début d’un âge d'or exceptionnel qui va façonner à jamais l'identité visuelle de la ville. C’est durant ces trois siècles de domination maritime que <strong>se construit et s’organise la structure urbaine unique de la Casbah</strong> : un labyrinthe défensif génial de ruelles en escaliers, de maisons imbriquées à colonnades et de palais somptueux (Dar Aziza, Palais des Raïs) protégés par une immense muraille flanquée de portes fortifiées. La ville devient une puissance internationale redoutable, résistant à d'innombrables sièges européens avant de plier au XIXe siècle sous les mutations géopolitiques mondiales.</p>
                 </div>
                 <div class="epoch-image-container">
                     <div class="epoch-card">
@@ -407,7 +413,6 @@
                 </div>
             </section>
 
-            <!-- 5. LA PÉRIODE COLONIALE (Texte à gauche, Image à droite) -->
             <section class="epoch-section">
                 <div class="epoch-text">
                     <h2>La Période Coloniale : La fracture de la Ville Blanche</h2>
@@ -421,7 +426,6 @@
                 </div>
             </section>
 
-            <!-- 6. LA GUERRE DE LIBÉRATION (Image à gauche, Texte à droite) -->
             <section class="epoch-section">
                 <div class="epoch-text">
                     <h2>La Guerre de Libération : Le bastion de la Casbah</h2>
@@ -435,7 +439,6 @@
                 </div>
             </section>
 
-            <!-- 7. POST-LIBÉRATION ET CONTEMPORAIN (Texte à gauche, Image à droite) -->
             <section class="epoch-section">
                 <div class="epoch-text">
                     <h2>Post-Libération et Contemporain : Préserver la mémoire</h2>
@@ -453,7 +456,6 @@
 
 </body>
 </html>
-
 
     </main>
 
