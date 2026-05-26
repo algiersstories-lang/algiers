@@ -48,7 +48,7 @@ renderData:
   <!-- 3. Short Description -->
   {% if item.description %}
     <div class="description section" style="margin-bottom: 30px; font-size: 1.1rem; color: #444;">
-      <p>{{ item.description }}</p>
+      <p>{{ item.description | safe }}</p>
     </div>
   {% endif %}
 
@@ -64,7 +64,7 @@ renderData:
   <!-- 5. Long Description -->
   {% if item.long_description %}
     <div class="long-description section" style="margin-bottom: 30px;">
-      <p>{{ item.long_description }}</p>
+      <p>{{ item.long_description | safe }}</p>
     </div>
   {% endif %}
 
@@ -81,7 +81,7 @@ renderData:
   {% if item.geography %}
     <div class="geography section" style="margin-bottom: 30px;">
       <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Geography</h3>
-      <p>{{ item.geography }}</p>
+      <p>{{ item.geography | safe }}</p>
     </div>
   {% endif %}
 
@@ -98,7 +98,7 @@ renderData:
   {% if item.history %}
     <div class="history section" style="margin-bottom: 30px;">
       <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">History</h3>
-      <p>{{ item.history }}</p>
+      <p>{{ item.history | safe }}</p>
     </div>
   {% endif %}
 
@@ -115,7 +115,7 @@ renderData:
   {% if item.architecture %}
     <div class="architecture section" style="margin-bottom: 30px;">
       <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Architecture</h3>
-      <p>{{ item.architecture }}</p>
+      <p>{{ item.architecture | safe }}</p>
     </div>
   {% endif %}
 
