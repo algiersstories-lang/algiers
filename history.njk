@@ -19,6 +19,18 @@ title: "Histoire"
         }
 
         /* --- STYLES GÉNÉRAUX --- */
+
+        .hero-img {
+        width: 100%;
+        max-width: 1100px; /* Parfaitement aligné avec base.njk */
+        height: 450px;
+        object-fit: cover; /* Recadre proprement l'image peu importe l'écran */
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        display: block;
+        }
+
+
         body {
             font-family: 'Georgia', serif;
             background-color: var(--parchment);
@@ -163,6 +175,11 @@ title: "Histoire"
 <body>
 
     <div class="container">
+
+<div class="hero-container">
+    <img src="https://algiersstories-lang.github.io/images/palais_de_la_Jenina.jpeg" alt="Place_et_palais_de_la_Jenina_1832" class="hero-img">
+</div>
+
         <header>
             <h1>Chronique d'El-Djazair</h1>
             <p>Le fil de l'histoire, des origines antiques au défi contemporain</p>
