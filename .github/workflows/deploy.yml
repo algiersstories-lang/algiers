@@ -15,7 +15,7 @@ jobs:
       - name: Fetch CSV
         run: |
           mkdir -p _data
-          curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vRB0eibBgeCs2qWU8VLs0DcESaUiMceUA6aF-a5J27jDcR7xGqv-bkEDwJq0W8sLaUj4waOXG0qgOAh/pub?output=csv" -o _data/monuments.csv
+          curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vRB0eibBgeCs2qWU8VLs0DcESaUiMceUA6aF-a5J27jDcR7xGqv-bkEDwJq0W8sLaUj4waOXG0qgOAh/pub?gid=0&single=true&output=csv" -o _data/monuments.csv
       - run: npx @11ty/eleventy --pathprefix=/algiers/
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
