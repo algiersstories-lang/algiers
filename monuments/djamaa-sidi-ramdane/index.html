@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> | Casbah Explorer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+
+<link rel="icon" type="image/png" href="/algiers/images/logo-casbah-square.png">
+
+    <style>
+        /* --- BRANDING COLOR MATRIX (Variables) --- */
+        :root {
+            --parchment: #fcfaf2;   /* Soft historical crème background */
+            --charcoal: #2b2b2b;    /* High contrast dark tone for reading comfort */
+            --hist-teal: #005a5b;   /* Main heritage accent tone */
+            --med-blue: #4CB6C9;    /* Interactive action state links */
+            --white: #ffffff;
+            --mybrowny: #DDD9CC;   /*  my added browny color*/
+            --max-width: 1100px;
+        }
+
+        /* --- BASIC RESET & CORE LAYOUT --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', serif; /* Traditional literary body default */
+            background-color: var(--parchment);
+            color: var(--charcoal);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- GLOBAL TITLES SETUP --- */
+        h1, h2, h3, h4, .site-title {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            font-weight: 700;
+            color: var(--hist-teal);
+        }
+
+        /* --- RE-ARCHITECTED GLOBAL NAVIGATION HEADER --- */
+        /* Fixed layout structure with independent scoping to prevent local pages from leaking styles */
+        header.site-header {
+            background-color: var(--white);
+            border-bottom: 3px solid var(--hist-teal);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001; /* Prevents maps or iframe elements from overlaying the menu */
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Site Identity / Logo Title */
+        .site-branding {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .site-title {
+            font-size: 1.4rem;
+            color: var(--hist-teal);
+            letter-spacing: 0.5px;
+        }
+
+        /* Menu Links */
+        nav.main-navigation ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav.main-navigation a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav.main-navigation a:hover,
+        nav.main-navigation a.active {
+            color: var(--med-blue);
+        }
+
+        /* --- MAIN VIEWPORT CONTAINMENT --- */
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: var(--max-width);
+            width: 100%;
+            margin: 0 auto;
+            /* Offset to account for the fixed header height so local layout top-titles are fully visible */
+            margin-top: 80px; 
+            min-height: 80vh;
+        }
+
+        /* --- GLOBAL FOOTER ARCHIVE STYLING --- */
+        footer.site-footer {
+            background-color: #f1ebd9; /* Marginally darker parchment hue for separation */
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            color: #555555;
+        }
+
+        /* --- MOBILE MEDIA DISPARITIES ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            nav.main-navigation ul {
+                gap: 15px;
+                font-size: 0.9rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            main {
+                margin-top: 110px; /* Expands top safe offset buffer space when nav wraps on smaller mobiles */
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="/algiers/" class="site-branding">
+                <span class="site-title">Casbah Explorer</span>
+            </a>
+            <nav class="main-navigation">
+                <ul>
+                    <li><a href="/algiers/">Accueil</a></li>
+                    <li><a href="/algiers/list/">Sites</a></li>
+                    <li><a href="/algiers/map/">Carte</a></li>
+                    <li><a href="/algiers/history/">Histoire</a></li>
+                    <li><a href="/algiers//about/">À Propos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+<!-- ======================================================================
+     Images ARRAY PROCESSING
+     Converts the comma-separated string into a clean Nunjucks array
+     ====================================================================== -->
+
+  
+
+
+<!-- ======================================================================
+     Captions ARRAY PROCESSING
+     Converts the comma-separated string into a clean Nunjucks array
+     ====================================================================== -->
+
+  
+
+
+
+
+<article class="monument-container" style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: system-ui, -apple-system, sans-serif; color: #333; line-height: 1.6;">
+  
+  <!-- 1. Monument Name -->
+  <h1 class="monument-title" style="font-size: 2.5rem; color: var(--charcoal, #222); margin-bottom: 10px;">Djamaa Sidi Ramdane</h1>
+
+  <!-- 2. Info Box (Category, Period, Dynasty, Status) -->
+  <div class="info-box" style="background-color: #EBE0CC; padding: 20px; border-radius: 8px; margin-bottom: 30px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+    <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
+      <li><strong style="color: #555;">Category:</strong> Mosque</li>
+      <li><strong style="color: #555;">Period:</strong> 11 ieme siècle</li>
+      <li><strong style="color: #555;">Dynasty:</strong> pre-othamane</li>
+      <li><strong style="color: #555;">Status:</strong> Ouvert pour la priere</li>
+    </ul>
+  </div>
+
+
+
+      <a href="http://maps.google.com/?q=36.78642,3.05830" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="btn map-btn" 
+         style="display: inline-block; padding: 12px 24px; background-color: var(--mybrowny, #008080); color: var(--hist-teal);text-align: center; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
+         🗺️ View on Google Maps
+      </a>
+    
+
+  <!-- 3. Short Description -->
+  
+    <div class="description section" style="margin-bottom: 30px; font-size: 1.1rem; color: #444;">
+      <p>One of the oldest mosques in Algiers, dating back to the 11th century.</p>
+    </div>
+  
+
+  <!-- 4. Image 1 (Clickable, Opens Full Size) -->
+  
+
+
+
+
+
+  <!-- 5. Long Description -->
+  
+    <div class="long-description section" style="margin-bottom: 30px;">
+      <p> Cette mosquée est l'un des joyaux médiévaux les plus anciens de la médina d'Alger, témoignant de la ferveur religieuse dès les premiers siècles de l'époque musulmane
+. Elle figure parmi les édifices religieux majeurs de la Casbah, aux côtés de monuments célèbres comme la mosquée Ketchaoua ou la Grande Mosquée
+. Son importance est telle qu'elle contribue directement à la dimension culturelle universelle du quartier, classé au patrimoine mondial de l'UNESCO depuis 1992
+. En tant que structure médiévale, elle représente la pérennité de l'identité arabo-berbère au cœur de la capitale algérienne
+. C'est un point de repère spirituel et social essentiel pour les habitants de la vieille cité depuis des générations</p>
+    </div>
+  
+
+  <!-- 6. Image 2 (Clickable, Opens Full Size) -->
+  
+
+  <!-- 7. Geography -->
+  
+    <div class="geography section" style="margin-bottom: 30px;">
+      <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Localisation et posisionnement</h3>
+      <p>L'édifice est niché dans la partie haute de la Casbah, au sein d'un tissu urbain dense caractérisé par des rues étroites et escarpées
+. Les données de localisation la situent précisément à une distance d'environ 281 mètres de la célèbre mosquée Ali Bitchin
+. Son emplacement stratégique dans la médina traditionnelle permettait autrefois d'être un point névralgique de la vie spirituelle de la haute ville
+. Elle est parfaitement intégrée dans le bâti vernaculaire qui définit l'architecture traditionnelle de cet ensemble protégé
+. Sa position en fait une étape fondamentale dans le parcours historique reliant les différents quartiers de la cité antique
+.</p>
+    </div>
+  
+
+  <!-- 8. Image 3 (Clickable, Opens Full Size) -->
+  
+
+  <!-- 9. History -->
+  
+    <div class="history section" style="margin-bottom: 30px;">
+      <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Histoire</h3>
+      <p>La fondation de Djamaâ Sidi Ramdane remonte au XIe siècle, ce qui en fait l'une des structures les plus anciennes encore debout à Alger
+. Elle a traversé les époques médiévales, résistant aux nombreux bouleversements politiques et aux transformations urbaines successives
+. Son nom évoque une époque bien antérieure à la Régence ottomane, rappelant les racines islamiques profondes de la ville d'El-Djezaïr
+. Contrairement à d'autres mosquées transformées en églises durant la période coloniale, elle a conservé sa vocation originelle
+. Elle demeure aujourd'hui un témoin vivant de la résilience culturelle et de l'histoire mouvementée de l'Algérie
+.</p>
+    </div>
+  
+
+  <!-- 10. Image 4 (Clickable, Opens Full Size) -->
+  
+
+  <!-- 11. Architecture -->
+  
+    <div class="architecture section" style="margin-bottom: 30px;">
+      <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Architecture</h3>
+      <p>En tant que mosquée médiévale, son architecture reflète la sobriété et la simplicité caractéristiques des premières constructions religieuses du Maghreb
+. Elle s'inscrit dans la tradition des mosquées de type médinal, privilégiant la fonctionnalité et une organisation spatiale sobre
+. Sa structure utilise des matériaux locaux pour s'harmoniser avec l'environnement immédiat de la médina d'Alger
+. Bien que les sources ne détaillent pas chaque ornement, son caractère ancien implique l'utilisation de toitures simples, souvent dépourvues des grandes coupoles ottomanes tardives
+. Elle incarne ainsi l'authenticité d'un savoir-faire architectural ancestral préservé au sein du secteur sauvegardé de la Casbah
+.</p>
+    </div>
+  
+
+  <!-- Actions Panel (Maps & Links) -->
+  <div class="actions-panel" style="display: flex; flex-wrap: wrap; gap: 15px; margin: 35px 0; padding-top: 20px; border-top: 1px solid #eee;">
+    <!-- 12. Google Map Button -->
+
+
+      <a href="http://maps.google.com/?q=36.78642,3.05830" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="btn map-btn" 
+         style="display: inline-block; padding: 12px 24px; background-color: var(--mybrowny, #008080); color: var(--hist-teal);text-align: center; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
+         🗺️ View on Google Maps
+      </a>
+    
+
+
+    <!-- 13. External Link -->
+    
+      <a href="https://fr.wikipedia.org/wiki/Mosqu%C3%A9e_Sidi_Ramdane" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="btn external-btn" 
+         style="display: inline-block; padding: 12px 24px; background-color: var(--mybrowny, #0056b3); color: var(--hist-teal);text-align: center; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
+         Plus d'information sur le site...
+      </a>
+    
+  </div>
+
+  <!-- 14. Remaining Images Gallery (Clickable, Sized Consistently) -->
+  
+
+</article>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Casbah Explorer. Projet patrimonial, bénévole et indépendant dédié à la mémoire d'Alger.</p>
+    </footer>
+
+</body>
+</html>

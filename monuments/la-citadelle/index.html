@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> | Casbah Explorer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+
+<link rel="icon" type="image/png" href="/algiers/images/logo-casbah-square.png">
+
+    <style>
+        /* --- BRANDING COLOR MATRIX (Variables) --- */
+        :root {
+            --parchment: #fcfaf2;   /* Soft historical crème background */
+            --charcoal: #2b2b2b;    /* High contrast dark tone for reading comfort */
+            --hist-teal: #005a5b;   /* Main heritage accent tone */
+            --med-blue: #4CB6C9;    /* Interactive action state links */
+            --white: #ffffff;
+            --mybrowny: #DDD9CC;   /*  my added browny color*/
+            --max-width: 1100px;
+        }
+
+        /* --- BASIC RESET & CORE LAYOUT --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', serif; /* Traditional literary body default */
+            background-color: var(--parchment);
+            color: var(--charcoal);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- GLOBAL TITLES SETUP --- */
+        h1, h2, h3, h4, .site-title {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            font-weight: 700;
+            color: var(--hist-teal);
+        }
+
+        /* --- RE-ARCHITECTED GLOBAL NAVIGATION HEADER --- */
+        /* Fixed layout structure with independent scoping to prevent local pages from leaking styles */
+        header.site-header {
+            background-color: var(--white);
+            border-bottom: 3px solid var(--hist-teal);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001; /* Prevents maps or iframe elements from overlaying the menu */
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Site Identity / Logo Title */
+        .site-branding {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .site-title {
+            font-size: 1.4rem;
+            color: var(--hist-teal);
+            letter-spacing: 0.5px;
+        }
+
+        /* Menu Links */
+        nav.main-navigation ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav.main-navigation a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav.main-navigation a:hover,
+        nav.main-navigation a.active {
+            color: var(--med-blue);
+        }
+
+        /* --- MAIN VIEWPORT CONTAINMENT --- */
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: var(--max-width);
+            width: 100%;
+            margin: 0 auto;
+            /* Offset to account for the fixed header height so local layout top-titles are fully visible */
+            margin-top: 80px; 
+            min-height: 80vh;
+        }
+
+        /* --- GLOBAL FOOTER ARCHIVE STYLING --- */
+        footer.site-footer {
+            background-color: #f1ebd9; /* Marginally darker parchment hue for separation */
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            color: #555555;
+        }
+
+        /* --- MOBILE MEDIA DISPARITIES ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            nav.main-navigation ul {
+                gap: 15px;
+                font-size: 0.9rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            main {
+                margin-top: 110px; /* Expands top safe offset buffer space when nav wraps on smaller mobiles */
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="/algiers/" class="site-branding">
+                <span class="site-title">Casbah Explorer</span>
+            </a>
+            <nav class="main-navigation">
+                <ul>
+                    <li><a href="/algiers/">Accueil</a></li>
+                    <li><a href="/algiers/list/">Sites</a></li>
+                    <li><a href="/algiers/map/">Carte</a></li>
+                    <li><a href="/algiers/history/">Histoire</a></li>
+                    <li><a href="/algiers//about/">À Propos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+<!-- ======================================================================
+     Images ARRAY PROCESSING
+     Converts the comma-separated string into a clean Nunjucks array
+     ====================================================================== -->
+
+  
+
+
+<!-- ======================================================================
+     Captions ARRAY PROCESSING
+     Converts the comma-separated string into a clean Nunjucks array
+     ====================================================================== -->
+
+  
+
+
+
+
+<article class="monument-container" style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: system-ui, -apple-system, sans-serif; color: #333; line-height: 1.6;">
+  
+  <!-- 1. Monument Name -->
+  <h1 class="monument-title" style="font-size: 2.5rem; color: var(--charcoal, #222); margin-bottom: 10px;">La Citadelle</h1>
+
+  <!-- 2. Info Box (Category, Period, Dynasty, Status) -->
+  <div class="info-box" style="background-color: #EBE0CC; padding: 20px; border-radius: 8px; margin-bottom: 30px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+    <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
+      <li><strong style="color: #555;">Category:</strong> Fort</li>
+      <li><strong style="color: #555;">Period:</strong> N/A</li>
+      <li><strong style="color: #555;">Dynasty:</strong> N/A</li>
+      <li><strong style="color: #555;">Status:</strong> Ouvert partiellement pour visite (en cours de restauraton</li>
+    </ul>
+  </div>
+
+
+
+      <a href="http://maps.google.com/?q=36.78468878,3.054712983" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="btn map-btn" 
+         style="display: inline-block; padding: 12px 24px; background-color: var(--mybrowny, #008080); color: var(--hist-teal);text-align: center; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
+         🗺️ View on Google Maps
+      </a>
+    
+
+  <!-- 3. Short Description -->
+  
+    <div class="description section" style="margin-bottom: 30px; font-size: 1.1rem; color: #444;">
+      <p>Située à 118 mètres d'altitude au point culminant de la cité, la citadelle comprenait un ensemble d'édifices à caractère militaire.</p>
+    </div>
+  
+
+  <!-- 4. Image 1 (Clickable, Opens Full Size) -->
+  
+
+
+
+
+
+  <!-- 5. Long Description -->
+  
+    <div class="long-description section" style="margin-bottom: 30px;">
+      <p><p>On a fini par appeler toute la vieille ville "Casbah" mais à l'origine ce mot désignait, plus justement, la forte-resse qui couronnait El Djezair.
+
+Située à 118 mètres d'altitude au point culminant de la cité, la citadelle comprenait un ensemble d'édifices à caractère militaire.
+
+On avait accès à la Casbah par une percée effectuée dans le rempart méridional, Bab el Djedid (Porte Neuve en français).
+
+Le nom de "Bab el Djedid" est encore employé par les Algérois et ne semble pas avoir été altéré par quatre siècles d'ancienneté! Si la porte n'existe plus, son emplacement est toujours visible à côté du palais du Dey au début de l'avenue Taleb Mohamed.
+
+La citadelle construite au cours du XVI siècle a été achevée en l'an 1000 de l'Hégire (1591 après J.C.) comme l'indique le chronogramme de l'inscription dominant l'entrée actuelle du Palais du Dey. </p><br>
+
+<p> <b>Le palais du dey.</b> <br>
+
+En fait ce palais n'avait pas été bâti à l'intention des deys qui résidaient alors au coeur d'El Djezaïr dans la célèbre <strong> "Djénina" </strong>. Celle-ci était située près de la Place des Martyrs, avant sa destruction, au début de l'occupation française.
+
+Ce n'est qu'en 1817 que le dey Ali Khodja quitta la Djénina pour installer le siège du Gouvernement dans le palais de la citadelle.
+
+Son successeur, le Dey Hussein y demeura aussi jusqu'à sa capitulation en 1830.
+
+A la porte d'entrée on voit encore une lourde chaîne qui pend en forme d'ancre au-dessous de l'auvent. Ces étranges agrès ont une histoire:
+
+On dit que quiconque saisissait cette chaîne en demandant: "Justi-ce de Dieu!", était placé sous la protection du Dey.
+
+Une fois le seuil franchi, on a accès à une première "Sqifa" qui était alors richement décorée et où des navires en miniature étaient suspendus.
+
+Un jet d'eau en marbre se dressait au coude du vestibule. On peut encore l'admirer au Foyer des officiers de l'A.N.P. du Square Port Saïd où il se trouve.
+
+Une deuxième sqifa donne ensuite sur une grande cour dallée de marbre et ornée d'une vasque à deux étages. </p></p>
+    </div>
+  
+
+  <!-- 6. Image 2 (Clickable, Opens Full Size) -->
+  
+
+  <!-- 7. Geography -->
+  
+    <div class="geography section" style="margin-bottom: 30px;">
+      <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Localisation et posisionnement</h3>
+      <p>C'est en bordure de cette cour que se trouve la galerie à double rangée de colonnes en marbre blanc où le Dey rendait la justice et accordait ses audiences. <br>
+
+C'était la salle du Divan avec ses banquettes recouvertes de drap rouge et rehaussées de coussins de velours brodés d'or.
+
+La célèbre scène dite du "coup d'éventail" eut lieu dans cette salle et non dans le kiosque situé au deuxième étage à l'angle dominant la cour, comme on a tendance à le faire croire. <br>
+
+
+
+C'était le 29 Avril 1827 lorsque le Dey rappela au Consul Deval le non-règlement des dettes françaises. L'attitude du diplomate étranger, ses manières insolentes et son caractère fuyant furent tels que Hussein lui intima l'ordre de sortir, à l'aide de son chasse-mouches.
+
+Bien plus tard, cet incident fut grossi et repris pour servir de prétexte à l'invasion de l'Algérie.
+
+Derrière la galerie du Divan, on trouve encore aujourd'hui les salles du Trésor du Beylik où étaient entassés les monnaies d'or et d'argent ainsi que les cadeaux précieux. Toutes ces richesses furent pillées au lendemain de l'occupation de la Casbah en 1830.
+
+"Dar El Baroud" et les batteries
+
+De l'autre côté de l'Avenue Taleb, on reconnait "Dar El Ba-roud", la poudrière, bâtiment polygonal voûté dont la construction remonte au XV siècle.
+
+Conçue à l'épreuve des bombes, elle servait de dépôt pour le matériel de guerre et l'approvisionnement de la milice. Le Dey
+
+
+Photo( la poudrière, l'emplacement canons).
+
+fit recouvrir de balles de laine la poudrière pour faire face aux bombardements de 1830.
+
+Non loin de là, se trouve le belvédère qui subsiste encore avec ses embrasures d'où pointaient les bouches de canons et d'où l'on peut toujours admirer la splendide baie d'Alger.
+
+Une autre batterie située plus au sud assurait la défense vers l'exté rieur de la ville.</p>
+    </div>
+  
+
+  <!-- 8. Image 3 (Clickable, Opens Full Size) -->
+  
+
+  <!-- 9. History -->
+  
+    <div class="history section" style="margin-bottom: 30px;">
+      <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Histoire</h3>
+      <p>Dominant la poudrière se dressent encore les pavillons réservés aux beys d'Oran et de Constantine qui y étaient accueillis lorsqu' ils venaient rendre compte au Dey de leur administration.
+
+Les mosquées de la Citadelle
+
+Deux mosquées subsistent de part et d'autre du Palais du Dey.
+
+En bas, Djamaa El Qasbah el Barrani, la modeste mosquée "extérieure" reconstruite en 1818, transformée au lendemain de l'occupation en caserne française puis en église Sainte Croix et rendue au culte musulman à l'indépendance de l'Algérie.
+
+Photos (Djamaa El casbah El barrani)
+
+
+Plus imposante, la mosquée Ali Khodja communiquait directe-ment avec le Palais du Dey. Les fidèles continuent à faire leur prière dans la grande salle carrée ornée de colonnes en marbre, sous l'impressionnant dôme octogonal.
+
+Aujourd'hui la citadelle de la Casbah est restaurée et mise en valeur pour former un ensemble culturel comprenant notamment un musée de site où sera retracée l'histoire d'El Djezaïr.</p>
+    </div>
+  
+
+  <!-- 10. Image 4 (Clickable, Opens Full Size) -->
+  
+
+  <!-- 11. Architecture -->
+  
+
+  <!-- Actions Panel (Maps & Links) -->
+  <div class="actions-panel" style="display: flex; flex-wrap: wrap; gap: 15px; margin: 35px 0; padding-top: 20px; border-top: 1px solid #eee;">
+    <!-- 12. Google Map Button -->
+
+
+      <a href="http://maps.google.com/?q=36.78468878,3.054712983" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="btn map-btn" 
+         style="display: inline-block; padding: 12px 24px; background-color: var(--mybrowny, #008080); color: var(--hist-teal);text-align: center; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
+         🗺️ View on Google Maps
+      </a>
+    
+
+
+    <!-- 13. External Link -->
+    
+      <a href="https://fr.wikipedia.org/wiki/Citadelle_d%27Alger" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="btn external-btn" 
+         style="display: inline-block; padding: 12px 24px; background-color: var(--mybrowny, #0056b3); color: var(--hist-teal);text-align: center; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
+         Plus d'information sur le site...
+      </a>
+    
+  </div>
+
+  <!-- 14. Remaining Images Gallery (Clickable, Sized Consistently) -->
+  
+
+</article>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Casbah Explorer. Projet patrimonial, bénévole et indépendant dédié à la mémoire d'Alger.</p>
+    </footer>
+
+</body>
+</html>
