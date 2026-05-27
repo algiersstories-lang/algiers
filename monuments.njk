@@ -74,7 +74,7 @@ renderData:
       {# Adding the caption underneath the photo #}
       {% if captionList[0] %}
       <p class="image-caption">{{ captionList[0] | trim | safe }}</p>
-
+      {% endif %}
     </div>
   {% endif %}
 
@@ -99,7 +99,7 @@ renderData:
       {# Adding the caption underneath the photo #}
       {% if captionList[1] %}
       <p class="image-caption">{{ captionList[1] | trim | safe }}</p>
-
+      {% endif %}
     </div>
   {% endif %}
 
@@ -121,7 +121,7 @@ renderData:
       {# Adding the caption underneath the photo #}
       {% if captionList[2] %}
       <p class="image-caption">{{ captionList[2] | trim | safe }}</p>
-
+      {% endif %}
     </div>
   {% endif %}
 
@@ -143,6 +143,7 @@ renderData:
       {# Adding the caption underneath the photo #}
       {% if captionList[3] %}
       <p class="image-caption">{{ captionList[3] | trim | safe }}</p>
+      {% endif %}
     </div>
   {% endif %}
 
