@@ -1,3 +1,23 @@
+{% if captionList[0] %}
+  <p class="image-caption">{{ captionList[0] | trim | safe }}</p>
+
+</div>
+{% endif %} ```
+
+### **2. The Visual Layout Error (`flex-direction`)**
+Your image wrapper uses `display: flex; justify-content: center;`. By default, Flexbox aligns items horizontally (side-by-side). If you put a caption inside that wrapper without changing the direction, the text will appear stuck to the *right* of the photo instead of underneath it. 
+* **The Fix:** I added `flex-direction: column; align-items: center;` to the wrappers so the photo sits on top, and the caption sits neatly centered below it.
+
+### **3. The Missing Bottom Gallery Captions**
+You added captions to the first four images, but section 14 (the remaining gallery loop) didn't have the logic to pull the extra captions. I added `{% set currentCaption = captionList[loop.index0 + 4] %}` so that images 5, 6, and 7 also get their corresponding legends!
+
+---
+
+### **The Fully Corrected `monument.njk` Code**
+
+Copy and paste this entire block to overwrite your current `monument.njk` file. It is now completely safe, responsive, and ready to deploy:
+
+```html
 ---
 layout: base.njk
 pagination:
@@ -9,20 +29,12 @@ renderData:
   title: "{{ item.name }}"
 ---
 
-<!-- ======================================================================
-     Images ARRAY PROCESSING
-     Converts the comma-separated string into a clean Nunjucks array
-     ====================================================================== -->
 {% if item.images %}
   {% set imageList = item.images.split(',') %}
 {% else %}
   {% set imageList = [] %}
 {% endif %}
 
-<!-- ======================================================================
-     Captions ARRAY PROCESSING
-     Converts the comma-separated string into a clean Nunjucks array
-     ====================================================================== -->
 {% if item.captions %}
   {% set captionList = item.captions.split(',') %}
 {% else %}
@@ -30,13 +42,10 @@ renderData:
 {% endif %}
 
 
-
 <article class="monument-container" style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: system-ui, -apple-system, sans-serif; color: #333; line-height: 1.6;">
   
-  <!-- 1. Monument Name -->
   <h1 class="monument-title" style="font-size: 2.5rem; color: var(--charcoal, #222); margin-bottom: 10px;">{{ item.name }}</h1>
 
-  <!-- 2. Info Box (Category, Period, Dynasty, Status) -->
   <div class="info-box" style="background-color: #EBE0CC; padding: 20px; border-radius: 8px; margin-bottom: 30px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
     <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
       <li><strong style="color: #555;">Category:</strong> {{ item.category if item.category else 'N/A' }}</li>
@@ -46,86 +55,77 @@ renderData:
     </ul>
   </div>
 
-
-{% if item.lat and item.lon %}
-      <a href="http://maps.google.com/?q={{ item.lat }},{{ item.lon }}" 
+  {% if item.lat and item.lon %}
+      <a href="http://maps.google.com/?q={{ item.lat | trim }},{{ item.lon | trim }}" 
          target="_blank" 
          rel="noopener noreferrer" 
          class="btn map-btn" 
-         style="display: inline-block; padding: 12px 24px; background-color: var(--mybrowny, #008080); color: var(--hist-teal);text-align: center; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">
+         style="display: inline-block; padding: 12px 24px; background-color: var(--mybrowny, #008080); color: var(--hist-teal);text-align: center; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s; margin-bottom: 20px;">
          🗺️ View on Google Maps
       </a>
     {% endif %}
 
-  <!-- 3. Short Description -->
   {% if item.description %}
     <div class="description section" style="margin-bottom: 30px; font-size: 1.1rem; color: #444;">
       <p>{{ item.description | safe }}</p>
     </div>
   {% endif %}
 
-  <!-- 4. Image 1 (Clickable, Opens Full Size) -->
   {% if imageList[0] %}
-    <div class="interleaved-image-wrapper" style="display: flex; justify-content: center; margin: 30px 0;">
+    <div class="interleaved-image-wrapper" style="display: flex; flex-direction: column; align-items: center; margin: 30px 0;">
       <a href="{{ imageList[0] | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 600px; cursor: zoom-in;">
         <img src="{{ imageList[0] | trim }}" alt="{{ item.name }} - View 1" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity 0.2s;">
       </a>
 
       {# Adding the caption underneath the photo #}
       {% if captionList[0] %}
-      <p class="image-caption">{{ captionList[0] | trim | safe }}</p>
+        <p class="image-caption" style="margin-top: 10px; font-style: italic; color: #666; text-align: center;">{{ captionList[0] | trim | safe }}</p>
       {% endif %}
+
     </div>
   {% endif %}
 
-
-
-
-
-  <!-- 5. Long Description -->
   {% if item.long_description %}
     <div class="long-description section" style="margin-bottom: 30px;">
       <p>{{ item.long_description | safe }}</p>
     </div>
   {% endif %}
 
-  <!-- 6. Image 2 (Clickable, Opens Full Size) -->
   {% if imageList[1] %}
-    <div class="interleaved-image-wrapper" style="display: flex; justify-content: center; margin: 30px 0;">
+    <div class="interleaved-image-wrapper" style="display: flex; flex-direction: column; align-items: center; margin: 30px 0;">
       <a href="{{ imageList[1] | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 600px; cursor: zoom-in;">
         <img src="{{ imageList[1] | trim }}" alt="{{ item.name }} - View 2" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity 0.2s;">
       </a>
 
       {# Adding the caption underneath the photo #}
       {% if captionList[1] %}
-      <p class="image-caption">{{ captionList[1] | trim | safe }}</p>
+        <p class="image-caption" style="margin-top: 10px; font-style: italic; color: #666; text-align: center;">{{ captionList[1] | trim | safe }}</p>
       {% endif %}
+
     </div>
   {% endif %}
 
-  <!-- 7. Geography -->
   {% if item.geography %}
     <div class="geography section" style="margin-bottom: 30px;">
-      <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Localisation et posisionnement</h3>
+      <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Localisation et positionnement</h3>
       <p>{{ item.geography | safe }}</p>
     </div>
   {% endif %}
 
-  <!-- 8. Image 3 (Clickable, Opens Full Size) -->
   {% if imageList[2] %}
-    <div class="interleaved-image-wrapper" style="display: flex; justify-content: center; margin: 30px 0;">
+    <div class="interleaved-image-wrapper" style="display: flex; flex-direction: column; align-items: center; margin: 30px 0;">
       <a href="{{ imageList[2] | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 600px; cursor: zoom-in;">
         <img src="{{ imageList[2] | trim }}" alt="{{ item.name }} - Geography context" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity 0.2s;">
       </a>
 
       {# Adding the caption underneath the photo #}
       {% if captionList[2] %}
-      <p class="image-caption">{{ captionList[2] | trim | safe }}</p>
+        <p class="image-caption" style="margin-top: 10px; font-style: italic; color: #666; text-align: center;">{{ captionList[2] | trim | safe }}</p>
       {% endif %}
+
     </div>
   {% endif %}
 
-  <!-- 9. History -->
   {% if item.history %}
     <div class="history section" style="margin-bottom: 30px;">
       <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Histoire</h3>
@@ -133,21 +133,20 @@ renderData:
     </div>
   {% endif %}
 
-  <!-- 10. Image 4 (Clickable, Opens Full Size) -->
   {% if imageList[3] %}
-    <div class="interleaved-image-wrapper" style="display: flex; justify-content: center; margin: 30px 0;">
+    <div class="interleaved-image-wrapper" style="display: flex; flex-direction: column; align-items: center; margin: 30px 0;">
       <a href="{{ imageList[3] | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 600px; cursor: zoom-in;">
         <img src="{{ imageList[3] | trim }}" alt="{{ item.name }} - Historical View" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity 0.2s;">
       </a>
 
       {# Adding the caption underneath the photo #}
       {% if captionList[3] %}
-      <p class="image-caption">{{ captionList[3] | trim | safe }}</p>
+        <p class="image-caption" style="margin-top: 10px; font-style: italic; color: #666; text-align: center;">{{ captionList[3] | trim | safe }}</p>
       {% endif %}
+
     </div>
   {% endif %}
 
-  <!-- 11. Architecture -->
   {% if item.architecture %}
     <div class="architecture section" style="margin-bottom: 30px;">
       <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; margin-bottom: 15px;">Architecture</h3>
@@ -155,12 +154,10 @@ renderData:
     </div>
   {% endif %}
 
-  <!-- Actions Panel (Maps & Links) -->
   <div class="actions-panel" style="display: flex; flex-wrap: wrap; gap: 15px; margin: 35px 0; padding-top: 20px; border-top: 1px solid #eee;">
-    <!-- 12. Google Map Button -->
-
-{% if item.lat and item.lon %}
-      <a href="http://maps.google.com/?q={{ item.lat }},{{ item.lon }}" 
+    
+    {% if item.lat and item.lon %}
+      <a href="http://maps.google.com/?q={{ item.lat | trim }},{{ item.lon | trim }}" 
          target="_blank" 
          rel="noopener noreferrer" 
          class="btn map-btn" 
@@ -170,7 +167,6 @@ renderData:
     {% endif %}
 
 
-    <!-- 13. External Link -->
     {% if item.external_link %}
       <a href="{{ item.external_link }}" 
          target="_blank" 
@@ -182,17 +178,23 @@ renderData:
     {% endif %}
   </div>
 
-  <!-- 14. Remaining Images Gallery (Clickable, Sized Consistently) -->
   {% if imageList.length > 4 %}
     <div class="remaining-gallery section" style="margin-top: 50px; border-top: 2px solid #eee; padding-top: 20px;">
       <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; margin-bottom: 20px;">Additional Photo Gallery</h3>
       <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px;">
         {% for photoUrl in imageList.slice(4) %}
           {% if photoUrl | trim %}
-            <div class="gallery-item" style="display: flex; justify-content: center;">
+            <div class="gallery-item" style="display: flex; flex-direction: column; align-items: center;">
               <a href="{{ photoUrl | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; cursor: zoom-in;">
                 <img src="{{ photoUrl | trim }}" alt="Additional view of {{ item.name }}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); transition: opacity 0.2s;">
               </a>
+              
+              {# Adding the caption underneath the extra gallery photos #}
+              {% set currentCaption = captionList[loop.index0 + 4] %}
+              {% if currentCaption %}
+                <p class="image-caption" style="margin-top: 8px; font-size: 0.85rem; font-style: italic; color: #666; text-align: center;">{{ currentCaption | trim | safe }}</p>
+              {% endif %}
+
             </div>
           {% endif %}
         {% endfor %}
