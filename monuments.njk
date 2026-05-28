@@ -207,11 +207,11 @@ renderData:
   </div>
 
   <!-- 14. Remaining Images Gallery (Clickable, Sized Consistently) -->
-  {% if imageList.length > 4 %}
+  {% if imageList.length > 5 %}
     <div class="remaining-gallery section" style="margin-top: 50px; border-top: 2px solid #eee; padding-top: 20px;">
       <h3 style="color: var(--hist-teal, #008080); font-size: 1.5rem; margin-bottom: 20px;">Additional Photo Gallery</h3>
       <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px;">
-        {% for photoUrl in imageList.slice(4) %}
+        {% for photoUrl in imageList.slice(5) %}
           {% if photoUrl | trim %}
             <div class="gallery-item" style="display: flex; justify-content: center;">
               <a href="{{ photoUrl | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; cursor: zoom-in;">
