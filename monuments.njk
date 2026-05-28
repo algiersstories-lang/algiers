@@ -66,7 +66,6 @@ renderData:
 
   <!-- 4. Image 1 (Clickable, Opens Full Size) -->
 
-
 {% if imageList[0] %}
   <div class="interleaved-image-wrapper" style="display: flex; flex-direction: column; align-items: center; margin: 30px 0;">
     <a href="{{ imageList[0] | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 600px; cursor: zoom-in;">
@@ -92,18 +91,19 @@ renderData:
   {% endif %}
 
   <!-- 6. Image 2 (Clickable, Opens Full Size) -->
-  {% if imageList[1] %}
-    <div class="interleaved-image-wrapper" style="display: flex; justify-content: center; margin: 30px 0;">
-      <a href="{{ imageList[1] | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 600px; cursor: zoom-in;">
-        <img src="{{ imageList[1] | trim }}" alt="{{ item.name }} - View 2" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity 0.2s;">
-      </a>
-<br>
-      {# Adding the caption underneath the photo #}
-      {% if captionList[1] %}
-      <p>{{ captionList[1] | trim | safe }}</p>
-      {% endif %}
-    </div>
-  {% endif %}
+ {% if imageList[1] %}
+  <div class="interleaved-image-wrapper" style="display: flex; flex-direction: column; align-items: center; margin: 30px 0;">
+    <a href="{{ imageList[1] | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 600px; cursor: zoom-in;">
+      <img src="{{ imageList[1] | trim }}" alt="{{ item.name }} - View 1" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity 0.2s;">
+    </a>
+
+    {# Adding the caption underneath the photo #}
+    {% if captionList[1] %}
+    <p style="margin-top: 12px; font-style: italic; font-size: 0.95rem; opacity: 0.8; text-align: center;">
+      {{ captionList[1] | trim | safe }}
+    </p>
+    {% endif %}
+  </div>
 
   <!-- 7. Geography -->
   {% if item.geography %}
@@ -115,17 +115,18 @@ renderData:
 
   <!-- 8. Image 3 (Clickable, Opens Full Size) -->
   {% if imageList[2] %}
-    <div class="interleaved-image-wrapper" style="display: flex; justify-content: center; margin: 30px 0;">
-      <a href="{{ imageList[2] | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 600px; cursor: zoom-in;">
-        <img src="{{ imageList[2] | trim }}" alt="{{ item.name }} - Geography context" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity 0.2s;">
-      </a>
-<br>
-      {# Adding the caption underneath the photo #}
-      {% if captionList[2] %}
-      <p>{{ captionList[2] | trim | safe }}</p>
-      {% endif %}
-    </div>
-  {% endif %}
+  <div class="interleaved-image-wrapper" style="display: flex; flex-direction: column; align-items: center; margin: 30px 0;">
+    <a href="{{ imageList[2] | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 600px; cursor: zoom-in;">
+      <img src="{{ imageList[2] | trim }}" alt="{{ item.name }} - View 1" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity 0.2s;">
+    </a>
+
+    {# Adding the caption underneath the photo #}
+    {% if captionList[2] %}
+    <p style="margin-top: 12px; font-style: italic; font-size: 0.95rem; opacity: 0.8; text-align: center;">
+      {{ captionList[2] | trim | safe }}
+    </p>
+    {% endif %}
+  </div>
 
   <!-- 9. History -->
   {% if item.history %}
@@ -137,17 +138,18 @@ renderData:
 
   <!-- 10. Image 4 (Clickable, Opens Full Size) -->
   {% if imageList[3] %}
-    <div class="interleaved-image-wrapper" style="display: flex; justify-content: center; margin: 30px 0;">
-      <a href="{{ imageList[3] | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 600px; cursor: zoom-in;">
-        <img src="{{ imageList[3] | trim }}" alt="{{ item.name }} - Historical View" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity 0.2s;">
-      </a>
-<br>
-      {# Adding the caption underneath the photo #}
-      {% if captionList[3] %}
-      <p>{{ captionList[3] | trim | safe }}</p>
-      {% endif %}
-    </div>
-  {% endif %}
+  <div class="interleaved-image-wrapper" style="display: flex; flex-direction: column; align-items: center; margin: 30px 0;">
+    <a href="{{ imageList[3] | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 600px; cursor: zoom-in;">
+      <img src="{{ imageList[3] | trim }}" alt="{{ item.name }} - View 1" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity 0.2s;">
+    </a>
+
+    {# Adding the caption underneath the photo #}
+    {% if captionList[3] %}
+    <p style="margin-top: 12px; font-style: italic; font-size: 0.95rem; opacity: 0.8; text-align: center;">
+      {{ captionList[3] | trim | safe }}
+    </p>
+    {% endif %}
+  </div>
 
   <!-- 11. Architecture -->
   {% if item.architecture %}
@@ -156,6 +158,22 @@ renderData:
       <p>{{ item.architecture | safe }}</p>
     </div>
   {% endif %}
+
+
+  <!-- 10. Image 5 (Clickable, Opens Full Size) -->
+ {% if imageList[4] %}
+  <div class="interleaved-image-wrapper" style="display: flex; flex-direction: column; align-items: center; margin: 30px 0;">
+    <a href="{{ imageList[4] | trim }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; max-width: 600px; cursor: zoom-in;">
+      <img src="{{ imageList[4] | trim }}" alt="{{ item.name }} - View 1" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity 0.2s;">
+    </a>
+
+    {# Adding the caption underneath the photo #}
+    {% if captionList[4] %}
+    <p style="margin-top: 12px; font-style: italic; font-size: 0.95rem; opacity: 0.8; text-align: center;">
+      {{ captionList[4] | trim | safe }}
+    </p>
+    {% endif %}
+  </div>
 
   <!-- Actions Panel (Maps & Links) -->
   <div class="actions-panel" style="display: flex; flex-wrap: wrap; gap: 15px; margin: 35px 0; padding-top: 20px; border-top: 1px solid #eee;">
