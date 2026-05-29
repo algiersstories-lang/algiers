@@ -5,17 +5,37 @@ title: "Interactive Map"
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 <style>
-    /* Layout: Filters at the top, Map below */
+    /* Ensure the wrapper is a positioning context */
     .map-wrapper-layout { display: flex; flex-direction: column; gap: 15px; width: 100%; margin-top: 20px; }
+    
     #filter-container { display: flex; flex-wrap: wrap; gap: 15px; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #eee; align-items: center; }
+    
     .legend-item { display: flex; align-items: center; cursor: pointer; font-size: 0.9rem; font-family: 'Georgia', serif; background: #f9f9f9; padding: 5px 12px; border-radius: 20px; border: 1px solid #ddd; }
     
-    #map { height: calc(100vh - 200px); width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border: 1px solid #ddd; position: relative; }
+    /* Map container positioning */
+    .map-container-relative { position: relative; width: 100%; height: calc(100vh - 200px); }
     
-    /* Locate Button */
-    .locate-me-btn { position: absolute; top: 10px; left: 10px; z-index: 1000; background: white; border: 2px solid rgba(0,0,0,0.2); border-radius: 4px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 1px 5px rgba(0,0,0,0.4); }
+    #map { height: 100%; width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border: 1px solid #ddd; z-index: 1; }
     
-    /* Labels & Popups */
+    /* Forced high z-index and pointer-events for the button */
+    .locate-me-btn { 
+        position: absolute; 
+        top: 10px; 
+        left: 10px; 
+        z-index: 10000; 
+        background: white; 
+        border: 2px solid rgba(0,0,0,0.2); 
+        border-radius: 4px; 
+        width: 34px; 
+        height: 34px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        cursor: pointer; 
+        box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+        pointer-events: auto;
+    }
+    
     .citadelle-static-label { font-family: 'Georgia', serif; font-size: 13px; font-weight: bold; color: #A0522D; transform: translate(-50%, -50%); text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff; }
     .label { font-size: 11px; font-weight: bold; color: var(--hist-teal); background: rgba(255,255,255,0.85); padding: 2px 5px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.1); white-space: nowrap; pointer-events: none; }
     .popup-btn { display: block; text-align: center; background: #4CB6C9; color: white !important; padding: 8px; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 10px; font-size: 0.9rem; }
@@ -23,7 +43,8 @@ title: "Interactive Map"
 
 <div class="map-wrapper-layout">
     <div id="filter-container"><strong>Categories:</strong></div>
-    <div style="position: relative;">
+    
+    <div class="map-container-relative">
         <div class="locate-me-btn" id="locateBtn" title="Me localiser">
             <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" /></svg>
         </div>
@@ -34,13 +55,9 @@ title: "Interactive Map"
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
     var map = L.map('map').setView([36.78497, 3.06081], 16);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r.png}', { attribution: '&copy; OpenStreetMap & CartoDB' }).addTo(map);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r.png}', { attribution: '&copy; OpenStreetMap' }).addTo(map);
 
-    // Polygons & Static Labels
-    L.polygon([[36.7889331,3.0631234],[36.7890035,3.0615222],[36.7879224,3.0595185],[36.7857173,3.0561819],[36.7855686,3.0558252],[36.7848326,3.0550084],[36.7840676,3.0539664],[36.783794,3.0543567],[36.7837979,3.0545706],[36.7835871,3.0549833],[36.7835108,3.055187],[36.783428,3.0554202],[36.7830507,3.0559004],[36.7825231,3.0560533],[36.7812922,3.0593685],[36.780984,3.0607686],[36.7806327,3.0622814],[36.784145,3.0634936],[36.7850559,3.0649287],[36.78642,3.0659244],[36.7866163,3.0669045],[36.7865376,3.0679812],[36.786595,3.0685788],[36.7858504,3.0687167],[36.7851144,3.0676529],[36.7846498,3.0676521],[36.7845975,3.0682736],[36.7852843,3.0685732],[36.7859538,3.0692591],[36.7873844,3.0694911],[36.7881312,3.0693269],[36.7884479,3.0689496],[36.788335,3.0687655],[36.787784,3.0686779],[36.7873188,3.0684508],[36.7870845,3.0672832],[36.7870478,3.0660191],[36.7868948,3.0658296],[36.7868922,3.065557],[36.7873665,3.0650055],[36.7877991,3.0644629],[36.7879761,3.064572],[36.7887016,3.0637163],[36.7886305,3.0635004],[36.7889331,3.0631234]], { color: '#A0522D', weight: 4, fillColor: '#F5F5DC', fillOpacity: 0.2, interactive: false }).addTo(map);
-    L.polygon([[36.7849101,3.0550896],[36.7848177,3.0549796],[36.7840676,3.0539664],[36.783794,3.0543567],[36.7837962,3.0545625],[36.7835793,3.0549917],[36.7835108,3.055187],[36.783428,3.0554202],[36.7830507,3.0559004],[36.7834719,3.0560431],[36.783866,3.0560739],[36.7841711,3.0558527],[36.7844106,3.0555844],[36.7845975,3.055398],[36.7849058,3.0551244],[36.7849101,3.0550896]], { color: '#4CB6C9', weight: 2, fillColor: '#4CB6C9', fillOpacity: 0.3, interactive: false }).addTo(map);
-    L.marker([36.78468878202779, 3.054979095979314], { icon: L.divIcon({ className: 'citadelle-static-label', html: "La Citadelle d'Alger" }), interactive: false }).addTo(map);
-
+    // Initializations
     var layers = {}, labelLayer = L.layerGroup().addTo(map), allLabels = [];
     const iconMap = { "mosquee": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/mosque2.png', "gate": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/porte2.png', "porte": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/porte2.png', "palais": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/palace.png', "musee": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/museum-icon.png', "mosole": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/icon-mosole.png', "fort": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/icon-fort.png' };
 
@@ -61,20 +78,18 @@ title: "Interactive Map"
                 let label = L.marker([parseFloat(place.lat), parseFloat(place.lon)], { icon: L.divIcon({ className: 'label', html: place.name, iconAnchor: [-10, 10] }) });
                 allLabels.push({ label: label, catId: catId });
             });
-            createHorizontalLegend(Array.from(uniqueCats));
+            
+            // Create legend
+            const container = document.getElementById('filter-container');
+            Array.from(uniqueCats).forEach(cat => {
+                let id = cat.toLowerCase().trim();
+                let label = document.createElement('label');
+                label.className = 'legend-item';
+                label.innerHTML = `<input type="checkbox" class="map-filter" data-cat="${id}" checked style="margin-right:8px"> ${cat}`;
+                container.appendChild(label);
+            });
             updateLabels();
         });
-
-    function createHorizontalLegend(cats) {
-        const container = document.getElementById('filter-container');
-        cats.forEach(cat => {
-            let id = cat.toLowerCase().trim();
-            let label = document.createElement('label');
-            label.className = 'legend-item';
-            label.innerHTML = `<input type="checkbox" class="map-filter" data-cat="${id}" checked style="margin-right:8px"> ${cat}`;
-            container.appendChild(label);
-        });
-    }
 
     function updateLabels() {
         labelLayer.clearLayers();
@@ -92,7 +107,12 @@ title: "Interactive Map"
         }
     });
 
+    // Locate Button Listener
     document.getElementById('locateBtn').addEventListener('click', () => {
-        navigator.geolocation.getCurrentPosition(pos => map.flyTo([pos.coords.latitude, pos.coords.longitude], 17));
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(pos => {
+                map.flyTo([pos.coords.latitude, pos.coords.longitude], 17);
+            });
+        }
     });
 </script>
