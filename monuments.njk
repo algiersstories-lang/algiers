@@ -176,27 +176,17 @@ renderData:
 
   <!-- Actions Panel (Maps & Links) -->
   <div class="actions-panel" style="display: flex; flex-wrap: wrap; gap: 15px; margin: 35px 0; padding-top: 20px; border-top: 1px solid #eee;">
-    <!-- 12. Google Map Button -->
-
-
+   
+<!-- 12. Google Map Button -->
 {% if item.lat and item.lon %}
       <a href="http://maps.google.com/?q={{ item.lat }},{{ item.lon }}" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="ctn-button2" >
-         View on Google Maps
-      </a>
+         target="_blank"   rel="noopener noreferrer" class="cta-button2" > View on Google Maps </a>
     {% endif %}
-
 
     <!-- 13. External Link -->
     {% if item.external_link %}
       <a href="{{ item.external_link }}" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="ctn-button2" >
-         Plus d'information sur le site...
-      </a>
+      target="_blank" rel="noopener noreferrer"     class="cta-button2" > Plus d'information sur le site... </a>
     {% endif %}
   </div>
 
