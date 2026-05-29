@@ -5,25 +5,54 @@ title: "Interactive Map"
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 <style>
-    /* Container for layout alignment */
+    /* Layout: Sidebar and Map side-by-side */
     .map-wrapper-layout {
-        position: relative; /* Essential to let the locate button float over the map */
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 20px;
         width: 100%;
+        margin-top: 20px;
     }
 
-    /* Map Container - Adjusts for the top menu height */
+    /* Sidebar Styling */
+    #sidebar {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        border: 1px solid #eee;
+        height: fit-content;
+    }
+
+    #sidebar h4 {
+        margin: 0 0 15px 0;
+        color: var(--hist-teal);
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-family: 'Georgia', serif;
+    }
+
+    /* Map Container */
     #map {
-        height: calc(100vh - 150px); 
+        height: calc(100vh - 150px);
         width: 100%;
         border-radius: 12px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         border: 1px solid #ddd;
     }
 
-    /* Floating Locate Me Button Styling */
+    /* Floating Locate Me Button */
     .locate-me-btn {
         position: absolute;
-        top: 80px; /* Perfectly sits right below Leaflet's zoom (+ / -) controls */
+        top: 10px;
         left: 10px;
         z-index: 1000;
         background-color: white;
@@ -36,65 +65,23 @@ title: "Interactive Map"
         justify-content: center;
         cursor: pointer;
         box-shadow: 0 1px 5px rgba(0,0,0,0.4);
-        transition: background-color 0.2s;
     }
 
-    .locate-me-btn:hover {
-        background-color: #f4f4f4;
-    }
-
-    .locate-me-btn svg {
-        width: 20px;
-        height: 20px;
-        fill: var(--charcoal, #333);
-    }
-
-    /* Legend Styling */
-    .legend {
-        background: rgba(255, 255, 255, 0.95);
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    /* Label & Popup Styles */
+    .citadelle-static-label {
         font-family: 'Georgia', serif;
-        line-height: 1.5;
-        max-height: 300px;
-        overflow-y: auto;
+        font-size: 13px;
+        font-weight: bold;
+        color: var(--terracotta, #A0522D);
+        white-space: nowrap;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
     }
 
-    .legend h4 {
-        margin: 0 0 10px 0;
-        color: var(--hist-teal);
-        border-bottom: 1px solid #eee;
-        padding-bottom: 5px;
-    }
-
-/* Style mis à jour pour le texte fixe de la Citadelle */
-.citadelle-static-label {
-    font-family: 'Georgia', serif;
-    font-size: 13px;
-    font-weight: bold;
-    color: var(--terracotta, #A0522D);
-    white-space: nowrap;
-    
-    /* 1. FORCE LA SUPPRESSION DES STYLES PAR DÉFAUT DE LEAFLET */
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-
-    /* 2. LE SECRET DU CENTRAGE PARFAIT AU ZOOM : */
-    /* On décale le texte de -50% en largeur et -50% en hauteur */
-    transform: translate(-50%, -50%); 
-    text-align: center;
-
-    /* 3. CONTOUR BLANC RENFORCÉ (Multi-directionnel) */
-    text-shadow: 
-        -2px -2px 0 #fff,  2px -2px 0 #fff, -2px  2px 0 #fff,  2px  2px 0 #fff,
-        -1px -1px 0 #fff,  1px -1px 0 #fff, -1px  1px 0 #fff,  1px  1px 0 #fff,
-         0px -2px 0 #fff,  0px  2px 0 #fff, -2px  0px 0 #fff,  2px  0px 0 #fff;
-}
-
-	
-    /* Marker Labels */
     .label {
         font-size: 11px;
         font-weight: bold;
@@ -104,15 +91,9 @@ title: "Interactive Map"
         border-radius: 4px;
         border: 1px solid rgba(0,0,0,0.1);
         white-space: nowrap;
-        pointer-events: none; /* Allows clicking markers through the labels */
+        pointer-events: none;
     }
 
-    /* Popup Styling */
-    .leaflet-popup-content-wrapper {
-        border-radius: 8px;
-        padding: 5px;
-    }
-    
     .popup-btn {
         display: block;
         text-align: center;
@@ -128,272 +109,33 @@ title: "Interactive Map"
 </style>
 
 <div class="map-wrapper-layout">
-    <div class="locate-me-btn" id="locateBtn" title="Me localiser sur la carte">
-        <svg viewBox="0 0 24 24">
-            <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
-        </svg>
+    <aside id="sidebar">
+        <h4>Monuments Categories</h4>
+        <div id="filter-container"></div>
+    </aside>
+
+    <div style="position: relative;">
+        <div class="locate-me-btn" id="locateBtn" title="Me localiser sur la carte">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+                <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
+            </svg>
+        </div>
+        <div id="map"></div>
     </div>
-    
-    <div id="map"></div>
 </div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
 <script>
-    // --- 1. INITIALIZE MAP ---
     var map = L.map('map').setView([36.78497, 3.06081], 16);
-
-    // Ensure map renders correctly inside the layout container
-    setTimeout(() => { map.invalidateSize(); }, 400);
-
-    // Your original base map choice preserved
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; OpenStreetMap & CartoDB'
     }).addTo(map);
 
-    // --- 2. LAYERS & SETTINGS ---
-    var layers = {}; // Holds category groups: layers['mosquee']
+    var layers = {};
     var labelLayer = L.layerGroup().addTo(map);
     var allLabels = [];
-    let userLocationMarker = null; // Track geolocation point safely
+    let userLocationMarker = null;
 
     const iconSettings = { iconSize: [34, 34], iconAnchor: [17, 34], popupAnchor: [0, -32] };
     const defaultIconUrl = 'https://raw.githubusercontent.com/algiersstories-lang/images/main/mosque2.png';
-
-    // Map your spreadsheet categories to your GitHub icons
-    const iconMap = {
-        "mosquee": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/mosque2.png',
-        "gate": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/porte2.png',
-        "porte": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/porte2.png',
-        "palais": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/palace.png',
-        "musee": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/museum-icon.png',
-		"mosole": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/icon-mosole.png',
-		"fort": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/icon-fort.png'
-    };
-
-    // Custom blue point to contrast nicely with historical architecture icons
-    const userLocationIcon = L.icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-    });
-
-    // Helper: Create URL slugs to match Eleventy's monument pages
-    const slugify = t => t.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-');
-
-    // Casbah Heritage Perimeter
-    var casbahPolygon = [[36.7889331,3.0631234],
-[36.7890035,3.0615222],
-[36.7879224,3.0595185],
-[36.7857173,3.0561819],
-[36.7855686,3.0558252],
-[36.7848326,3.0550084],
-[36.7840676,3.0539664],
-[36.783794,3.0543567],
-[36.7837979,3.0545706],
-[36.7835871,3.0549833],
-[36.7835108,3.055187],
-[36.783428,3.0554202],
-[36.7830507,3.0559004],
-[36.7825231,3.0560533],
-[36.7812922,3.0593685],
-[36.780984,3.0607686],
-[36.7806327,3.0622814],
-[36.784145,3.0634936],
-[36.7850559,3.0649287],
-[36.78642,3.0659244],
-[36.7866163,3.0669045],
-[36.7865376,3.0679812],
-[36.786595,3.0685788],
-[36.7858504,3.0687167],
-[36.7851144,3.0676529],
-[36.7846498,3.0676521],
-[36.7845975,3.0682736],
-[36.7852843,3.0685732],
-[36.7859538,3.0692591],
-[36.7873844,3.0694911],
-[36.7881312,3.0693269],
-[36.7884479,3.0689496],
-[36.788335,3.0687655],
-[36.787784,3.0686779],
-[36.7873188,3.0684508],
-[36.7870845,3.0672832],
-[36.7870478,3.0660191],
-[36.7868948,3.0658296],
-[36.7868922,3.065557],
-[36.7873665,3.0650055],
-[36.7877991,3.0644629],
-[36.7879761,3.064572],
-[36.7887016,3.0637163],
-[36.7886305,3.0635004],
-[36.7889331,3.0631234]
-						];
-    L.polygon(casbahPolygon, { color: '#A0522D', weight: 4, fillColor: '#F5F5DC', fillOpacity: 0.2, interactive: false }).addTo(map);
-
-     var citadelPolygon = [
-	[36.7849101,3.0550896],
-[36.7848177,3.0549796],
-[36.7840676,3.0539664],
-[36.783794,3.0543567],
-[36.7837962,3.0545625],
-[36.7835793,3.0549917],
-[36.7835108,3.055187],
-[36.783428,3.0554202],
-[36.7830507,3.0559004],
-[36.7834719,3.0560431],
-[36.783866,3.0560739],
-[36.7841711,3.0558527],
-[36.7844106,3.0555844],
-[36.7845975,3.055398],
-[36.7849058,3.0551244],
-[36.7849101,3.0550896]
-      ];
-    L.polygon(citadelPolygon, { color: '#4CB6C9', weight: 2, fillColor: '#4CB6C9', fillOpacity: 0.3, interactive: false }).addTo(map);
-	
-
-// Ajout du label statique pour la Citadelle d'Alger
-// Ajout du label statique parfaitement ancré au centre
-L.marker([36.78468878202779, 3.054979095979314], {
-    icon: L.divIcon({
-        className: 'citadelle-static-label',
-        html: "La Citadelle d'Alger"
-        // Ne pas mettre d'iconAnchor ici, le CSS s'en occupe !
-    }),
-    interactive: false
-}).addTo(map);
-    
-    // --- 3. LOAD DATA FROM GOOGLE SHEET ---
-	
-    // old sheet
-	// fetch("https://opensheet.elk.sh/1VXIKnUOE_k9W195-BjsM1fX-HvC5B7GD7Zd0blubEwY/markers")
-	//
-	
-	fetch("https://opensheet.elk.sh/1mbCRLp8PVtJ5J2gKGBn3QQzzLbqnoVmRJ7yLnEw0ZrQ/markers")	
-        .then(res => res.json())
-        .then(data => {
-            let uniqueCategories = new Set();
-
-            data.forEach(place => {
-                let lat = parseFloat(place.lat), lon = parseFloat(place.lon);
-                if(isNaN(lat) || isNaN(lon)) return;
-
-                let categoryLabel = place.category || "General";
-                let catId = categoryLabel.toLowerCase().trim();
-                uniqueCategories.add(categoryLabel);
-
-                // Initialize layer group for category if new
-                if (!layers[catId]) {
-                    layers[catId] = L.layerGroup().addTo(map);
-                }
-
-                // Pick Icon
-                let iconUrl = iconMap[catId] || defaultIconUrl;
-                let customIcon = L.icon({ ...iconSettings, iconUrl: iconUrl });
-
-                // Create Marker
-                let monumentUrl = `/algiers/monuments/${slugify(place.name)}/`;
-                let marker = L.marker([lat, lon], { icon: customIcon }).addTo(layers[catId]);
-                
-                marker.bindPopup(`
-                    <div style="min-width:180px">
-                        <h3 style="margin:0 0 5px 0; color:var(--hist-teal); font-size:1.1rem;">${place.name}</h3>
-                        ${place.photo ? `<img src="${place.photo}" style="width:100%; height:200px; object-fit:cover; border-radius:4px;">` : ''}
-                        <p style="font-size:0.85rem; margin:8px 0;">${place.description || ""}</p>
-                        <a href="${monumentUrl}" class="popup-btn">View Full Details →</a>
-                    </div>
-                `);
-
-                // Create Hidden Label
-                let label = L.marker([lat, lon], {
-                    icon: L.divIcon({ className: 'label', html: place.name, iconAnchor: [-10, 10] })
-                });
-                allLabels.push({ label: label, catId: catId });
-            });
-
-            createDynamicLegend(uniqueCategories);
-        });
-
-    // --- 4. DYNAMIC LEGEND GENERATOR ---
-    function createDynamicLegend(categories) {
-        var legend = L.control({ position: 'bottomright' });
-
-        legend.onAdd = function () {
-            var div = L.DomUtil.create('div', 'legend');
-            div.innerHTML = `<h4>Map Filters</h4>`;
-
-            categories.forEach(cat => {
-                let id = cat.toLowerCase().trim();
-                let iconUrl = iconMap[id] || defaultIconUrl;
-                
-                div.innerHTML += `
-                    <label style="display:flex; align-items:center; margin-bottom:8px; cursor:pointer; font-size:0.9rem;">
-                        <input type="checkbox" class="map-filter" data-cat="${id}" checked style="margin-right:10px">
-                        <img src="${iconUrl}" width="18" style="margin-right:8px"> ${cat}
-                    </label>`;
-            });
-
-            L.DomEvent.disableClickPropagation(div);
-            return div;
-        };
-
-        legend.addTo(map);
-    }
-
-    // --- 5. EVENT LISTENERS (Filter & Zoom) ---
-    document.addEventListener('change', function(e) {
-        if (e.target.classList.contains('map-filter')) {
-            let cat = e.target.getAttribute('data-cat');
-            if (e.target.checked) {
-                map.addLayer(layers[cat]);
-            } else {
-                map.removeLayer(layers[cat]);
-            }
-            updateLabels(); 
-        }
-    });
-
-    function updateLabels() {
-        labelLayer.clearLayers();
-        if (map.getZoom() >= 17) {
-            allLabels.forEach(item => {
-                if (map.hasLayer(layers[item.catId])) {
-                    item.label.addTo(labelLayer);
-                }
-            });
-        }
-    }
-
-    map.on("zoomend", updateLabels);
-
-    // --- 6. GEOLOCATION SYSTEM ---
-    document.getElementById('locateBtn').addEventListener('click', function() {
-        if (!navigator.geolocation) {
-            alert("Your browser does not support geolocation features.");
-            return;
-        }
-
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                var uLat = position.coords.latitude;
-                var uLon = position.coords.longitude;
-
-                if (userLocationMarker) {
-                    userLocationMarker.setLatLng([uLat, uLon]);
-                } else {
-                    userLocationMarker = L.marker([uLat, uLon], { icon: userLocationIcon }).addTo(map)
-                        .bindPopup("<b>You are here</b>");
-                }
-                
-                userLocationMarker.openPopup();
-                map.flyTo([uLat, uLon], 17); // Smooth animated glide to current position
-            },
-            function(error) {
-                alert("Unable to access location. Ensure tracking is permitted in your browser settings.");
-            },
-            { enableHighAccuracy: true, timeout: 6000 }
-        );
-    });
-</script>
+    const iconMap
