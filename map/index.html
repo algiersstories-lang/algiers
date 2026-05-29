@@ -324,7 +324,85 @@
 
     const iconSettings = { iconSize: [34, 34], iconAnchor: [17, 34], popupAnchor: [0, -32] };
     const defaultIconUrl = 'https://raw.githubusercontent.com/algiersstories-lang/images/main/mosque2.png';
-    const iconMap
+    const iconMap = {
+        "mosquee": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/mosque2.png',
+        "gate": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/porte2.png',
+        "porte": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/porte2.png',
+        "palais": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/palace.png',
+        "musee": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/museum-icon.png',
+        "mosole": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/icon-mosole.png',
+        "fort": 'https://raw.githubusercontent.com/algiersstories-lang/images/main/icon-fort.png'
+    };
+
+    const slugify = t => t.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-');
+
+    // Load Data
+    fetch("https://opensheet.elk.sh/1mbCRLp8PVtJ5J2gKGBn3QQzzLbqnoVmRJ7yLnEw0ZrQ/markers")	
+        .then(res => res.json())
+        .then(data => {
+            let uniqueCategories = new Set();
+            data.forEach(place => {
+                let lat = parseFloat(place.lat), lon = parseFloat(place.lon);
+                if(isNaN(lat) || isNaN(lon)) return;
+
+                let categoryLabel = place.category || "General";
+                let catId = categoryLabel.toLowerCase().trim();
+                uniqueCategories.add(categoryLabel);
+
+                if (!layers[catId]) layers[catId] = L.layerGroup().addTo(map);
+
+                let iconUrl = iconMap[catId] || defaultIconUrl;
+                let customIcon = L.icon({ ...iconSettings, iconUrl: iconUrl });
+                let marker = L.marker([lat, lon], { icon: customIcon }).addTo(layers[catId]);
+                
+                marker.bindPopup(`<div style="min-width:180px"><h3>${place.name}</h3><a href="/algiers/monuments/${slugify(place.name)}/" class="popup-btn">View Details →</a></div>`);
+                
+                let label = L.marker([lat, lon], { icon: L.divIcon({ className: 'label', html: place.name, iconAnchor: [-10, 10] }) });
+                allLabels.push({ label: label, catId: catId });
+            });
+            createDynamicLegend(uniqueCategories);
+        });
+
+    function createDynamicLegend(categories) {
+        var container = document.getElementById('filter-container');
+        categories.forEach(cat => {
+            let id = cat.toLowerCase().trim();
+            let iconUrl = iconMap[id] || defaultIconUrl;
+            let label = document.createElement('label');
+            label.className = 'legend-item';
+            label.innerHTML = `<input type="checkbox" class="map-filter" data-cat="${id}" checked style="margin-right:10px"><img src="${iconUrl}" width="20" style="margin-right:10px"> ${cat}`;
+            container.appendChild(label);
+        });
+    }
+
+    document.addEventListener('change', function(e) {
+        if (e.target.classList.contains('map-filter')) {
+            let cat = e.target.getAttribute('data-cat');
+            e.target.checked ? map.addLayer(layers[cat]) : map.removeLayer(layers[cat]);
+            updateLabels();
+        }
+    });
+
+    function updateLabels() {
+        labelLayer.clearLayers();
+        if (map.getZoom() >= 17) {
+            allLabels.forEach(item => { if (map.hasLayer(layers[item.catId])) item.label.addTo(labelLayer); });
+        }
+    }
+
+    map.on("zoomend", updateLabels);
+
+    document.getElementById('locateBtn').addEventListener('click', function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(pos => {
+                let coords = [pos.coords.latitude, pos.coords.longitude];
+                if (!userLocationMarker) userLocationMarker = L.marker(coords).addTo(map);
+                else userLocationMarker.setLatLng(coords);
+                map.flyTo(coords, 17);
+            });
+        }
+    });
+</script>
 
     </main>
 
