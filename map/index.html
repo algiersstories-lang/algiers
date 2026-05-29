@@ -5,12 +5,17 @@ title: "Interactive Map"
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 <style>
+    /* Layout: Filters at the top, Map below */
     .map-wrapper-layout { display: flex; flex-direction: column; gap: 15px; width: 100%; margin-top: 20px; }
     #filter-container { display: flex; flex-wrap: wrap; gap: 15px; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #eee; align-items: center; }
     .legend-item { display: flex; align-items: center; cursor: pointer; font-size: 0.9rem; font-family: 'Georgia', serif; background: #f9f9f9; padding: 5px 12px; border-radius: 20px; border: 1px solid #ddd; }
-    #map { height: calc(100vh - 200px); width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border: 1px solid #ddd; }
-    .locate-me-btn { position: absolute; top: 10px; left: 10px; z-index: 1000; background: white; border: 2px solid rgba(0,0,0,0.2); border-radius: 4px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-    /* Marker & Label Styles */
+    
+    #map { height: calc(100vh - 200px); width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border: 1px solid #ddd; position: relative; }
+    
+    /* Locate Button */
+    .locate-me-btn { position: absolute; top: 10px; left: 10px; z-index: 1000; background: white; border: 2px solid rgba(0,0,0,0.2); border-radius: 4px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 1px 5px rgba(0,0,0,0.4); }
+    
+    /* Labels & Popups */
     .citadelle-static-label { font-family: 'Georgia', serif; font-size: 13px; font-weight: bold; color: #A0522D; transform: translate(-50%, -50%); text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff; }
     .label { font-size: 11px; font-weight: bold; color: var(--hist-teal); background: rgba(255,255,255,0.85); padding: 2px 5px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.1); white-space: nowrap; pointer-events: none; }
     .popup-btn { display: block; text-align: center; background: #4CB6C9; color: white !important; padding: 8px; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 10px; font-size: 0.9rem; }
@@ -19,7 +24,9 @@ title: "Interactive Map"
 <div class="map-wrapper-layout">
     <div id="filter-container"><strong>Categories:</strong></div>
     <div style="position: relative;">
-        <div class="locate-me-btn" id="locateBtn" title="Me localiser"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" /></svg></div>
+        <div class="locate-me-btn" id="locateBtn" title="Me localiser">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" /></svg>
+        </div>
         <div id="map"></div>
     </div>
 </div>
