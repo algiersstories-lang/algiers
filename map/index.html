@@ -90,15 +90,28 @@ title: "Interactive Map"
         }
     });
 
-    // Locate Button Control
+   // Updated Locate Control
     var LocateControl = L.Control.extend({
         onAdd: function(map) {
             var btn = L.DomUtil.create('div', 'locate-control-btn');
             btn.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" /></svg>';
             btn.title = "Me localiser";
-            btn.onclick = () => navigator.geolocation.getCurrentPosition(pos => map.flyTo([pos.coords.latitude, pos.coords.longitude], 17));
+            btn.onclick = () => {
+                navigator.geolocation.getCurrentPosition(pos => {
+                    var latlng = [pos.coords.latitude, pos.coords.longitude];
+                    // Create marker if it doesn't exist, otherwise update position
+                    if (!userLocationMarker) {
+                        userLocationMarker = L.circleMarker(latlng, { radius: 8, color: '#ff7800', fillColor: '#ff7800', fillOpacity: 1 }).addTo(map).bindPopup("Vous êtes ici");
+                    } else {
+                        userLocationMarker.setLatLng(latlng);
+                    }
+                    map.flyTo(latlng, 17);
+                });
+            };
             return btn;
         }
     });
     map.addControl(new LocateControl({ position: 'topleft' }));
+
+    
 </script>
