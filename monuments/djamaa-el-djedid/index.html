@@ -8,31 +8,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-
-
-<link rel="icon" type="image/png" href="/algiers/images/logo-casbah-square.png">
+    <link rel="icon" type="image/png" href="/algiers/images/logo-casbah-square.png">
 
     <style>
-        /* --- BRANDING COLOR MATRIX (Variables) --- */
         :root {
-            --parchment: #fcfaf2;   /* Soft historical crème background */
-            --charcoal: #2b2b2b;    /* High contrast dark tone for reading comfort */
-            --hist-teal: #005a5b;   /* Main heritage accent tone */
-            --med-blue: #4CB6C9;    /* Interactive action state links */
+            --parchment: #fcfaf2;
+            --charcoal: #2b2b2b;
+            --hist-teal: #005a5b;
+            --med-blue: #4CB6C9;
             --white: #ffffff;
-            --mybrowny: #DDD9CC;   /*  my added browny color*/
+            --mybrowny: #DDD9CC;
             --max-width: 1100px;
+            /* Zelij Pattern Path */
+            --zelij-bg: url('/images/zelij-pattern.png');
         }
 
-        /* --- BASIC RESET & CORE LAYOUT --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Georgia', serif; /* Traditional literary body default */
+            font-family: 'Georgia', serif;
             background-color: var(--parchment);
             color: var(--charcoal);
             line-height: 1.7;
@@ -41,25 +35,42 @@
             flex-direction: column;
         }
 
-        /* --- GLOBAL TITLES SETUP --- */
         h1, h2, h3, h4, .site-title {
             font-family: 'Playfair Display', 'Georgia', serif;
             font-weight: 700;
             color: var(--hist-teal);
         }
 
-        /* --- RE-ARCHITECTED GLOBAL NAVIGATION HEADER --- */
-        /* Fixed layout structure with independent scoping to prevent local pages from leaking styles */
+        /* --- STYLIZED ZELIJ HEADER & FOOTER --- */
+        .zelij-style {
+            background-image: var(--zelij-bg);
+            background-repeat: repeat;
+            position: relative;
+        }
+
+        /* Dark overlay to ensure text is readable over the pattern */
+        .zelij-style::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.85); /* Adjust opacity here */
+            z-index: 1;
+        }
+
+        /* Ensure content stays above the overlay */
+        .header-content, .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
         header.site-header {
             background-color: var(--white);
             border-bottom: 3px solid var(--hist-teal);
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1001; /* Prevents maps or iframe elements from overlaying the menu */
-            padding: 10px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            top: 0; left: 0; width: 100%;
+            z-index: 1001;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .nav-container {
@@ -71,108 +82,46 @@
             align-items: center;
         }
 
-            /* My new button style ================================= */
-    .cta-button2 {
-        display: inline-block;
-        background-color: var(--mybrowny);
-        color: var(--hist-teal) !important;
-        text-decoration: none;
-        padding: 10px 20px;
-        font-size: 1.1rem;
-        font-weight: bold;
-        border-radius: 6px;
-        box-shadow: 0 4px 10px rgba(160, 82, 45, 0.3);
-        transition: transform 0.2s, background-color 0.2s;
-    }
+        .site-title { font-size: 1.4rem; }
 
-    .cta-button2:hover {
-        background-color: #DAC6A2; /* mybrowny un peu plus sombre au survol */
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(160, 82, 45, 0.4);
-    }
-
-
-        /* Site Identity / Logo Title */
-        .site-branding {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .site-title {
-            font-size: 1.4rem;
-            color: var(--hist-teal);
-            letter-spacing: 0.5px;
-        }
-
-        /* Menu Links */
-        nav.main-navigation ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-
+        nav.main-navigation ul { display: flex; list-style: none; gap: 20px; }
         nav.main-navigation a {
             text-decoration: none;
             color: var(--charcoal);
             font-weight: bold;
-            font-size: 1rem;
             transition: color 0.3s ease;
         }
+        nav.main-navigation a:hover, nav.main-navigation a.active { color: var(--hist-teal); }
 
-        nav.main-navigation a:hover,
-        nav.main-navigation a.active {
-            color: var(--med-blue);
-        }
-
-        /* --- MAIN VIEWPORT CONTAINMENT --- */
         main {
             flex: 1;
             padding: 40px 20px;
             max-width: var(--max-width);
             width: 100%;
             margin: 0 auto;
-            /* Offset to account for the fixed header height so local layout top-titles are fully visible */
-            margin-top: 80px; 
+            margin-top: 80px;
             min-height: 80vh;
         }
 
-        /* --- GLOBAL FOOTER ARCHIVE STYLING --- */
         footer.site-footer {
-            background-color: #f1ebd9; /* Marginally darker parchment hue for separation */
             text-align: center;
-            padding: 30px 20px;
+            padding: 40px 20px;
             font-size: 0.9rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            color: #555555;
+            border-top: 3px solid var(--hist-teal);
+            color: var(--charcoal);
         }
 
-        /* --- MOBILE MEDIA DISPARITIES ADJUSTMENTS --- */
         @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            nav.main-navigation ul {
-                gap: 15px;
-                font-size: 0.9rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            main {
-                margin-top: 110px; /* Expands top safe offset buffer space when nav wraps on smaller mobiles */
-                padding: 20px 15px;
-            }
+            .nav-container { flex-direction: column; gap: 10px; }
+            main { margin-top: 120px; }
         }
     </style>
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="nav-container">
-            <a href="/algiers/" class="site-branding">
+    <header class="site-header zelij-style">
+        <div class="nav-container header-content">
+            <a href="/algiers/" class="site-branding" style="text-decoration:none;">
                 <span class="site-title">Casbah Explorer</span>
             </a>
             <nav class="main-navigation">
@@ -181,7 +130,7 @@
                     <li><a href="/algiers/list/">Sites</a></li>
                     <li><a href="/algiers/map/">Carte</a></li>
                     <li><a href="/algiers/history/">Histoire</a></li>
-                    <li><a href="/algiers//about/">À Propos</a></li>
+                    <li><a href="/algiers/about/">À Propos</a></li>
                 </ul>
             </nav>
         </div>
@@ -461,8 +410,10 @@ Décoration intérieure : Le mihrab possède une niche octogonale ornée de carr
 
     </main>
 
-    <footer class="site-footer">
-        <p>&copy; 2026 Casbah Explorer. Projet patrimonial, bénévole et indépendant dédié à la mémoire d'Alger.</p>
+    <footer class="site-footer zelij-style">
+        <div class="footer-content">
+            <p>&copy; 2026 Casbah Explorer. Projet patrimonial, bénévole et indépendant dédié à la mémoire d'Alger.</p>
+        </div>
     </footer>
 
 </body>
