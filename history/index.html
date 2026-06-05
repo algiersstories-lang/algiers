@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> | Casbah Explorer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/algiers/images/logo-casbah-square.png">
+
+    <style>
+        :root {
+            --parchment: #fcfaf2;
+            --charcoal: #2b2b2b;
+            --hist-teal: #005a5b;
+            --med-blue: #4CB6C9;
+            --terracotta: #974D26
+            --white: #ffffff;
+            --mybrowny: #DDD9CC;
+            --max-width: 1100px;
+            /* Zelij Pattern Path */
+            --zelij-bg: url('/images/zelij-pattern.png');
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--parchment);
+            color: var(--charcoal);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, .site-title {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            font-weight: 700;
+            color: var(--hist-teal);
+        }
+
+.cta-button2 {
+        display: inline-block;
+        background-color: var(--mybrowny);
+        color: var(--hist-teal) !important;
+        text-decoration: none;
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        border-radius: 6px;
+        box-shadow: 0 4px 10px rgba(160, 82, 45, 0.3);
+        transition: transform 0.2s, background-color 0.2s;
+
+      display: inline-flex;  /* Keeps the container inline with surrounding text */
+      align-items: center;   /* Centers the icon and text vertically */
+      gap: 8px;              /* Easily adds space between the icon and text */
+    }
+
+    .cta-button2:hover {
+        background-color: #DAC6A2; /* mybrowny un peu plus sombre au survol */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(160, 82, 45, 0.4);
+    }
+
+
+        /* --- STYLIZED ZELIJ HEADER & FOOTER --- */
+        .zelij-style {
+            background-image: var(--zelij-bg);
+            background-repeat: repeat;
+            position: relative;
+        }
+
+        /* Dark overlay to ensure text is readable over the pattern */
+        .zelij-style::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.85); /* Adjust opacity here */
+            z-index: 1;
+        }
+
+        /* Ensure content stays above the overlay */
+        .header-content, .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        header.site-header {
+            background-color: var(--white);
+            border-bottom: 3px solid var(--hist-teal);
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 1001;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-title { font-size: 1.4rem; }
+
+        nav.main-navigation ul { display: flex; list-style: none; gap: 20px; }
+        nav.main-navigation a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav.main-navigation a:hover, nav.main-navigation a.active { color: var(--hist-teal); }
+
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: var(--max-width);
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 80px;
+            min-height: 80vh;
+        }
+
+        footer.site-footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--hist-teal);
+            color: var(--charcoal);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 10px; }
+            main { margin-top: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header zelij-style">
+        <div class="nav-container header-content">
+            <a href="/algiers/" class="site-branding" style="text-decoration:none;">
+                <span class="site-title">Casbah Explorer</span>
+            </a>
+            <nav class="main-navigation">
+                <ul>
+                    <li><a href="/algiers/">Accueil</a></li>
+                    <li><a href="/algiers/list/">Sites</a></li>
+                    <li><a href="/algiers/map/">Carte</a></li>
+                    <li><a href="/algiers/history/">Histoire</a></li>
+                    <li><a href="/algiers/about/">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+    </main>
+
+    <footer class="site-footer zelij-style">
+        <div class="footer-content">
+            <p>&copy; 2026 Casbah Explorer. Projet patrimonial, bénévole et indépendant dédié à la mémoire d'Alger.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
