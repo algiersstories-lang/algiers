@@ -1,0 +1,43 @@
+---
+layout: base.njk
+title: "Page Not Found"
+permalink: /management-dashboard-xyz789/index.html
+---
+
+<div id="secure-content" style="display: none;">
+  <h2>Admin Control Panel</h2>
+  <p>Welcome back! Here are your tools:</p>
+  <ul>
+    <li><a href="https://www.cnn.com" rel="noopener noreferrer">Monitoring Tool (CNN Example)</a></li>
+  </ul>
+</div>
+
+<div id="fallback-content">
+  <h2>404 - Page Not Found</h2>
+  <p>The page you are looking for does not exist.</p>
+</div>
+
+<script>
+  (function() {
+    // 1. Get the 'key' parameter from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userKey = urlParams.get('key');
+
+    // 2. Define your secret key
+    const secretKey = "SuperSecretPassword123";
+
+    const secureDiv = document.getElementById('secure-content');
+    const fallbackDiv = document.getElementById('fallback-content');
+
+    if (userKey === secretKey) {
+      // Key matches: update page title, show admin content, hide 404
+      document.title = "Admin Tools";
+      secureDiv.style.display = "block";
+      fallbackDiv.style.direction = "none"; 
+      fallbackDiv.remove(); 
+    } else {
+      // Key fails: aggressively delete the admin HTML from the browser memory
+      secureDiv.remove();
+    }
+  })();
+</script>
