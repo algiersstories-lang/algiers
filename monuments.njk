@@ -55,7 +55,7 @@ renderData:
 
 {% if item.lat and item.lon %}
       <a href="http://maps.google.com/?q={{ item.lat }},{{ item.lon }}" 
-         target="_blank"   rel="noopener noreferrer" class="cta-button2" style="margin-bottom: 40px" > <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Description de l'image" width="30" height="30"> Trouver le chemin sur googl </a>
+         target="_blank"   rel="noopener noreferrer" class="cta-button2" style="margin-bottom: 40px" > <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Description de l'image" width="30" height="30"> Trouver le chemin sur google </a>
     {% endif %}
 
 <br>
@@ -188,13 +188,13 @@ renderData:
 <!-- 12. Google Map Button -->
 {% if item.lat and item.lon %}
       <a href="http://maps.google.com/?q={{ item.lat }},{{ item.lon }}" 
-         target="_blank"   rel="noopener noreferrer" class="cta-button2" > View on Google Maps </a>
+         target="_blank"   rel="noopener noreferrer" class="cta-button2" style="margin-bottom: 40px" > <img src="https://algiersstories-lang.github.io/images/map-icon.png" alt="Description de l'image" width="30" height="30"> Trouver le chemin sur google </a>
     {% endif %}
 
     <!-- 13. External Link -->
     {% if item.external_link %}
       <a href="{{ item.external_link }}" 
-      target="_blank" rel="noopener noreferrer"     class="cta-button2" > Plus d'information sur le site... </a>
+      target="_blank" rel="noopener noreferrer"     class="cta-button2" > Plus d'info sur {{ item.name }}...</a>
     {% endif %}
   </div>
 
